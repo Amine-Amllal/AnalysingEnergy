@@ -455,7 +455,7 @@ Gestion des erreurs
             """)
 
 Performance et optimisation
---------------------------
+----------------------------
 
 Mise en cache
 ~~~~~~~~~~~~

@@ -101,7 +101,7 @@ Voici un aperçu statistique des principales variables :
 Variables météorologiques
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: python
+.. code-block:: text
 
     # Exemple de statistiques pour les températures
     Temperature moyenne : 25.4°C ± 4.2°C
@@ -116,7 +116,7 @@ Variables météorologiques
 Variables énergétiques
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: python
+.. code-block:: text
 
     # Production d'énergie
     Génération moyenne : 6,847 MW ± 1,205 MW

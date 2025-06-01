@@ -89,10 +89,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#limitations">Limitations</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#export-et-formats">Export et formats</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prochaines-etapes">Prochaines étapes</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#export-et-formats">Export et formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#prochaines-etapes">Prochaines étapes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Analyse des données</span></p>
 <ul>
@@ -274,27 +274,27 @@
 <p>Voici un aperçu statistique des principales variables :</p>
 <section id="id1">
 <h3>Variables météorologiques<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemple de statistiques pour les températures</span>
-<span class="n">Temperature</span> <span class="n">moyenne</span> <span class="p">:</span> <span class="mf">25.4</span><span class="err">°</span><span class="n">C</span> <span class="err">±</span> <span class="mf">4.2</span><span class="err">°</span><span class="n">C</span>
-<span class="n">Plage</span> <span class="p">:</span> <span class="mf">8.2</span><span class="err">°</span><span class="n">C</span> <span class="o">-</span> <span class="mf">35.8</span><span class="err">°</span><span class="n">C</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Exemple de statistiques pour les températures
+Temperature moyenne : 25.4°C ± 4.2°C
+Plage : 8.2°C - 35.8°C
 
-<span class="n">Vitesse</span> <span class="n">du</span> <span class="n">vent</span> <span class="n">moyenne</span> <span class="p">:</span> <span class="mf">3.8</span> <span class="n">m</span><span class="o">/</span><span class="n">s</span> <span class="err">±</span> <span class="mf">1.9</span> <span class="n">m</span><span class="o">/</span><span class="n">s</span>
-<span class="n">Plage</span> <span class="p">:</span> <span class="mf">0.1</span> <span class="n">m</span><span class="o">/</span><span class="n">s</span> <span class="o">-</span> <span class="mf">12.4</span> <span class="n">m</span><span class="o">/</span><span class="n">s</span>
+Vitesse du vent moyenne : 3.8 m/s ± 1.9 m/s
+Plage : 0.1 m/s - 12.4 m/s
 
-<span class="n">Pression</span> <span class="n">atmosphérique</span> <span class="p">:</span> <span class="mf">101.2</span> <span class="n">kPa</span> <span class="err">±</span> <span class="mf">0.8</span> <span class="n">kPa</span>
-<span class="n">Plage</span> <span class="p">:</span> <span class="mf">98.5</span> <span class="n">kPa</span> <span class="o">-</span> <span class="mf">103.1</span> <span class="n">kPa</span>
+Pression atmosphérique : 101.2 kPa ± 0.8 kPa
+Plage : 98.5 kPa - 103.1 kPa
 </pre></div>
 </div>
 </section>
 <section id="id2">
 <h3>Variables énergétiques<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Production d&#39;énergie</span>
-<span class="n">Génération</span> <span class="n">moyenne</span> <span class="p">:</span> <span class="mi">6</span><span class="p">,</span><span class="mi">847</span> <span class="n">MW</span> <span class="err">±</span> <span class="mi">1</span><span class="p">,</span><span class="mi">205</span> <span class="n">MW</span>
-<span class="n">Plage</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span><span class="mi">200</span> <span class="n">MW</span> <span class="o">-</span> <span class="mi">9</span><span class="p">,</span><span class="mi">800</span> <span class="n">MW</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Production d&#39;énergie
+Génération moyenne : 6,847 MW ± 1,205 MW
+Plage : 3,200 MW - 9,800 MW
 
-<span class="c1"># Demande d&#39;énergie</span>
-<span class="n">Demande</span> <span class="n">moyenne</span> <span class="p">:</span> <span class="mi">7</span><span class="p">,</span><span class="mi">245</span> <span class="n">MW</span> <span class="err">±</span> <span class="mi">1</span><span class="p">,</span><span class="mi">058</span> <span class="n">MW</span>
-<span class="n">Plage</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span><span class="mi">500</span> <span class="n">MW</span> <span class="o">-</span> <span class="mi">9</span><span class="p">,</span><span class="mi">500</span> <span class="n">MW</span>
+# Demande d&#39;énergie
+Demande moyenne : 7,245 MW ± 1,058 MW
+Plage : 4,500 MW - 9,500 MW
 </pre></div>
 </div>
 </section>
@@ -338,7 +338,7 @@
 <h3>Valeurs aberrantes<a class="headerlink" href="#valeurs-aberrantes" title="Link to this heading"></a></h3>
 <p>Detection automatique des outliers :
 - <strong>Méthode IQR</strong> : 1.5% des observations flaggées
-- <strong>Z-score</strong> : 2.1% des observations avec <a href="#id6"><span class="problematic" id="id7">|z|</span></a> &gt; 3
+- <strong>Z-score</strong> : 2.1% des observations avec z-score &gt; 3
 - Principalement sur les variables météorologiques extrêmes</p>
 </section>
 </section>
@@ -427,8 +427,9 @@
 </ul>
 </section>
 </section>
+</section>
 <section id="export-et-formats">
-<h2>Export et formats<a class="headerlink" href="#export-et-formats" title="Link to this heading"></a></h2>
+<h1>Export et formats<a class="headerlink" href="#export-et-formats" title="Link to this heading"></a></h1>
 <p>Le dataset est disponible dans plusieurs formats :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Data/
 ├── data.csv           # Dataset complet
@@ -445,14 +446,13 @@
 </div>
 </section>
 <section id="prochaines-etapes">
-<h2>Prochaines étapes<a class="headerlink" href="#prochaines-etapes" title="Link to this heading"></a></h2>
+<h1>Prochaines étapes<a class="headerlink" href="#prochaines-etapes" title="Link to this heading"></a></h1>
 <p>Maintenant que vous comprenez les données :</p>
 <ol class="arabic simple">
 <li><p>Explorez le <a class="reference internal" href="preprocessing.html"><span class="doc">Prétraitement des Données</span></a> pour la préparation avancée</p></li>
 <li><p>Consultez <a class="reference internal" href="data_analysis.html"><span class="doc">Analyse des Données</span></a> pour l’analyse exploratoire</p></li>
 <li><p>Découvrez <a class="reference internal" href="lstm_models.html"><span class="doc">Modèles LSTM</span></a> pour la modélisation</p></li>
 </ol>
-</section>
 </section>
 
 

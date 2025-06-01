@@ -47,6 +47,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_description.html">Description des données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_description.html#export-et-formats">Export et formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_description.html#prochaines-etapes">Prochaines étapes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Analyse des données</span></p>
 <ul>
@@ -68,41 +70,75 @@
 <li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Dépannage et Résolution de Problèmes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Questions Fréquentes (FAQ)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#unreleased">[Unreleased]</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-1-0-0-2025-01-15">Version 1.0.0 - 2025-01-15</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ajoute">Ajouté</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fonctionnalites-techniques">Fonctionnalités Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#version-0-9-0-2024-12-20">Version 0.9.0 - 2024-12-20</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Ajouté</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifie">Modifié</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#version-0-5-0-2024-11-15">Version 0.5.0 - 2024-11-15</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Ajouté</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prochaines-versions">Prochaines Versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-1-1-0-prevue-q2-2025">Version 1.1.0 - Prévue Q2 2025</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-1-2-0-prevue-q4-2025">Version 1.2.0 - Prévue Q4 2025</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#migration-et-mise-a-jour">Migration et Mise à Jour</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#migration-0-9-x-1-0-0">Migration 0.9.x → 1.0.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#corrections-de-bugs">Corrections de Bugs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-1-0-1-2025-01-20">Version 1.0.1 - 2025-01-20</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrige">Corrigé</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-1-0-2-2025-01-25">Version 1.0.2 - 2025-01-25</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Corrigé</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#securite">Sécurité</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributions">Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remerciements">Remerciements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#licence">Licence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unreleased">[Unreleased]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Ajouté</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ameliore">Amélioré</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">[1.2.0] - 2025-06-01</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Ajouté</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Amélioré</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#corrige">Corrigé</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">[1.2.0] - 2025-06-01</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Ajouté</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Amélioré</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Corrigé</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">[1.1.0] - 2025-05-15</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Ajouté</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">Amélioré</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Corrigé</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">[1.1.0] - 2025-05-15</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Ajouté</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Amélioré</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Corrigé</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">[1.0.0] - 2025-04-01</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">Ajouté</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">[1.0.0] - 2025-04-01</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Ajouté</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fonctionnalites-principales">Fonctionnalités principales</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#architecture">Architecture</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">[0.3.0] - 2025-03-15</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">Ajouté</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">Amélioré</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">[0.2.0] - 2025-02-20</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id14">Ajouté</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">Amélioré</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id16">[0.1.0] - 2025-01-10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id16">[0.3.0] - 2025-03-15</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id17">Ajouté</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Amélioré</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">[0.2.0] - 2025-02-20</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Ajouté</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Amélioré</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">[0.1.0] - 2025-01-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Ajouté</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fonctionnalites-initiales">Fonctionnalités initiales</a></li>
 </ul>
 </li>
@@ -125,13 +161,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#problemes-connus">Problèmes connus</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id18">Version 1.2.0</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">Version 1.1.0</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">Version 1.0.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Version 1.2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Version 1.1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Version 1.0.0</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#contributeurs">Contributeurs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#remerciements">Remerciements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id27">Remerciements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#liens-utiles">Liens utiles</a></li>
 </ul>
 </li>
@@ -164,11 +200,289 @@
   <section id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h1>
 <p>Toutes les modifications notables du projet AnalysingEnergy sont documentées dans ce fichier.</p>
-<p>Le format est basé sur <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a> et ce projet adhère au <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Versioning Sémantique</a>.</p>
-<section id="unreleased">
-<h2>[Unreleased]<a class="headerlink" href="#unreleased" title="Link to this heading"></a></h2>
+<p>Le format s’inspire de <a class="reference external" href="https://keepachangelog.com/fr/1.0.0/">Keep a Changelog</a>,
+et ce projet adhère au <a class="reference external" href="https://semver.org/lang/fr/">Semantic Versioning</a>.</p>
+<section id="version-1-0-0-2025-01-15">
+<h2>Version 1.0.0 - 2025-01-15<a class="headerlink" href="#version-1-0-0-2025-01-15" title="Link to this heading"></a></h2>
+<p>Première version stable du projet AnalysingEnergy.</p>
 <section id="ajoute">
 <h3>Ajouté<a class="headerlink" href="#ajoute" title="Link to this heading"></a></h3>
+<p><strong>Modèles de Machine Learning</strong>
+- Implémentation complète des modèles LSTM pour prédiction énergétique
+- Support pour 9 variables d’entrée (météorologiques + demande)
+- Modèles spécialisés par variable avec architecture optimisée
+- Système d’ensemble pour améliorer la robustesse
+- Callbacks personnalisés pour surveillance de l’entraînement</p>
+<p><strong>Optimisation des Hyperparamètres</strong>
+- Intégration complète d’Optuna pour optimisation automatique
+- Espace de recherche adaptatif pour architecture LSTM
+- Support multi-objectifs (précision + vitesse)
+- Pruning automatique des essais non prometteurs
+- Analyse détaillée des résultats d’optimisation</p>
+<p><strong>Interface Utilisateur</strong>
+- Application Streamlit complète et interactive
+- Dashboard de visualisation en temps réel
+- Comparaison production vs consommation d’énergie
+- Interface de prédiction avec paramètres ajustables
+- Export des résultats en multiple formats (CSV, Excel, JSON, PDF)</p>
+<p><strong>Prétraitement des Données</strong>
+- Pipeline complet de nettoyage et préparation
+- Gestion automatique des valeurs manquantes
+- Normalisation adaptative des variables
+- Création de features temporelles enrichies
+- Division temporelle rigoureuse train/validation/test</p>
+<p><strong>Documentation</strong>
+- Documentation complète avec Sphinx
+- Guide d’installation détaillé
+- Tutoriels pas-à-pas pour tous les cas d’usage
+- Documentation API complète
+- FAQ exhaustive avec exemples pratiques
+- Guide de dépannage complet</p>
+<p><strong>Notebooks Jupyter</strong>
+- <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">preprocessing.ipynb</span></code> : Analyse et nettoyage des données
+- <code class="docutils literal notranslate"><span class="pre">LSTM</span> <span class="pre">Generation.ipynb</span></code> : Développement du modèle principal
+- <code class="docutils literal notranslate"><span class="pre">LSTM</span> <span class="pre">complet.ipynb</span></code> : Système complet d’entraînement
+- <code class="docutils literal notranslate"><span class="pre">Predicting_next_365days.ipynb</span></code> : Prédictions à long terme
+- <code class="docutils literal notranslate"><span class="pre">LSTM</span> <span class="pre">complet</span> <span class="pre">interface.ipynb</span></code> : Intégration interface</p>
+<p><strong>Évaluation et Validation</strong>
+- Métriques complètes (RMSE, MAE, MAPE, R²)
+- Analyse des résidus et tests de normalité
+- Validation croisée temporelle
+- Comparaison avec modèles baseline
+- Tests de robustesse et stabilité</p>
+<p><strong>Infrastructure</strong>
+- Configuration Docker pour déploiement
+- Scripts d’automatisation pour entraînement
+- Système de versioning des modèles
+- Monitoring des performances en production
+- Sauvegarde automatique des artefacts</p>
+</section>
+<section id="fonctionnalites-techniques">
+<h3>Fonctionnalités Techniques<a class="headerlink" href="#fonctionnalites-techniques" title="Link to this heading"></a></h3>
+<p><strong>Architecture LSTM Optimisée</strong>
+- 2 couches LSTM avec 64 et 32 unités
+- Dropout adaptatif (0.2-0.3) pour régularisation
+- Couches Dense avec activation ReLU
+- Optimiseur Adam avec learning rate adaptatif
+- Longueur de séquence optimale : 60 timesteps</p>
+<p><strong>Performance du Modèle</strong>
+- RMSE : 291.19 MW (très faible erreur)
+- MAE : 195.4 MW (erreur absolue acceptable)
+- MAPE : 3.2% (excellente précision relative)
+- R² : 0.91 (très bonne capacité prédictive)
+- Temps d’entraînement : ~45 minutes sur GPU</p>
+<p><strong>Capacités de Prédiction</strong>
+- Prédictions journalières fiables
+- Horizon jusqu’à 365 jours
+- Gestion des variations saisonnières
+- Adaptation aux patterns météorologiques
+- Robustesse aux données manquantes</p>
+</section>
+</section>
+<section id="version-0-9-0-2024-12-20">
+<h2>Version 0.9.0 - 2024-12-20<a class="headerlink" href="#version-0-9-0-2024-12-20" title="Link to this heading"></a></h2>
+<p>Version de développement avec fonctionnalités core.</p>
+<section id="id1">
+<h3>Ajouté<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p><strong>Modèle de Base</strong>
+- Premier prototype LSTM fonctionnel
+- Pipeline de données basique
+- Interface Streamlit simple
+- Notebooks de développement initiaux</p>
+<p><strong>Données</strong>
+- Intégration dataset BanE-16
+- Analyse exploratoire des données
+- Premiers tests de qualité
+- Structuration des variables</p>
+</section>
+<section id="modifie">
+<h3>Modifié<a class="headerlink" href="#modifie" title="Link to this heading"></a></h3>
+<p><strong>Architecture</strong>
+- Optimisation de la structure LSTM
+- Amélioration du preprocessing
+- Refactoring du code de prédiction
+- Standardisation des interfaces</p>
+</section>
+</section>
+<section id="version-0-5-0-2024-11-15">
+<h2>Version 0.5.0 - 2024-11-15<a class="headerlink" href="#version-0-5-0-2024-11-15" title="Link to this heading"></a></h2>
+<p>Première version prototype.</p>
+<section id="id2">
+<h3>Ajouté<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p><strong>Proof of Concept</strong>
+- Modèle LSTM basique
+- Données d’exemple
+- Notebook de démonstration
+- Documentation minimale</p>
+<p><strong>Infrastructure Initiale</strong>
+- Structure de projet
+- Requirements de base
+- Configuration Git
+- Licence MIT</p>
+</section>
+</section>
+<section id="prochaines-versions">
+<h2>Prochaines Versions<a class="headerlink" href="#prochaines-versions" title="Link to this heading"></a></h2>
+<section id="version-1-1-0-prevue-q2-2025">
+<h3>Version 1.1.0 - Prévue Q2 2025<a class="headerlink" href="#version-1-1-0-prevue-q2-2025" title="Link to this heading"></a></h3>
+<p><strong>Améliorations Prévues</strong></p>
+<p><strong>Modèles Avancés</strong>
+- Support des Transformers pour séries temporelles
+- Modèles d’ensemble plus sophistiqués
+- Intégration de données satellitaires
+- Prédictions probabilistes avec intervalles de confiance</p>
+<p><strong>Interface Enrichie</strong>
+- Dashboard administrateur pour gestion des modèles
+- API REST complète pour intégration externe
+- Module de reporting automatisé
+- Interface mobile responsive</p>
+<p><strong>Analyse Avancée</strong>
+- Détection d’anomalies en temps réel
+- Analyse de sensibilité des variables
+- Optimisation automatique de la production
+- Intégration avec systèmes de gestion d’énergie</p>
+<p><strong>Performance</strong>
+- Optimisation pour déploiement edge
+- Support de l’inférence distribuée
+- Amélioration vitesse de traitement
+- Réduction empreinte mémoire</p>
+</section>
+<section id="version-1-2-0-prevue-q4-2025">
+<h3>Version 1.2.0 - Prévue Q4 2025<a class="headerlink" href="#version-1-2-0-prevue-q4-2025" title="Link to this heading"></a></h3>
+<p><strong>Fonctionnalités Avancées</strong></p>
+<p><strong>Multi-Région</strong>
+- Support multiple zones géographiques
+- Adaptation automatique aux conditions locales
+- Modèles spécialisés par région
+- Fusion de prédictions multi-sites</p>
+<p><strong>Intelligence Augmentée</strong>
+- Explainabilité des prédictions (SHAP, LIME)
+- Recommandations d’optimisation automatiques
+- Détection de patterns émergents
+- Adaptation continue aux changements</p>
+<p><strong>Intégration Système</strong>
+- Connecteurs pour systèmes SCADA
+- Import automatique données météo
+- Intégration bases de données temporelles
+- APIs pour marchés de l’énergie</p>
+</section>
+</section>
+<section id="migration-et-mise-a-jour">
+<h2>Migration et Mise à Jour<a class="headerlink" href="#migration-et-mise-a-jour" title="Link to this heading"></a></h2>
+<section id="migration-0-9-x-1-0-0">
+<h3>Migration 0.9.x → 1.0.0<a class="headerlink" href="#migration-0-9-x-1-0-0" title="Link to this heading"></a></h3>
+<p><strong>Changements Breaking</strong></p>
+<ol class="arabic">
+<li><p><strong>Structure des Données</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ancien format (0.9.x)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Nouveau format (1.0.0)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataPreprocessor</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">DataPreprocessor</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">load_and_prepare</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Interface Modèle</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ancien (0.9.x)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_lstm_model</span><span class="p">()</span>
+
+<span class="c1"># Nouveau (1.0.0)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lstm_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_optimized_lstm</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">build_optimized_lstm</span><span class="p">(</span><span class="n">input_shape</span><span class="p">,</span> <span class="n">lstm_units</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Prédictions</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ancien (0.9.x)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Nouveau (1.0.0)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Étapes de Migration</strong></p>
+<ol class="arabic simple">
+<li><p>Sauvegardez vos modèles existants</p></li>
+<li><p>Installez la version 1.0.0</p></li>
+<li><p>Adaptez vos scripts selon les nouveaux formats</p></li>
+<li><p>Testez sur un sous-ensemble de données</p></li>
+<li><p>Réentraînez si nécessaire</p></li>
+</ol>
+</section>
+</section>
+<section id="corrections-de-bugs">
+<h2>Corrections de Bugs<a class="headerlink" href="#corrections-de-bugs" title="Link to this heading"></a></h2>
+<section id="version-1-0-1-2025-01-20">
+<h3>Version 1.0.1 - 2025-01-20<a class="headerlink" href="#version-1-0-1-2025-01-20" title="Link to this heading"></a></h3>
+</section>
+<section id="corrige">
+<h3>Corrigé<a class="headerlink" href="#corrige" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Interface</strong> : Problème d’affichage des graphiques sur certains navigateurs</p></li>
+<li><p><strong>Modèle</strong> : Gestion améliorée des valeurs extrêmes</p></li>
+<li><p><strong>Documentation</strong> : Corrections typos et liens cassés</p></li>
+<li><p><strong>Installation</strong> : Résolution conflits de dépendances</p></li>
+</ul>
+</section>
+<section id="version-1-0-2-2025-01-25">
+<h3>Version 1.0.2 - 2025-01-25<a class="headerlink" href="#version-1-0-2-2025-01-25" title="Link to this heading"></a></h3>
+</section>
+<section id="id3">
+<h3>Corrigé<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Prédictions</strong> : Amélioration stabilité pour horizons longs</p></li>
+<li><p><strong>Export</strong> : Correction format dates dans exports CSV</p></li>
+<li><p><strong>GPU</strong> : Meilleure gestion mémoire GPU</p></li>
+<li><p><strong>Logging</strong> : Réduction verbosité logs par défaut</p></li>
+</ul>
+</section>
+</section>
+<section id="securite">
+<h2>Sécurité<a class="headerlink" href="#securite" title="Link to this heading"></a></h2>
+<p>Aucune vulnérabilité de sécurité identifiée à ce jour.</p>
+<p>Pour rapporter une vulnérabilité, contactez : <a class="reference external" href="mailto:security&#37;&#52;&#48;analysingenergy&#46;com">security<span>&#64;</span>analysingenergy<span>&#46;</span>com</a></p>
+</section>
+<section id="contributions">
+<h2>Contributions<a class="headerlink" href="#contributions" title="Link to this heading"></a></h2>
+<p>Merci aux contributeurs :</p>
+<ul class="simple">
+<li><p><strong>AMLLAL Amine</strong> - Développement initial, modèles LSTM</p></li>
+<li><p><strong>HAJJI Mohamed</strong> - Interface utilisateur, documentation</p></li>
+<li><p><strong>Communauté</strong> - Tests, retours, suggestions d’amélioration</p></li>
+</ul>
+<p><strong>Types de Contributions Acceptées</strong></p>
+<ul class="simple">
+<li><p>🐛 Corrections de bugs</p></li>
+<li><p>✨ Nouvelles fonctionnalités</p></li>
+<li><p>📝 Améliorations documentation</p></li>
+<li><p>🎨 Améliorations interface</p></li>
+<li><p>⚡ Optimisations performance</p></li>
+<li><p>🧪 Tests supplémentaires</p></li>
+</ul>
+</section>
+<section id="remerciements">
+<h2>Remerciements<a class="headerlink" href="#remerciements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>TensorFlow/Keras</strong> pour le framework de deep learning</p></li>
+<li><p><strong>Streamlit</strong> pour la plateforme d’interface utilisateur</p></li>
+<li><p><strong>Optuna</strong> pour l’optimisation d’hyperparamètres</p></li>
+<li><p><strong>Communauté open source</strong> pour les outils et bibliothèques</p></li>
+</ul>
+</section>
+<section id="licence">
+<h2>Licence<a class="headerlink" href="#licence" title="Link to this heading"></a></h2>
+<p>Ce projet est sous licence MIT. Voir le fichier <cite>LICENSE</cite> pour plus de détails.</p>
+<p>Le format est basé sur <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a> et ce projet adhère au <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Versioning Sémantique</a>.</p>
+</section>
+<section id="unreleased">
+<h2>[Unreleased]<a class="headerlink" href="#unreleased" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3>Ajouté<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Support pour données horaires (en développement)</p></li>
 <li><p>Modèles ensemble pour améliorer la robustesse</p></li>
@@ -185,10 +499,10 @@
 </ul>
 </section>
 </section>
-<section id="id1">
-<h2>[1.2.0] - 2025-06-01<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<section id="id2">
-<h3>Ajouté<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id6">
+<h2>[1.2.0] - 2025-06-01<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<section id="id7">
+<h3>Ajouté<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Documentation complète ReadTheDocs</p></li>
 <li><p>Guide de démarrage rapide</p></li>
@@ -198,8 +512,8 @@
 <li><p>Notebooks détaillés avec explications</p></li>
 </ul>
 </section>
-<section id="id3">
-<h3>Amélioré<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<section id="id8">
+<h3>Amélioré<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Structure de la documentation</p></li>
 <li><p>Configuration Sphinx avec thème ReadTheDocs</p></li>
@@ -207,8 +521,8 @@
 <li><p>Intégration myst_parser pour Markdown</p></li>
 </ul>
 </section>
-<section id="corrige">
-<h3>Corrigé<a class="headerlink" href="#corrige" title="Link to this heading"></a></h3>
+<section id="id9">
+<h3>Corrigé<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Liens de navigation dans la documentation</p></li>
 <li><p>Formatage des exemples de code</p></li>
@@ -216,10 +530,10 @@
 </ul>
 </section>
 </section>
-<section id="id4">
-<h2>[1.1.0] - 2025-05-15<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<section id="id5">
-<h3>Ajouté<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<section id="id10">
+<h2>[1.1.0] - 2025-05-15<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<section id="id11">
+<h3>Ajouté<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Optimisation des hyperparamètres avec Optuna</p></li>
 <li><p>Modèle final optimisé (RMSE: 291.19 MW)</p></li>
@@ -229,8 +543,8 @@
 <li><p>Sauvegarde automatique des modèles et scalers</p></li>
 </ul>
 </section>
-<section id="id6">
-<h3>Amélioré<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<section id="id12">
+<h3>Amélioré<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Performance du modèle LSTM (amélioration de 15% du RMSE)</p></li>
 <li><p>Pipeline de prétraitement des données</p></li>
@@ -238,8 +552,8 @@
 <li><p>Interface utilisateur plus intuitive</p></li>
 </ul>
 </section>
-<section id="id7">
-<h3>Corrigé<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<section id="id13">
+<h3>Corrigé<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Problèmes de mémoire lors de l’entraînement</p></li>
 <li><p>Erreurs de normalisation des données</p></li>
@@ -247,10 +561,10 @@
 </ul>
 </section>
 </section>
-<section id="id8">
-<h2>[1.0.0] - 2025-04-01<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
-<section id="id9">
-<h3>Ajouté<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<section id="id14">
+<h2>[1.0.0] - 2025-04-01<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<section id="id15">
+<h3>Ajouté<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Modèle LSTM de base pour prédiction énergétique</p></li>
 <li><p>Pipeline de prétraitement des données BanE-16</p></li>
@@ -280,10 +594,10 @@
 </ul>
 </section>
 </section>
-<section id="id10">
-<h2>[0.3.0] - 2025-03-15<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
-<section id="id11">
-<h3>Ajouté<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<section id="id16">
+<h2>[0.3.0] - 2025-03-15<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
+<section id="id17">
+<h3>Ajouté<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Modèles LSTM spécialisés par variable météorologique</p></li>
 <li><p>Validation croisée temporelle</p></li>
@@ -291,8 +605,8 @@
 <li><p>Export des résultats en CSV</p></li>
 </ul>
 </section>
-<section id="id12">
-<h3>Amélioré<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<section id="id18">
+<h3>Amélioré<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Précision des prédictions (RMSE &lt; 350 MW)</p></li>
 <li><p>Stabilité de l’entraînement</p></li>
@@ -300,10 +614,10 @@
 </ul>
 </section>
 </section>
-<section id="id13">
-<h2>[0.2.0] - 2025-02-20<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
-<section id="id14">
-<h3>Ajouté<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<section id="id19">
+<h2>[0.2.0] - 2025-02-20<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<section id="id20">
+<h3>Ajouté<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Prétraitement avancé des données</p></li>
 <li><p>Feature engineering temporel</p></li>
@@ -311,8 +625,8 @@
 <li><p>Création de séquences pour LSTM</p></li>
 </ul>
 </section>
-<section id="id15">
-<h3>Amélioré<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<section id="id21">
+<h3>Amélioré<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Qualité des données d’entrée</p></li>
 <li><p>Pipeline de transformation</p></li>
@@ -320,10 +634,10 @@
 </ul>
 </section>
 </section>
-<section id="id16">
-<h2>[0.1.0] - 2025-01-10<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
-<section id="id17">
-<h3>Ajouté<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<section id="id22">
+<h2>[0.1.0] - 2025-01-10<a class="headerlink" href="#id22" title="Link to this heading"></a></h2>
+<section id="id23">
+<h3>Ajouté<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Structure initiale du projet</p></li>
 <li><p>Chargement du dataset BanE-16</p></li>
@@ -556,22 +870,22 @@ streamlit&gt;=1.25.0
 </section>
 <section id="problemes-connus">
 <h2>Problèmes connus<a class="headerlink" href="#problemes-connus" title="Link to this heading"></a></h2>
-<section id="id18">
-<h3>Version 1.2.0<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<section id="id24">
+<h3>Version 1.2.0<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Aucun problème connu majeur</p></li>
 <li><p>Documentation en cours de finalisation</p></li>
 </ul>
 </section>
-<section id="id19">
-<h3>Version 1.1.0<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<section id="id25">
+<h3>Version 1.1.0<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Performance sur CPU peut être lente pour l’optimisation (utiliser GPU recommandé)</p></li>
 <li><p>Interface Streamlit peut nécessiter un redémarrage après changement de modèle</p></li>
 </ul>
 </section>
-<section id="id20">
-<h3>Version 1.0.0<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<section id="id26">
+<h3>Version 1.0.0<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Modèle peut avoir des difficultés avec des conditions météo extrêmes</p></li>
 <li><p>Interface basique avec options limitées</p></li>
@@ -591,8 +905,8 @@ streamlit&gt;=1.25.0
 - Pipeline de données
 - Interface initiale</p>
 </section>
-<section id="remerciements">
-<h2>Remerciements<a class="headerlink" href="#remerciements" title="Link to this heading"></a></h2>
+<section id="id27">
+<h2>Remerciements<a class="headerlink" href="#id27" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Dataset BanE-16 pour les données d’entraînement</p></li>
 <li><p>Communauté TensorFlow pour les outils de deep learning</p></li>

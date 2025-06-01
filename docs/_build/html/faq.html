@@ -48,6 +48,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_description.html">Description des données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_description.html#export-et-formats">Export et formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_description.html#prochaines-etapes">Prochaines étapes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Analyse des données</span></p>
 <ul>
@@ -78,9 +80,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#quelles-sont-les-dependances-requises">Quelles sont les dépendances requises ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#comment-optimiser-les-performances">Comment optimiser les performances ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pourquoi-utiliser-lstm-plutot-que-d-autres-modeles">Pourquoi utiliser LSTM plutôt que d’autres modèles ?</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#questions-sur-l-utilisation">Questions sur l’utilisation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#comment-faire-une-prediction-simple">Comment faire une prédiction simple ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#comment-interpreter-les-resultats">Comment interpréter les résultats ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#comment-entrainer-un-nouveau-modele">Comment entraîner un nouveau modèle ?</a></li>
@@ -108,7 +107,47 @@
 <li class="toctree-l3"><a class="reference internal" href="#comment-contribuer-au-projet">Comment contribuer au projet ?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ressources-supplementaires">Ressources supplémentaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ressources-supplementaires">Ressources supplémentaires</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Qu’est-ce que le projet AnalysingEnergy ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Quelle est la précision du modèle ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Puis-je utiliser le projet avec mes propres données ?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">Questions techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Quelles sont les dépendances requises ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Comment optimiser les performances ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Pourquoi utiliser LSTM plutôt que d’autres modèles ?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#questions-sur-l-utilisation">Questions sur l’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Comment faire une prédiction simple ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Comment interpréter les résultats ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Comment entraîner un nouveau modèle ?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">Questions sur les données</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Quelle est la qualité requise des données ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Comment gérer les valeurs manquantes ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Puis-je utiliser des données horaires ?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">Questions sur le déploiement</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Comment déployer l’application en production ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Comment intégrer via API REST ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Quelles sont les limites du modèle ?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">Questions de maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">À quelle fréquence réentraîner le modèle ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Comment sauvegarder et restaurer les modèles ?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">Support et communauté</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Où obtenir de l’aide ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Comment contribuer au projet ?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">Ressources supplémentaires</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
@@ -145,6 +184,673 @@
 <h2>Questions générales<a class="headerlink" href="#questions-generales" title="Link to this heading"></a></h2>
 <section id="qu-est-ce-que-le-projet-analysingenergy">
 <h3>Qu’est-ce que le projet AnalysingEnergy ?<a class="headerlink" href="#qu-est-ce-que-le-projet-analysingenergy" title="Link to this heading"></a></h3>
+<p>Le projet AnalysingEnergy est un système complet d’analyse et de prédiction de la production d’énergie verte utilisant des réseaux de neurones LSTM (Long Short-Term Memory). Il analyse le dataset BanE-16 pour prédire la génération maximale d’énergie en fonction de variables météorologiques et de demande énergétique.</p>
+<p><strong>Caractéristiques principales</strong> :</p>
+<ul class="simple">
+<li><p>Prédiction de production d’énergie avec IA</p></li>
+<li><p>Interface Streamlit interactive</p></li>
+<li><p>Optimisation d’hyperparamètres avec Optuna</p></li>
+<li><p>Documentation complète et exemples pratiques</p></li>
+</ul>
+</section>
+<section id="quelle-est-la-precision-du-modele">
+<h3>Quelle est la précision du modèle ?<a class="headerlink" href="#quelle-est-la-precision-du-modele" title="Link to this heading"></a></h3>
+<p>Le modèle LSTM optimisé atteint une précision remarquable :</p>
+<ul class="simple">
+<li><p><strong>RMSE</strong> : ~291 MW (erreur quadratique moyenne)</p></li>
+<li><p><strong>MAE</strong> : ~195 MW (erreur absolue moyenne)</p></li>
+<li><p><strong>MAPE</strong> : ~3.2% (erreur pourcentage moyenne)</p></li>
+<li><p><strong>R²</strong> : ~0.91 (coefficient de détermination)</p></li>
+</ul>
+<p>Ces performances permettent une planification énergétique fiable.</p>
+</section>
+<section id="puis-je-utiliser-le-projet-avec-mes-propres-donnees">
+<h3>Puis-je utiliser le projet avec mes propres données ?<a class="headerlink" href="#puis-je-utiliser-le-projet-avec-mes-propres-donnees" title="Link to this heading"></a></h3>
+<p>Oui, absolument ! Le projet est conçu pour être adaptable :</p>
+<p><strong>Format requis</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Colonnes minimales requises</span>
+<span class="n">colonnes_requises</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;temp2_max(c)&#39;</span><span class="p">,</span> <span class="s1">&#39;temp2_min(c)&#39;</span><span class="p">,</span> <span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;suface_pressure(pa)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wind_speed50_max(m/s)&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_speed50_min(m/s)&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_speed50_ave(m/s)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prectotcorr&#39;</span><span class="p">,</span> <span class="s1">&#39;total_demand(mw)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;max_generation(mw)&#39;</span>  <span class="c1"># Variable cible</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Étapes d’adaptation</strong> :</p>
+<ol class="arabic simple">
+<li><p>Formatez vos données selon la structure attendue</p></li>
+<li><p>Ajustez les chemins dans les notebooks</p></li>
+<li><p>Réentraînez le modèle sur vos données</p></li>
+<li><p>Validez les performances</p></li>
+</ol>
+<p><strong>Conseils</strong> :</p>
+<ul class="simple">
+<li><p>Assurez-vous d’avoir au moins 2-3 ans de données</p></li>
+<li><p>Vérifiez la qualité et la cohérence temporelle</p></li>
+<li><p>Adaptez les plages de normalisation si nécessaire</p></li>
+</ul>
+</section>
+</section>
+<section id="questions-techniques">
+<h2>Questions techniques<a class="headerlink" href="#questions-techniques" title="Link to this heading"></a></h2>
+<section id="quelles-sont-les-dependances-requises">
+<h3>Quelles sont les dépendances requises ?<a class="headerlink" href="#quelles-sont-les-dependances-requises" title="Link to this heading"></a></h3>
+<p><strong>Dépendances principales</strong> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Machine Learning</span>
+tensorflow&gt;<span class="o">=</span><span class="m">2</span>.10.0
+scikit-learn&gt;<span class="o">=</span><span class="m">1</span>.1.0
+optuna&gt;<span class="o">=</span><span class="m">3</span>.0.0
+
+<span class="c1"># Data Science</span>
+pandas&gt;<span class="o">=</span><span class="m">1</span>.5.0
+numpy&gt;<span class="o">=</span><span class="m">1</span>.21.0
+matplotlib&gt;<span class="o">=</span><span class="m">3</span>.5.0
+seaborn&gt;<span class="o">=</span><span class="m">0</span>.11.0
+
+<span class="c1"># Interface</span>
+streamlit&gt;<span class="o">=</span><span class="m">1</span>.20.0
+plotly&gt;<span class="o">=</span><span class="m">5</span>.10.0
+</pre></div>
+</div>
+<p><strong>Installation</strong> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p><strong>Configuration GPU</strong> (optionnelle) :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pour accélération GPU</span>
+pip<span class="w"> </span>install<span class="w"> </span>tensorflow-gpu
+<span class="c1"># Vérifier CUDA/cuDNN compatibility</span>
+</pre></div>
+</div>
+</section>
+<section id="comment-optimiser-les-performances">
+<h3>Comment optimiser les performances ?<a class="headerlink" href="#comment-optimiser-les-performances" title="Link to this heading"></a></h3>
+<p><strong>Optimisation d’entraînement</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Utilisation de callbacks optimisés</span>
+<span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">ModelCheckpoint</span><span class="p">(</span><span class="s1">&#39;best_model.h5&#39;</span><span class="p">,</span> <span class="n">save_best_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Optimisation GPU</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration mémoire GPU</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+
+<span class="n">gpus</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">gpus</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_memory_growth</span><span class="p">(</span><span class="n">gpus</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Optimisation des données</strong> :</p>
+<ul class="simple">
+<li><p>Utilisez des batch sizes appropriés (32-128)</p></li>
+<li><p>Implémentez des générateurs pour gros datasets</p></li>
+<li><p>Optimisez la longueur des séquences (30-60 timesteps)</p></li>
+</ul>
+</section>
+<section id="pourquoi-utiliser-lstm-plutot-que-d-autres-modeles">
+<h3>Pourquoi utiliser LSTM plutôt que d’autres modèles ?<a class="headerlink" href="#pourquoi-utiliser-lstm-plutot-que-d-autres-modeles" title="Link to this heading"></a></h3>
+<p><strong>Avantages des LSTM pour l’énergie</strong> :</p>
+<ol class="arabic simple">
+<li><p><strong>Mémoire temporelle</strong> : Capture les dépendances long terme</p></li>
+<li><p><strong>Gestion des séquences</strong> : Idéal pour les séries temporelles</p></li>
+<li><p><strong>Robustesse</strong> : Résistant au gradient vanishing</p></li>
+<li><p><strong>Flexibilité</strong> : Adaptable à différents horizons de prédiction</p></li>
+</ol>
+<p><strong>Comparaison avec alternatives</strong> :</p>
+<table class="docutils align-default" id="id26">
+<caption><span class="caption-text">Comparaison des modèles</span><a class="headerlink" href="#id26" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Modèle</p></th>
+<th class="head"><p>RMSE</p></th>
+<th class="head"><p>Temps</p></th>
+<th class="head"><p>Complexité</p></th>
+<th class="head"><p>Interprétabilité</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LSTM</p></td>
+<td><p>291 MW</p></td>
+<td><p>Moyen</p></td>
+<td><p>Élevée</p></td>
+<td><p>Faible</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random Forest</p></td>
+<td><p>320 MW</p></td>
+<td><p>Rapide</p></td>
+<td><p>Moyenne</p></td>
+<td><p>Élevée</p></td>
+</tr>
+<tr class="row-even"><td><p>Linear Reg.</p></td>
+<td><p>380 MW</p></td>
+<td><p>Très rapide</p></td>
+<td><p>Faible</p></td>
+<td><p>Très élevée</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="comment-faire-une-prediction-simple">
+<h3>Comment faire une prédiction simple ?<a class="headerlink" href="#comment-faire-une-prediction-simple" title="Link to this heading"></a></h3>
+<p><strong>Exemple minimal</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+
+<span class="c1"># Charger le modèle et scalers</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;Notebooks/models/final_model 291.19.h5&#39;</span><span class="p">)</span>
+<span class="n">scaler_X</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;Notebooks/scalers/X_train_scaler.pkl&#39;</span><span class="p">)</span>
+<span class="n">scaler_y</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;Notebooks/scalers/y_train_scaler.pkl&#39;</span><span class="p">)</span>
+
+<span class="c1"># Préparer les données</span>
+<span class="n">new_data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">22.5</span><span class="p">,</span> <span class="mi">101000</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">7000</span><span class="p">]]</span>
+<span class="n">scaled_data</span> <span class="o">=</span> <span class="n">scaler_X</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">scaled_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Prédiction</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">prediction</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Production prédite: </span><span class="si">{</span><span class="n">result</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> MW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="comment-interpreter-les-resultats">
+<h3>Comment interpréter les résultats ?<a class="headerlink" href="#comment-interpreter-les-resultats" title="Link to this heading"></a></h3>
+<p><strong>Métriques clés</strong> :</p>
+<ul class="simple">
+<li><p><strong>RMSE &lt; 300 MW</strong> : Excellente précision</p></li>
+<li><p><strong>MAPE &lt; 5%</strong> : Erreur acceptable pour la planification</p></li>
+<li><p><strong>R² &gt; 0.85</strong> : Modèle explique bien la variance</p></li>
+</ul>
+<p><strong>Analyse des résidus</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vérification de la qualité</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span>
+
+<span class="c1"># Tests de normalité</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="n">statistic</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">jarque_bera</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Résidus normalement distribués&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ Vérifier la spécification du modèle&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Intervalles de confiance</strong> :</p>
+<p>Utilisez la variance des résidus pour estimer l’incertitude :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">std_residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+<span class="n">confidence_interval</span> <span class="o">=</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">std_residuals</span>  <span class="c1"># 95% CI</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prédiction: </span><span class="si">{</span><span class="n">prediction</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">confidence_interval</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> MW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="comment-entrainer-un-nouveau-modele">
+<h3>Comment entraîner un nouveau modèle ?<a class="headerlink" href="#comment-entrainer-un-nouveau-modele" title="Link to this heading"></a></h3>
+<p><strong>Processus complet</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Chargement et préparation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notebooks.data_preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataPreprocessor</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">DataPreprocessor</span><span class="p">(</span><span class="n">sequence_length</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># 2. Construction du modèle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">notebooks.lstm_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_optimized_lstm</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">build_optimized_lstm</span><span class="p">(</span>
+    <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
+    <span class="n">lstm_units</span><span class="o">=</span><span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span>
+    <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. Entraînement</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">),</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span>
+<span class="p">)</span>
+
+<span class="c1"># 4. Sauvegarde</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;mon_modele.h5&#39;</span><span class="p">)</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">scaler_X</span><span class="p">,</span> <span class="s1">&#39;scaler_X.pkl&#39;</span><span class="p">)</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">scaler_y</span><span class="p">,</span> <span class="s1">&#39;scaler_y.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="questions-sur-les-donnees">
+<h2>Questions sur les données<a class="headerlink" href="#questions-sur-les-donnees" title="Link to this heading"></a></h2>
+<section id="quelle-est-la-qualite-requise-des-donnees">
+<h3>Quelle est la qualité requise des données ?<a class="headerlink" href="#quelle-est-la-qualite-requise-des-donnees" title="Link to this heading"></a></h3>
+<p><strong>Critères minimaux</strong> :</p>
+<ol class="arabic simple">
+<li><p><strong>Complétude</strong> : &lt; 5% de valeurs manquantes</p></li>
+<li><p><strong>Cohérence temporelle</strong> : Pas de gaps &gt; 7 jours</p></li>
+<li><p><strong>Plausibilité</strong> : Valeurs dans les plages attendues</p></li>
+<li><p><strong>Résolution</strong> : Données journalières minimum</p></li>
+</ol>
+<p><strong>Vérification qualité</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">check_data_quality</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">issues</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Valeurs manquantes</span>
+    <span class="n">missing_pct</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">high_missing</span> <span class="o">=</span> <span class="n">missing_pct</span><span class="p">[</span><span class="n">missing_pct</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">high_missing</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Colonnes avec &gt;5% manquant: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">high_missing</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Valeurs aberrantes</span>
+    <span class="n">numeric_cols</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">:</span>
+        <span class="n">Q1</span><span class="p">,</span> <span class="n">Q3</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+        <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+        <span class="n">outliers</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">Q1</span><span class="o">-</span><span class="mf">1.5</span><span class="o">*</span><span class="n">IQR</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">Q3</span><span class="o">+</span><span class="mf">1.5</span><span class="o">*</span><span class="n">IQR</span><span class="p">)]</span>
+        <span class="n">outlier_pct</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">if</span> <span class="n">outlier_pct</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Colonne </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">outlier_pct</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% d&#39;outliers&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">issues</span>
+</pre></div>
+</div>
+</section>
+<section id="comment-gerer-les-valeurs-manquantes">
+<h3>Comment gérer les valeurs manquantes ?<a class="headerlink" href="#comment-gerer-les-valeurs-manquantes" title="Link to this heading"></a></h3>
+<p><strong>Stratégies recommandées</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Interpolation temporelle</span>
+<span class="n">data_interpolated</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Forward fill pour courtes séquences</span>
+<span class="n">data_filled</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># 3. Moyenne mobile pour variables météo</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># 4. Régression pour relations complexes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># Prédire température min à partir de max et moyenne</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp2_min(c)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;temp2_max(c)&#39;</span><span class="p">,</span> <span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">]</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">][</span><span class="n">features</span><span class="p">]</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;temp2_min(c)&#39;</span><span class="p">]</span>
+
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s1">&#39;temp2_min(c)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="n">features</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="puis-je-utiliser-des-donnees-horaires">
+<h3>Puis-je utiliser des données horaires ?<a class="headerlink" href="#puis-je-utiliser-des-donnees-horaires" title="Link to this heading"></a></h3>
+<p>Oui, mais avec adaptations :</p>
+<p><strong>Modifications nécessaires</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Agrégation journalière</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">aggregate_hourly_to_daily</span><span class="p">(</span><span class="n">hourly_data</span><span class="p">):</span>
+    <span class="n">daily_data</span> <span class="o">=</span> <span class="n">hourly_data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+        <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;wind_speed&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;precipitation&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;generation&#39;</span><span class="p">:</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;demand&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span>
+    <span class="p">})</span>
+
+    <span class="c1"># Aplatir les colonnes multi-niveau</span>
+    <span class="n">daily_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">daily_data</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">daily_data</span>
+
+<span class="c1"># 2. Sequence length adaptation</span>
+<span class="c1"># Pour données horaires: sequence_length = 24*7 (une semaine)</span>
+<span class="c1"># Pour données journalières: sequence_length = 60 (2 mois)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="questions-sur-le-deploiement">
+<h2>Questions sur le déploiement<a class="headerlink" href="#questions-sur-le-deploiement" title="Link to this heading"></a></h2>
+<section id="comment-deployer-l-application-en-production">
+<h3>Comment déployer l’application en production ?<a class="headerlink" href="#comment-deployer-l-application-en-production" title="Link to this heading"></a></h3>
+<p><strong>Option 1: Serveur local</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration pour production</span>
+streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--server.port<span class="w"> </span><span class="m">8501</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--server.address<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--server.headless<span class="w"> </span><span class="nb">true</span>
+</pre></div>
+</div>
+<p><strong>Option 2: Docker</strong></p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9-slim</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8501</span>
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;streamlit&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;run&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;interface/app.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--server.port=8501&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--server.address=0.0.0.0&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Option 3: Cloud (Streamlit Cloud)</strong></p>
+<ol class="arabic simple">
+<li><p>Push code to GitHub</p></li>
+<li><p>Connect Streamlit Cloud to repository</p></li>
+<li><p>Deploy automatically</p></li>
+</ol>
+<p><strong>Sécurisation</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># config.toml</span>
+<span class="p">[</span><span class="n">server</span><span class="p">]</span>
+<span class="n">enableCORS</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">enableXsrfProtection</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">maxUploadSize</span> <span class="o">=</span> <span class="mi">200</span>
+</pre></div>
+</div>
+</section>
+<section id="comment-integrer-via-api-rest">
+<h3>Comment intégrer via API REST ?<a class="headerlink" href="#comment-integrer-via-api-rest" title="Link to this heading"></a></h3>
+<p><strong>Création d’une API Flask</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Charger les modèles au démarrage</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;models/final_model.h5&#39;</span><span class="p">)</span>
+<span class="n">scaler_X</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;scalers/X_scaler.pkl&#39;</span><span class="p">)</span>
+<span class="n">scaler_y</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;scalers/y_scaler.pkl&#39;</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/predict&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Récupération des données</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
+
+        <span class="c1"># Validation des inputs</span>
+        <span class="n">required_fields</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;temp_max&#39;</span><span class="p">,</span> <span class="s1">&#39;temp_min&#39;</span><span class="p">,</span> <span class="s1">&#39;temp_avg&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_max&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_min&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_avg&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;precipitation&#39;</span><span class="p">,</span> <span class="s1">&#39;demand&#39;</span>
+        <span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">field</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">required_fields</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Missing required fields&#39;</span><span class="p">}),</span> <span class="mi">400</span>
+
+        <span class="c1"># Préparation</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">data</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">required_fields</span><span class="p">]]</span>
+        <span class="n">scaled_data</span> <span class="o">=</span> <span class="n">scaler_X</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+        <span class="n">reshaped_data</span> <span class="o">=</span> <span class="n">scaled_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Prédiction</span>
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">reshaped_data</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">prediction</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+            <span class="s1">&#39;prediction_mw&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">),</span>
+            <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="s1">&#39;high&#39;</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">result</span> <span class="o">-</span> <span class="mi">7000</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1000</span> <span class="k">else</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+        <span class="p">})</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">500</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Utilisation de l’API</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="c1"># Données d&#39;exemple</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;temp_max&#39;</span><span class="p">:</span> <span class="mf">25.0</span><span class="p">,</span>
+    <span class="s1">&#39;temp_min&#39;</span><span class="p">:</span> <span class="mf">18.0</span><span class="p">,</span>
+    <span class="s1">&#39;temp_avg&#39;</span><span class="p">:</span> <span class="mf">21.5</span><span class="p">,</span>
+    <span class="s1">&#39;pressure&#39;</span><span class="p">:</span> <span class="mi">101300</span><span class="p">,</span>
+    <span class="s1">&#39;wind_max&#39;</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span>
+    <span class="s1">&#39;wind_min&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="s1">&#39;wind_avg&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+    <span class="s1">&#39;precipitation&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="s1">&#39;demand&#39;</span><span class="p">:</span> <span class="mi">7200</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://localhost:5000/predict&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Production prédite: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;prediction_mw&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> MW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="quelles-sont-les-limites-du-modele">
+<h3>Quelles sont les limites du modèle ?<a class="headerlink" href="#quelles-sont-les-limites-du-modele" title="Link to this heading"></a></h3>
+<p><strong>Limitations techniques</strong> :</p>
+<ol class="arabic simple">
+<li><p><strong>Horizon de prédiction</strong> : Optimisé pour 1-7 jours</p></li>
+<li><p><strong>Données requises</strong> : Besoin de toutes les variables météo</p></li>
+<li><p><strong>Domaine géographique</strong> : Calibré pour les conditions du dataset BanE-16</p></li>
+<li><p><strong>Saisonnalité</strong> : Performance peut varier selon les saisons</p></li>
+</ol>
+<p><strong>Limitations opérationnelles</strong> :</p>
+<ul class="simple">
+<li><p><strong>Events extrêmes</strong> : Moins précis lors de conditions météo exceptionnelles</p></li>
+<li><p><strong>Maintenance</strong> : Dégradation possible sans réentraînement régulier</p></li>
+<li><p><strong>Nouveaux patterns</strong> : Adaptation nécessaire pour changements technologiques</p></li>
+</ul>
+<p><strong>Mitigation</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Monitoring de la dérive</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">detect_model_drift</span><span class="p">(</span><span class="n">new_predictions</span><span class="p">,</span> <span class="n">historical_residuals</span><span class="p">):</span>
+    <span class="n">current_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">new_predictions</span><span class="p">)</span>
+    <span class="n">historical_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">historical_residuals</span><span class="p">)</span>
+
+    <span class="n">drift_ratio</span> <span class="o">=</span> <span class="n">current_error</span> <span class="o">/</span> <span class="n">historical_error</span>
+
+    <span class="k">if</span> <span class="n">drift_ratio</span> <span class="o">&gt;</span> <span class="mf">1.5</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;WARNING: Model drift detected&quot;</span>
+    <span class="k">elif</span> <span class="n">drift_ratio</span> <span class="o">&gt;</span> <span class="mf">1.2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;CAUTION: Monitor model performance&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;OK: Model performance stable&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="questions-de-maintenance">
+<h2>Questions de maintenance<a class="headerlink" href="#questions-de-maintenance" title="Link to this heading"></a></h2>
+<section id="a-quelle-frequence-reentrainer-le-modele">
+<h3>À quelle fréquence réentraîner le modèle ?<a class="headerlink" href="#a-quelle-frequence-reentrainer-le-modele" title="Link to this heading"></a></h3>
+<p><strong>Recommandations par contexte</strong> :</p>
+<table class="docutils align-default" id="id27">
+<caption><span class="caption-text">Fréquence de réentraînement</span><a class="headerlink" href="#id27" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 25.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Contexte</p></th>
+<th class="head"><p>Fréquence</p></th>
+<th class="head"><p>Indicateurs de besoin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Production stable</p></td>
+<td><p>3-6 mois</p></td>
+<td><p>RMSE augmente de &gt;10%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Environnement changeant</p></td>
+<td><p>1-2 mois</p></td>
+<td><p>Nouveaux patterns météo</p></td>
+</tr>
+<tr class="row-even"><td><p>Après maintenance</p></td>
+<td><p>Immédiat</p></td>
+<td><p>Changements équipements</p></td>
+</tr>
+<tr class="row-odd"><td><p>Données enrichies</p></td>
+<td><p>Dès disponibilité</p></td>
+<td><p>Nouvelles variables utiles</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Processus automatisé</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">automated_retraining_check</span><span class="p">():</span>
+    <span class="c1"># 1. Charger nouvelles données</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">load_recent_data</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+    <span class="c1"># 2. Évaluer performance actuelle</span>
+    <span class="n">current_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;current_model.h5&#39;</span><span class="p">)</span>
+    <span class="n">rmse_current</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">current_model</span><span class="p">,</span> <span class="n">new_data</span><span class="p">)</span>
+
+    <span class="c1"># 3. Comparer avec baseline</span>
+    <span class="n">rmse_baseline</span> <span class="o">=</span> <span class="n">load_baseline_metric</span><span class="p">()</span>
+
+    <span class="c1"># 4. Décision de réentraînement</span>
+    <span class="k">if</span> <span class="n">rmse_current</span> <span class="o">&gt;</span> <span class="n">rmse_baseline</span> <span class="o">*</span> <span class="mf">1.15</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔄 Réentraînement recommandé&quot;</span><span class="p">)</span>
+        <span class="n">retrain_model</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Modèle performant, pas de réentraînement&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="comment-sauvegarder-et-restaurer-les-modeles">
+<h3>Comment sauvegarder et restaurer les modèles ?<a class="headerlink" href="#comment-sauvegarder-et-restaurer-les-modeles" title="Link to this heading"></a></h3>
+<p><strong>Stratégie de versioning</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">save_model_version</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">scaler_X</span><span class="p">,</span> <span class="n">scaler_y</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H%M%S&quot;</span><span class="p">)</span>
+    <span class="n">version_dir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;models/v_</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">version_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Sauvegarde modèle et scalers</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">version_dir</span><span class="si">}</span><span class="s2">/model.h5&quot;</span><span class="p">)</span>
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler_X</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">version_dir</span><span class="si">}</span><span class="s2">/scaler_X.pkl&quot;</span><span class="p">)</span>
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler_y</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">version_dir</span><span class="si">}</span><span class="s2">/scaler_y.pkl&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Métadonnées</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+        <span class="s1">&#39;rmse&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;rmse&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;mae&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;mape&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;mape&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;training_data_size&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;data_size&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;hyperparameters&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;hyperparams&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">version_dir</span><span class="si">}</span><span class="s2">/metadata.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Modèle sauvegardé: </span><span class="si">{</span><span class="n">version_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">version_dir</span>
+</pre></div>
+</div>
+<p><strong>Comparaison de versions</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compare_model_versions</span><span class="p">():</span>
+    <span class="n">versions</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;models/v_*&quot;</span><span class="p">)</span>
+    <span class="n">comparison</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">versions</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">/metadata.json&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">metadata</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">comparison</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">comparison</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;rmse&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🏆 Comparaison des modèles:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;rmse&#39;</span><span class="p">,</span> <span class="s1">&#39;mae&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span>  <span class="c1"># Meilleur modèle</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="support-et-communaute">
+<h2>Support et communauté<a class="headerlink" href="#support-et-communaute" title="Link to this heading"></a></h2>
+<section id="ou-obtenir-de-l-aide">
+<h3>Où obtenir de l’aide ?<a class="headerlink" href="#ou-obtenir-de-l-aide" title="Link to this heading"></a></h3>
+<p><strong>Ressources officielles</strong> :</p>
+<ol class="arabic simple">
+<li><p><strong>Documentation</strong> : Cette documentation complète</p></li>
+<li><p><strong>Issues GitHub</strong> : Pour bugs et demandes de fonctionnalités</p></li>
+<li><p><strong>Notebooks d’exemples</strong> : Cas d’usage pratiques</p></li>
+</ol>
+<p><strong>Communauté</strong> :</p>
+<ul class="simple">
+<li><p>Forums de discussion sur l’analyse énergétique</p></li>
+<li><p>Groupes TensorFlow/Keras pour questions techniques</p></li>
+<li><p>Communauté Streamlit pour l’interface</p></li>
+</ul>
+</section>
+<section id="comment-contribuer-au-projet">
+<h3>Comment contribuer au projet ?<a class="headerlink" href="#comment-contribuer-au-projet" title="Link to this heading"></a></h3>
+<p><strong>Types de contributions</strong> :</p>
+<ol class="arabic simple">
+<li><p><strong>Code</strong> : Améliorations, nouvelles fonctionnalités</p></li>
+<li><p><strong>Documentation</strong> : Corrections, exemples supplémentaires</p></li>
+<li><p><strong>Tests</strong> : Validation sur nouveaux datasets</p></li>
+<li><p><strong>Feedback</strong> : Retours d’expérience utilisateur</p></li>
+</ol>
+<p><strong>Processus</strong> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Fork du repository</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/AnalysingEnergy.git
+
+<span class="c1"># 2. Création branche</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/nouvelle-fonctionnalite
+
+<span class="c1"># 3. Développement et tests</span>
+<span class="c1"># ... votre code ...</span>
+
+<span class="c1"># 4. Pull request</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/nouvelle-fonctionnalite
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ressources-supplementaires">
+<h2>Ressources supplémentaires<a class="headerlink" href="#ressources-supplementaires" title="Link to this heading"></a></h2>
+<p><strong>Documentation externe</strong> :</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.tensorflow.org/guide">TensorFlow Guide</a></p></li>
+<li><p><a class="reference external" href="https://docs.streamlit.io">Streamlit Documentation</a></p></li>
+<li><p><a class="reference external" href="https://optuna.readthedocs.io">Optuna Tutorials</a></p></li>
+</ul>
+<p><strong>Datasets similaires</strong> :</p>
+<ul class="simple">
+<li><p>Open Power System Data</p></li>
+<li><p>ENTSO-E Transparency Platform</p></li>
+<li><p>Global Energy Observatory</p></li>
+</ul>
+<p><strong>Articles de recherche</strong> :</p>
+<ul class="simple">
+<li><p>“Deep Learning for Energy Forecasting” (Nature Energy, 2023)</p></li>
+<li><p>“LSTM Networks for Renewable Energy Prediction” (IEEE, 2023)</p></li>
+<li><p>“Time Series Analysis in Energy Systems” (Journal of Cleaner Production, 2023)</p></li>
+</ul>
+<hr class="docutils" />
+<section id="id1">
+<h3>Qu’est-ce que le projet AnalysingEnergy ?<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>Le projet AnalysingEnergy est un système de prédiction de génération d’énergie verte utilisant des réseaux de neurones LSTM (Long Short-Term Memory). Il analyse les données météorologiques du dataset BanE-16 pour prédire la production énergétique quotidienne avec une précision élevée (RMSE: 291.19 MW).</p>
 <p><strong>Caractéristiques principales :</strong></p>
 <ul class="simple">
@@ -155,8 +861,8 @@
 <li><p>Documentation complète</p></li>
 </ul>
 </section>
-<section id="quelle-est-la-precision-du-modele">
-<h3>Quelle est la précision du modèle ?<a class="headerlink" href="#quelle-est-la-precision-du-modele" title="Link to this heading"></a></h3>
+<section id="id2">
+<h3>Quelle est la précision du modèle ?<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <p>Notre modèle LSTM optimisé atteint les performances suivantes :</p>
 <ul class="simple">
 <li><p><strong>RMSE</strong> : 291.19 MW (8.9% de la capacité maximale)</p></li>
@@ -166,8 +872,8 @@
 </ul>
 <p>Ces métriques placent notre modèle bien au-dessus des méthodes de référence (persistence, moyenne mobile, etc.).</p>
 </section>
-<section id="puis-je-utiliser-le-projet-avec-mes-propres-donnees">
-<h3>Puis-je utiliser le projet avec mes propres données ?<a class="headerlink" href="#puis-je-utiliser-le-projet-avec-mes-propres-donnees" title="Link to this heading"></a></h3>
+<section id="id3">
+<h3>Puis-je utiliser le projet avec mes propres données ?<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>Oui, le projet est conçu pour être adaptable. Vos données doivent contenir :</p>
 <p><strong>Colonnes requises :</strong></p>
 <ul class="simple">
@@ -198,10 +904,10 @@
 </div>
 </section>
 </section>
-<section id="questions-techniques">
-<h2>Questions techniques<a class="headerlink" href="#questions-techniques" title="Link to this heading"></a></h2>
-<section id="quelles-sont-les-dependances-requises">
-<h3>Quelles sont les dépendances requises ?<a class="headerlink" href="#quelles-sont-les-dependances-requises" title="Link to this heading"></a></h3>
+<section id="id4">
+<h2>Questions techniques<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3>Quelles sont les dépendances requises ?<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <p><strong>Dépendances principales :</strong></p>
 <ul class="simple">
 <li><p>Python 3.8+</p></li>
@@ -230,8 +936,8 @@ optuna&gt;=3.4.0
 </pre></div>
 </div>
 </section>
-<section id="comment-optimiser-les-performances">
-<h3>Comment optimiser les performances ?<a class="headerlink" href="#comment-optimiser-les-performances" title="Link to this heading"></a></h3>
+<section id="id6">
+<h3>Comment optimiser les performances ?<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <p><strong>Pour l’entraînement :</strong></p>
 <ol class="arabic">
 <li><p><strong>Utiliser un GPU</strong> si disponible</p>
@@ -267,8 +973,8 @@ optuna&gt;=3.4.0
 <li><p>Mettre en cache les prédictions fréquentes</p></li>
 </ul>
 </section>
-<section id="pourquoi-utiliser-lstm-plutot-que-d-autres-modeles">
-<h3>Pourquoi utiliser LSTM plutôt que d’autres modèles ?<a class="headerlink" href="#pourquoi-utiliser-lstm-plutot-que-d-autres-modeles" title="Link to this heading"></a></h3>
+<section id="id7">
+<h3>Pourquoi utiliser LSTM plutôt que d’autres modèles ?<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
 <p><strong>Avantages des LSTM pour la prédiction énergétique :</strong></p>
 <ol class="arabic simple">
 <li><p><strong>Mémoire long terme</strong> : Capture les patterns saisonniers et cycliques</p></li>
@@ -290,8 +996,8 @@ Persistence        612.45      0.385   Baseline simple
 </section>
 <section id="questions-sur-l-utilisation">
 <h2>Questions sur l’utilisation<a class="headerlink" href="#questions-sur-l-utilisation" title="Link to this heading"></a></h2>
-<section id="comment-faire-une-prediction-simple">
-<h3>Comment faire une prédiction simple ?<a class="headerlink" href="#comment-faire-une-prediction-simple" title="Link to this heading"></a></h3>
+<section id="id8">
+<h3>Comment faire une prédiction simple ?<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <p><strong>Via l’interface Streamlit :</strong></p>
 <ol class="arabic simple">
 <li><p>Lancer l’application : <cite>streamlit run interface/app.py</cite></p></li>
@@ -316,8 +1022,8 @@ Persistence        612.45      0.385   Baseline simple
 </pre></div>
 </div>
 </section>
-<section id="comment-interpreter-les-resultats">
-<h3>Comment interpréter les résultats ?<a class="headerlink" href="#comment-interpreter-les-resultats" title="Link to this heading"></a></h3>
+<section id="id9">
+<h3>Comment interpréter les résultats ?<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
 <p><strong>Unités et échelles :</strong></p>
 <ul class="simple">
 <li><p>Prédictions en <strong>mégawatts (MW)</strong></p></li>
@@ -342,8 +1048,8 @@ Interprétation:
 </pre></div>
 </div>
 </section>
-<section id="comment-entrainer-un-nouveau-modele">
-<h3>Comment entraîner un nouveau modèle ?<a class="headerlink" href="#comment-entrainer-un-nouveau-modele" title="Link to this heading"></a></h3>
+<section id="id10">
+<h3>Comment entraîner un nouveau modèle ?<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
 <p><strong>Entraînement avec les données existantes :</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictor</span> <span class="o">=</span> <span class="n">EnergyPredictor</span><span class="p">()</span>
 <span class="n">predictor</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;Data/data.csv&#39;</span><span class="p">)</span>
@@ -375,10 +1081,10 @@ Interprétation:
 </ul>
 </section>
 </section>
-<section id="questions-sur-les-donnees">
-<h2>Questions sur les données<a class="headerlink" href="#questions-sur-les-donnees" title="Link to this heading"></a></h2>
-<section id="quelle-est-la-qualite-requise-des-donnees">
-<h3>Quelle est la qualité requise des données ?<a class="headerlink" href="#quelle-est-la-qualite-requise-des-donnees" title="Link to this heading"></a></h3>
+<section id="id11">
+<h2>Questions sur les données<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<section id="id12">
+<h3>Quelle est la qualité requise des données ?<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
 <p><strong>Critères minimaux :</strong></p>
 <ul class="simple">
 <li><p><strong>Complétude</strong> : &lt; 10% de valeurs manquantes par variable</p></li>
@@ -414,8 +1120,8 @@ Interprétation:
 </pre></div>
 </div>
 </section>
-<section id="comment-gerer-les-valeurs-manquantes">
-<h3>Comment gérer les valeurs manquantes ?<a class="headerlink" href="#comment-gerer-les-valeurs-manquantes" title="Link to this heading"></a></h3>
+<section id="id13">
+<h3>Comment gérer les valeurs manquantes ?<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
 <p><strong>Stratégies selon le pourcentage :</strong></p>
 <ul class="simple">
 <li><p><strong>&lt; 5%</strong> : Interpolation linéaire</p></li>
@@ -434,8 +1140,8 @@ Interprétation:
 </pre></div>
 </div>
 </section>
-<section id="puis-je-utiliser-des-donnees-horaires">
-<h3>Puis-je utiliser des données horaires ?<a class="headerlink" href="#puis-je-utiliser-des-donnees-horaires" title="Link to this heading"></a></h3>
+<section id="id14">
+<h3>Puis-je utiliser des données horaires ?<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
 <p>Le modèle actuel est optimisé pour des données quotidiennes. Pour des données horaires :</p>
 <p><strong>Adaptations nécessaires :</strong></p>
 <ol class="arabic">
@@ -460,10 +1166,10 @@ Interprétation:
 </ol>
 </section>
 </section>
-<section id="questions-sur-le-deploiement">
-<h2>Questions sur le déploiement<a class="headerlink" href="#questions-sur-le-deploiement" title="Link to this heading"></a></h2>
-<section id="comment-deployer-l-application-en-production">
-<h3>Comment déployer l’application en production ?<a class="headerlink" href="#comment-deployer-l-application-en-production" title="Link to this heading"></a></h3>
+<section id="id15">
+<h2>Questions sur le déploiement<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+<section id="id16">
+<h3>Comment déployer l’application en production ?<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
 <p><strong>Options de déploiement :</strong></p>
 <ol class="arabic">
 <li><p><strong>Serveur local</strong></p>
@@ -494,8 +1200,8 @@ streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<spa
 </li>
 </ol>
 </section>
-<section id="comment-integrer-via-api-rest">
-<h3>Comment intégrer via API REST ?<a class="headerlink" href="#comment-integrer-via-api-rest" title="Link to this heading"></a></h3>
+<section id="id17">
+<h3>Comment intégrer via API REST ?<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
 <p><strong>Création d’une API Flask :</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">interface.app</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyPredictor</span>
@@ -543,8 +1249,8 @@ streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<spa
 </pre></div>
 </div>
 </section>
-<section id="quelles-sont-les-limites-du-modele">
-<h3>Quelles sont les limites du modèle ?<a class="headerlink" href="#quelles-sont-les-limites-du-modele" title="Link to this heading"></a></h3>
+<section id="id18">
+<h3>Quelles sont les limites du modèle ?<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
 <p><strong>Limites techniques :</strong></p>
 <ol class="arabic simple">
 <li><p><strong>Horizon de prédiction</strong> : Précision décroît au-delà de 30 jours</p></li>
@@ -567,10 +1273,10 @@ streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<spa
 </ul>
 </section>
 </section>
-<section id="questions-de-maintenance">
-<h2>Questions de maintenance<a class="headerlink" href="#questions-de-maintenance" title="Link to this heading"></a></h2>
-<section id="a-quelle-frequence-reentrainer-le-modele">
-<h3>À quelle fréquence réentraîner le modèle ?<a class="headerlink" href="#a-quelle-frequence-reentrainer-le-modele" title="Link to this heading"></a></h3>
+<section id="id19">
+<h2>Questions de maintenance<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<section id="id20">
+<h3>À quelle fréquence réentraîner le modèle ?<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
 <p><strong>Recommandations :</strong></p>
 <ul class="simple">
 <li><p><strong>Mensuellement</strong> : Ajout des nouvelles données</p></li>
@@ -592,8 +1298,8 @@ streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<spa
 </pre></div>
 </div>
 </section>
-<section id="comment-sauvegarder-et-restaurer-les-modeles">
-<h3>Comment sauvegarder et restaurer les modèles ?<a class="headerlink" href="#comment-sauvegarder-et-restaurer-les-modeles" title="Link to this heading"></a></h3>
+<section id="id21">
+<h3>Comment sauvegarder et restaurer les modèles ?<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
 <p><strong>Sauvegarde complète :</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
@@ -630,10 +1336,10 @@ streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<spa
 </div>
 </section>
 </section>
-<section id="support-et-communaute">
-<h2>Support et communauté<a class="headerlink" href="#support-et-communaute" title="Link to this heading"></a></h2>
-<section id="ou-obtenir-de-l-aide">
-<h3>Où obtenir de l’aide ?<a class="headerlink" href="#ou-obtenir-de-l-aide" title="Link to this heading"></a></h3>
+<section id="id22">
+<h2>Support et communauté<a class="headerlink" href="#id22" title="Link to this heading"></a></h2>
+<section id="id23">
+<h3>Où obtenir de l’aide ?<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Documentation</strong> : Consultez d’abord cette documentation complète</p></li>
 <li><p><strong>Troubleshooting</strong> : <a class="reference internal" href="troubleshooting.html"><span class="doc">Dépannage et Résolution de Problèmes</span></a> pour les problèmes courants</p></li>
@@ -641,8 +1347,8 @@ streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<spa
 <li><p><strong>Email</strong> : Contact direct avec l’équipe de développement</p></li>
 </ol>
 </section>
-<section id="comment-contribuer-au-projet">
-<h3>Comment contribuer au projet ?<a class="headerlink" href="#comment-contribuer-au-projet" title="Link to this heading"></a></h3>
+<section id="id24">
+<h3>Comment contribuer au projet ?<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
 <p><strong>Types de contributions :</strong></p>
 <ul class="simple">
 <li><p>Rapports de bugs</p></li>
@@ -660,8 +1366,8 @@ streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<spa
 </ol>
 </section>
 </section>
-<section id="ressources-supplementaires">
-<h2>Ressources supplémentaires<a class="headerlink" href="#ressources-supplementaires" title="Link to this heading"></a></h2>
+<section id="id25">
+<h2>Ressources supplémentaires<a class="headerlink" href="#id25" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Documentation API</strong> : <a class="reference internal" href="api_reference.html"><span class="doc">Référence API</span></a></p></li>
 <li><p><strong>Notebooks exemples</strong> : <a class="reference internal" href="notebooks/index.html"><span class="doc">Documentation des Notebooks</span></a></p></li>
