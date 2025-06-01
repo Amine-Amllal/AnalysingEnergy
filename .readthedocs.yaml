@@ -24,9 +24,6 @@ sphinx:
 python:
    install:
    - requirements: docs/requirements.txt
-   - requirements: requirements.txt
-   - method: pip
-     path: .
 
 # Specify formats to build
 formats:

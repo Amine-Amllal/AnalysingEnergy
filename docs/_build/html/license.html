@@ -20,7 +20,8 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Changelog" href="changelog.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,62 +43,88 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">License</a><ul>
-<li><a class="reference internal" href="#mit-license">MIT License</a></li>
-<li><a class="reference internal" href="#third-party-licenses">Third-Party Licenses</a><ul>
-<li><a class="reference internal" href="#tensorflow">TensorFlow</a></li>
-<li><a class="reference internal" href="#pandas">Pandas</a></li>
-<li><a class="reference internal" href="#numpy">NumPy</a></li>
-<li><a class="reference internal" href="#scikit-learn">Scikit-learn</a></li>
-<li><a class="reference internal" href="#streamlit">Streamlit</a></li>
-<li><a class="reference internal" href="#matplotlib">Matplotlib</a></li>
-<li><a class="reference internal" href="#seaborn">Seaborn</a></li>
-<li><a class="reference internal" href="#plotly">Plotly</a></li>
-<li><a class="reference internal" href="#optuna">Optuna</a></li>
-<li><a class="reference internal" href="#joblib">Joblib</a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_overview.html">Data Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_architecture.html">Model Architecture</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/interface.html">Interface API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/models.html">Models API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/model_training.html">Model Training Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/making_predictions.html">Making Predictions Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/data_preprocessing.html">Data Preprocessing Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to AnalysingEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mit-license">MIT License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#third-party-licenses">Third-Party Licenses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tensorflow">TensorFlow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pandas">Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numpy">NumPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scikit-learn">Scikit-learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streamlit">Streamlit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seaborn">Seaborn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plotly">Plotly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optuna">Optuna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#joblib">Joblib</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-license">Data License</a><ul>
-<li><a class="reference internal" href="#energy-and-meteorological-data">Energy and Meteorological Data</a><ul>
-<li><a class="reference internal" href="#general-data-usage">General Data Usage</a></li>
-<li><a class="reference internal" href="#data-sources-attribution">Data Sources Attribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-license">Data License</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#energy-and-meteorological-data">Energy and Meteorological Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-data-usage">General Data Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-sources-attribution">Data Sources Attribution</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#model-weights-and-trained-models">Model Weights and Trained Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-weights-and-trained-models">Model Weights and Trained Models</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#license-compatibility">License Compatibility</a></li>
-<li><a class="reference internal" href="#attribution-requirements">Attribution Requirements</a><ul>
-<li><a class="reference internal" href="#using-analysingenergy-in-your-project">Using AnalysingEnergy in Your Project</a></li>
-<li><a class="reference internal" href="#academic-citation">Academic Citation</a></li>
-<li><a class="reference internal" href="#modified-versions">Modified Versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license-compatibility">License Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attribution-requirements">Attribution Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-analysingenergy-in-your-project">Using AnalysingEnergy in Your Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#academic-citation">Academic Citation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modified-versions">Modified Versions</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#commercial-use">Commercial Use</a><ul>
-<li><a class="reference internal" href="#permitted-uses">Permitted Uses</a></li>
-<li><a class="reference internal" href="#requirements">Requirements</a></li>
-<li><a class="reference internal" href="#recommended-practices">Recommended Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#commercial-use">Commercial Use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#permitted-uses">Permitted Uses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-practices">Recommended Practices</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#warranty-disclaimer">Warranty Disclaimer</a><ul>
-<li><a class="reference internal" href="#no-warranty-for">No Warranty for:</a></li>
-<li><a class="reference internal" href="#user-responsibility">User Responsibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#warranty-disclaimer">Warranty Disclaimer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#no-warranty-for">No Warranty for:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-responsibility">User Responsibility</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#license-updates">License Updates</a><ul>
-<li><a class="reference internal" href="#current-version">Current Version</a></li>
-<li><a class="reference internal" href="#previous-versions">Previous Versions</a></li>
-<li><a class="reference internal" href="#future-changes">Future Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license-updates">License Updates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#current-version">Current Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#previous-versions">Previous Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-changes">Future Changes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#contact-information">Contact Information</a></li>
-<li><a class="reference internal" href="#acknowledgments">Acknowledgments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contact-information">Contact Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acknowledgments">Acknowledgments</a></li>
 </ul>
 </li>
 </ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -421,7 +448,9 @@ SOFTWARE.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; AnalysingEnergy 1.0.0 documentation</title>
+  <title>AnalysingEnergy Documentation &mdash; AnalysingEnergy 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -20,7 +20,8 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,10 +43,37 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul class="simple">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_overview.html">Data Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_architecture.html">Model Architecture</a></li>
 </ul>
-</div>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/interface.html">Interface API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/models.html">Models API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/model_training.html">Model Training Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/making_predictions.html">Making Predictions Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/data_preprocessing.html">Data Preprocessing Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to AnalysingEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -60,7 +88,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">AnalysingEnergy Documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -70,102 +98,312 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p># AnalysingEnergy Documentation</p>
+  <section id="analysingenergy-documentation">
+<h1>AnalysingEnergy Documentation<a class="headerlink" href="#analysingenergy-documentation" title="Permalink to this heading"></a></h1>
 <p>Welcome to the <strong>AnalysingEnergy</strong> project documentation! This project provides advanced energy prediction and analysis using LSTM neural networks and machine learning techniques.</p>
-<p>## Overview</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>AnalysingEnergy is a comprehensive machine learning solution for predicting energy generation and consumption patterns. The project combines meteorological data with energy demand forecasting to provide accurate predictions for the next 365 days.</p>
-<p>### Key Features</p>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>LSTM Neural Networks</strong>: Advanced time series forecasting using optimized LSTM models</p></li>
-<li><p><strong>Multi-variable Prediction</strong>: Predicts multiple energy-related parameters including:
-- Maximum energy generation (MW)
-- Total energy demand (MW)
-- Temperature variations
-- Wind speed metrics
-- Surface pressure
-- Precipitation correlation</p></li>
+<li><p><strong>Multi-variable Prediction</strong>: Predicts multiple energy-related parameters including:</p>
+<ul>
+<li><p>Maximum energy generation (MW)</p></li>
+<li><p>Total energy demand (MW)</p></li>
+<li><p>Temperature variations</p></li>
+<li><p>Wind speed metrics</p></li>
+<li><p>Surface pressure</p></li>
+<li><p>Precipitation correlation</p></li>
+</ul>
+</li>
 <li><p><strong>Interactive Web Interface</strong>: User-friendly Streamlit application for visualization</p></li>
 <li><p><strong>Hyperparameter Optimization</strong>: Automated model tuning using Optuna</p></li>
 <li><p><strong>365-Day Forecasting</strong>: Extended prediction capabilities for annual planning</p></li>
 </ul>
-<p>### Project Structure</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">AnalysingEnergy/</span>
-<span class="pre">├──</span> <span class="pre">Data/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Dataset</span> <span class="pre">files</span>
-<span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">data.csv</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Main</span> <span class="pre">dataset</span>
-<span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">train_data.csv</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Training</span> <span class="pre">data</span>
-<span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">test_data.csv</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Testing</span> <span class="pre">data</span>
-<span class="pre">├──</span> <span class="pre">Notebooks/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Jupyter</span> <span class="pre">notebooks</span>
-<span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">models/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Trained</span> <span class="pre">LSTM</span> <span class="pre">models</span>
-<span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">scalers/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Data</span> <span class="pre">preprocessing</span> <span class="pre">scalers</span>
-<span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">*.ipynb</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Analysis</span> <span class="pre">and</span> <span class="pre">modeling</span> <span class="pre">notebooks</span>
-<span class="pre">├──</span> <span class="pre">interface/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Web</span> <span class="pre">application</span>
-<span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">app.py</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Streamlit</span> <span class="pre">interface</span>
-<span class="pre">├──</span> <span class="pre">docs/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Documentation</span>
-<span class="pre">└──</span> <span class="pre">requirements.txt</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Dependencies</span>
-<span class="pre">`</span></code></p>
-<p>## Quick Start</p>
-<p>### Installation</p>
-<p>1. Clone the repository:
-<code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/yourusername/AnalysingEnergy.git</span>
-<span class="pre">cd</span> <span class="pre">AnalysingEnergy</span>
-<span class="pre">`</span></code></p>
-<p>2. Install dependencies:
-<code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span>
-<span class="pre">`</span></code></p>
-<p>3. Run the Streamlit interface:
-<code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">interface/app.py</span>
-<span class="pre">`</span></code></p>
-<p>## Table of Contents</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>{toctree}
-:maxdepth: 2
-:caption: User Guide</p>
-<p>getting_started
-data_overview
-model_architecture
-<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
-<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>{toctree}
-:maxdepth: 2
-:caption: API Reference</p>
-<p>api/interface
-api/models
-<a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
-<p><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>{toctree}
-:maxdepth: 2
-:caption: Tutorials</p>
-<p>tutorials/data_preprocessing
-tutorials/model_training
-tutorials/making_predictions
-<a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
-<p><a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a>{toctree}
-:maxdepth: 2
-:caption: Notebooks</p>
-<p>notebooks/data_preprocessing
-notebooks/lstm_generation
-notebooks/lstm_complete
-notebooks/predicting_365_days
-<a href="#id29"><span class="problematic" id="id30">``</span></a><a href="#id31"><span class="problematic" id="id32">`</span></a></p>
-<p><a href="#id33"><span class="problematic" id="id34">``</span></a><a href="#id35"><span class="problematic" id="id36">`</span></a>{toctree}
-:maxdepth: 2
-:caption: Development</p>
-<p>contributing
-changelog
-license
-<a href="#id37"><span class="problematic" id="id38">``</span></a><a href="#id39"><span class="problematic" id="id40">`</span></a></p>
-<p>## Indices and tables</p>
+</section>
+<section id="project-structure">
+<h3>Project Structure<a class="headerlink" href="#project-structure" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AnalysingEnergy/
+├── Data/                    # Dataset files
+│   ├── data.csv            # Main dataset
+│   ├── train_data.csv      # Training data
+│   └── test_data.csv       # Testing data
+├── Notebooks/              # Jupyter notebooks
+│   ├── models/             # Trained LSTM models
+│   ├── scalers/            # Data preprocessing scalers
+│   └── *.ipynb            # Analysis and modeling notebooks
+├── interface/              # Web application
+│   └── app.py             # Streamlit interface
+├── docs/                   # Documentation
+└── requirements.txt        # Dependencies
+</pre></div>
+</div>
+</section>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading"></a></h2>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Clone the repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">yourusername</span><span class="o">/</span><span class="n">AnalysingEnergy</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">AnalysingEnergy</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the Streamlit interface:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">streamlit</span> <span class="n">run</span> <span class="n">interface</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#running-the-application">Running the Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#quick-tour">Quick Tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#support">Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_overview.html">Data Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#dataset-structure">Dataset Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#data-features">Data Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#data-characteristics">Data Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#sample-data-structure">Sample Data Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#data-preprocessing">Data Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#data-relationships">Data Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#data-quality-metrics">Data Quality Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#usage-in-machine-learning-pipeline">Usage in Machine Learning Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#data-visualization">Data Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_overview.html#storage-and-access">Storage and Access</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model_architecture.html">Model Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#core-architecture">Core Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#hyperparameter-optimization">Hyperparameter Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#data-preprocessing-pipeline">Data Preprocessing Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#multi-model-architecture">Multi-Model Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#training-configuration">Training Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#prediction-pipeline">Prediction Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#model-persistence">Model Persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_architecture.html#validation-strategy">Validation Strategy</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/interface.html">Interface API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#main-application-app-py">Main Application (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#streamlit-components">Streamlit Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/interface.html#future-enhancements">Future Enhancements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/models.html">Models API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#model-architecture-overview">Model Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#model-classes-and-functions">Model Classes and Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#individual-model-specifications">Individual Model Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#model-utilities">Model Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#prediction-pipeline">Prediction Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#model-performance-metrics">Model Performance Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#hyperparameter-optimization">Hyperparameter Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#model-validation">Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/models.html#future-enhancements">Future Enhancements</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_preprocessing.html">Data Preprocessing Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-1-data-loading">Step 1: Data Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-2-data-quality-assessment">Step 2: Data Quality Assessment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-3-data-cleaning">Step 3: Data Cleaning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-4-feature-engineering">Step 4: Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-5-feature-selection">Step 5: Feature Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-6-data-scaling">Step 6: Data Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-7-train-test-split">Step 7: Train-Test Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-8-time-series-preparation">Step 8: Time Series Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-9-save-processed-data">Step 9: Save Processed Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#step-10-data-visualization">Step 10: Data Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preprocessing.html#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/model_training.html">Model Training Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-1-environment-setup">Step 1: Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-2-data-preparation">Step 2: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-3-model-architecture">Step 3: Model Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-4-hyperparameter-optimization">Step 4: Hyperparameter Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-5-train-final-model">Step 5: Train Final Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-6-model-evaluation">Step 6: Model Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-7-model-persistence">Step 7: Model Persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-8-model-loading-and-verification">Step 8: Model Loading and Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#step-9-model-performance-summary">Step 9: Model Performance Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#best-practices-and-tips">Best Practices and Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/model_training.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/making_predictions.html">Making Predictions Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#step-1-environment-setup">Step 1: Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#step-2-load-trained-models-and-scalers">Step 2: Load Trained Models and Scalers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#step-3-single-step-prediction">Step 3: Single-Step Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#step-4-multi-step-forecasting-365-days">Step 4: Multi-Step Forecasting (365 Days)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#step-5-ensemble-predictions-with-individual-models">Step 5: Ensemble Predictions with Individual Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#step-6-prediction-confidence-intervals">Step 6: Prediction Confidence Intervals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#step-7-visualization-and-analysis">Step 7: Visualization and Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#step-8-export-results">Step 8: Export Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/making_predictions.html#best-practices-for-predictions">Best Practices for Predictions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/data_preprocessing.html">Data Preprocessing Notebook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data_preprocessing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data_preprocessing.html#notebook-structure">Notebook Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data_preprocessing.html#key-visualizations">Key Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data_preprocessing.html#data-quality-metrics">Data Quality Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data_preprocessing.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data_preprocessing.html#output-files">Output Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data_preprocessing.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/data_preprocessing.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_generation.html">LSTM Generation Notebook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_generation.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_generation.html#notebook-structure">Notebook Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_generation.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_generation.html#model-performance-summary">Model Performance Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_generation.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_generation.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_complete.html">LSTM Complete Notebook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_complete.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_complete.html#notebook-structure">Notebook Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_complete.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_complete.html#performance-benchmarks">Performance Benchmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_complete.html#output-files">Output Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_complete.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/lstm_complete.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/predicting_365_days.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/predicting_365_days.html#notebook-structure">Notebook Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/predicting_365_days.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/predicting_365_days.html#output-files">Output Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/predicting_365_days.html#forecast-accuracy">Forecast Accuracy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/predicting_365_days.html#applications">Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/predicting_365_days.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/predicting_365_days.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to AnalysingEnergy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-setup">Development Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contributing-guidelines">Contributing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-standards">Code Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#submitting-contributions">Submitting Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#community-guidelines">Community Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-roadmap">Development Roadmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#recognition">Recognition</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#unreleased">[Unreleased]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id1">[2.1.0] - 2025-06-01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id5">[2.0.0] - 2025-05-15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[1.3.0] - 2025-04-20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id13">[1.2.0] - 2025-03-10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id17">[1.1.0] - 2025-02-15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id21">[1.0.0] - 2025-01-01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-history-summary">Version History Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#breaking-changes">Breaking Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#migration-guides">Migration Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#known-issues">Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#deprecation-notices">Deprecation Notices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#contributors">Contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#acknowledgments">Acknowledgments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#mit-license">MIT License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#third-party-licenses">Third-Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#data-license">Data License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#license-compatibility">License Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#attribution-requirements">Attribution Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#commercial-use">Commercial Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#warranty-disclaimer">Warranty Disclaimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#license-updates">License Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#contact-information">Contact Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#acknowledgments">Acknowledgments</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
 <ul class="simple">
-<li><p>{ref}`genindex`</p></li>
-<li><p>{ref}`modindex`</p></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 <li><p>{ref}`search`</p></li>
 </ul>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

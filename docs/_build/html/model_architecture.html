@@ -20,7 +20,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Interface API Reference" href="api/interface.html" />
+    <link rel="prev" title="Data Overview" href="data_overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,66 +44,92 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Model Architecture</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#core-architecture">Core Architecture</a><ul>
-<li><a class="reference internal" href="#lstm-neural-network-design">LSTM Neural Network Design</a></li>
-<li><a class="reference internal" href="#architecture-components">Architecture Components</a><ul>
-<li><a class="reference internal" href="#input-layer">1. Input Layer</a></li>
-<li><a class="reference internal" href="#lstm-layers">2. LSTM Layers</a></li>
-<li><a class="reference internal" href="#regularization">3. Regularization</a></li>
-<li><a class="reference internal" href="#dense-layers">4. Dense Layers</a></li>
-<li><a class="reference internal" href="#compilation">5. Compilation</a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_overview.html">Data Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Model Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#core-architecture">Core Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lstm-neural-network-design">LSTM Neural Network Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#architecture-components">Architecture Components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#input-layer">1. Input Layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lstm-layers">2. LSTM Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#regularization">3. Regularization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dense-layers">4. Dense Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compilation">5. Compilation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#hyperparameter-optimization">Hyperparameter Optimization</a><ul>
-<li><a class="reference internal" href="#optuna-integration">Optuna Integration</a></li>
-<li><a class="reference internal" href="#optimized-parameters">Optimized Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hyperparameter-optimization">Hyperparameter Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#optuna-integration">Optuna Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimized-parameters">Optimized Parameters</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-preprocessing-pipeline">Data Preprocessing Pipeline</a><ul>
-<li><a class="reference internal" href="#feature-scaling">Feature Scaling</a></li>
-<li><a class="reference internal" href="#time-series-generation">Time Series Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-preprocessing-pipeline">Data Preprocessing Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#feature-scaling">Feature Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-series-generation">Time Series Generation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#multi-model-architecture">Multi-Model Architecture</a><ul>
-<li><a class="reference internal" href="#individual-feature-models">Individual Feature Models</a></li>
-<li><a class="reference internal" href="#model-ensemble-strategy">Model Ensemble Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-model-architecture">Multi-Model Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#individual-feature-models">Individual Feature Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-ensemble-strategy">Model Ensemble Strategy</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#training-configuration">Training Configuration</a><ul>
-<li><a class="reference internal" href="#training-parameters">Training Parameters</a></li>
-<li><a class="reference internal" href="#performance-metrics">Performance Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#training-configuration">Training Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#training-parameters">Training Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-metrics">Performance Metrics</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#prediction-pipeline">Prediction Pipeline</a><ul>
-<li><a class="reference internal" href="#single-prediction">Single Prediction</a></li>
-<li><a class="reference internal" href="#multi-step-forecasting">Multi-step Forecasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prediction-pipeline">Prediction Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-prediction">Single Prediction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-step-forecasting">Multi-step Forecasting</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#model-persistence">Model Persistence</a><ul>
-<li><a class="reference internal" href="#saving-models">Saving Models</a></li>
-<li><a class="reference internal" href="#loading-models">Loading Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-persistence">Model Persistence</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#saving-models">Saving Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-models">Loading Models</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#performance-optimization">Performance Optimization</a><ul>
-<li><a class="reference internal" href="#memory-management">Memory Management</a></li>
-<li><a class="reference internal" href="#computational-efficiency">Computational Efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-management">Memory Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computational-efficiency">Computational Efficiency</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#validation-strategy">Validation Strategy</a><ul>
-<li><a class="reference internal" href="#time-series-cross-validation">Time Series Cross-Validation</a></li>
-<li><a class="reference internal" href="#model-evaluation">Model Evaluation</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#validation-strategy">Validation Strategy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#time-series-cross-validation">Time Series Cross-Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-evaluation">Model Evaluation</a></li>
 </ul>
 </li>
 </ul>
-</div>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/interface.html">Interface API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/models.html">Models API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/model_training.html">Model Training Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/making_predictions.html">Making Predictions Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/data_preprocessing.html">Data Preprocessing Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to AnalysingEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -488,7 +516,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_overview.html" class="btn btn-neutral float-left" title="Data Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/interface.html" class="btn btn-neutral float-right" title="Interface API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

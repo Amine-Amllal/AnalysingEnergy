@@ -20,7 +20,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LSTM Generation Notebook" href="lstm_generation.html" />
+    <link rel="prev" title="Making Predictions Tutorial" href="../tutorials/making_predictions.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,77 +44,103 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Data Preprocessing Notebook</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#notebook-structure">Notebook Structure</a><ul>
-<li><a class="reference internal" href="#data-loading-and-initial-exploration">1. Data Loading and Initial Exploration</a></li>
-<li><a class="reference internal" href="#exploratory-data-analysis-eda">2. Exploratory Data Analysis (EDA)</a><ul>
-<li><a class="reference internal" href="#statistical-summary">2.1 Statistical Summary</a></li>
-<li><a class="reference internal" href="#time-series-visualization">2.2 Time Series Visualization</a></li>
-<li><a class="reference internal" href="#correlation-analysis">2.3 Correlation Analysis</a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_overview.html">Data Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_architecture.html">Model Architecture</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/interface.html">Interface API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/models.html">Models API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/model_training.html">Model Training Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/making_predictions.html">Making Predictions Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Preprocessing Notebook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notebook-structure">Notebook Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-loading-and-initial-exploration">1. Data Loading and Initial Exploration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exploratory-data-analysis-eda">2. Exploratory Data Analysis (EDA)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#statistical-summary">2.1 Statistical Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-series-visualization">2.2 Time Series Visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#correlation-analysis">2.3 Correlation Analysis</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-cleaning-and-quality-checks">3. Data Cleaning and Quality Checks</a><ul>
-<li><a class="reference internal" href="#missing-value-handling">3.1 Missing Value Handling</a></li>
-<li><a class="reference internal" href="#outlier-detection-and-treatment">3.2 Outlier Detection and Treatment</a></li>
-<li><a class="reference internal" href="#data-validation">3.3 Data Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-cleaning-and-quality-checks">3. Data Cleaning and Quality Checks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#missing-value-handling">3.1 Missing Value Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outlier-detection-and-treatment">3.2 Outlier Detection and Treatment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-validation">3.3 Data Validation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#feature-engineering">4. Feature Engineering</a><ul>
-<li><a class="reference internal" href="#temporal-features">4.1 Temporal Features</a></li>
-<li><a class="reference internal" href="#lag-features">4.2 Lag Features</a></li>
-<li><a class="reference internal" href="#rolling-statistics">4.3 Rolling Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-engineering">4. Feature Engineering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#temporal-features">4.1 Temporal Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lag-features">4.2 Lag Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rolling-statistics">4.3 Rolling Statistics</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-scaling-and-normalization">5. Data Scaling and Normalization</a><ul>
-<li><a class="reference internal" href="#minmax-scaling">5.1 MinMax Scaling</a></li>
-<li><a class="reference internal" href="#feature-selection">5.2 Feature Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-scaling-and-normalization">5. Data Scaling and Normalization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#minmax-scaling">5.1 MinMax Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#feature-selection">5.2 Feature Selection</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#train-test-split">6. Train-Test Split</a><ul>
-<li><a class="reference internal" href="#temporal-split-strategy">6.1 Temporal Split Strategy</a></li>
-<li><a class="reference internal" href="#validation-set-creation">6.2 Validation Set Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#train-test-split">6. Train-Test Split</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#temporal-split-strategy">6.1 Temporal Split Strategy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validation-set-creation">6.2 Validation Set Creation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#sequence-generation-for-lstm">7. Sequence Generation for LSTM</a><ul>
-<li><a class="reference internal" href="#time-series-sequence-creation">7.1 Time Series Sequence Creation</a></li>
-<li><a class="reference internal" href="#multi-step-prediction-preparation">7.2 Multi-step Prediction Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sequence-generation-for-lstm">7. Sequence Generation for LSTM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#time-series-sequence-creation">7.1 Time Series Sequence Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-step-prediction-preparation">7.2 Multi-step Prediction Preparation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-export-and-persistence">8. Data Export and Persistence</a><ul>
-<li><a class="reference internal" href="#processed-data-export">8.1 Processed Data Export</a></li>
-<li><a class="reference internal" href="#scaler-persistence">8.2 Scaler Persistence</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#key-visualizations">Key Visualizations</a><ul>
-<li><a class="reference internal" href="#time-series-plots">1. Time Series Plots</a></li>
-<li><a class="reference internal" href="#distribution-analysis">2. Distribution Analysis</a></li>
-<li><a class="reference internal" href="#correlation-heatmaps">3. Correlation Heatmaps</a></li>
-<li><a class="reference internal" href="#seasonal-decomposition">4. Seasonal Decomposition</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-quality-metrics">Data Quality Metrics</a><ul>
-<li><a class="reference internal" href="#completeness">Completeness</a></li>
-<li><a class="reference internal" href="#consistency">Consistency</a></li>
-<li><a class="reference internal" href="#reliability">Reliability</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#performance-considerations">Performance Considerations</a><ul>
-<li><a class="reference internal" href="#memory-optimization">Memory Optimization</a></li>
-<li><a class="reference internal" href="#processing-speed">Processing Speed</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#output-files">Output Files</a></li>
-<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-export-and-persistence">8. Data Export and Persistence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#processed-data-export">8.1 Processed Data Export</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scaler-persistence">8.2 Scaler Persistence</a></li>
 </ul>
 </li>
 </ul>
-</div>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#key-visualizations">Key Visualizations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#time-series-plots">1. Time Series Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distribution-analysis">2. Distribution Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-heatmaps">3. Correlation Heatmaps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seasonal-decomposition">4. Seasonal Decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-quality-metrics">Data Quality Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#completeness">Completeness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#consistency">Consistency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reliability">Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-optimization">Memory Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#processing-speed">Processing Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#output-files">Output Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to AnalysingEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -504,7 +532,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tutorials/making_predictions.html" class="btn btn-neutral float-left" title="Making Predictions Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lstm_generation.html" class="btn btn-neutral float-right" title="LSTM Generation Notebook" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -20,7 +20,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="Predicting Next 365 Days Notebook" href="notebooks/predicting_365_days.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,79 +44,105 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Contributing to AnalysingEnergy</a><ul>
-<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
-<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
-<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li><a class="reference internal" href="#project-overview">Project Overview</a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_overview.html">Data Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_architecture.html">Model Architecture</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/interface.html">Interface API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/models.html">Models API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/model_training.html">Model Training Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/making_predictions.html">Making Predictions Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/data_preprocessing.html">Data Preprocessing Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to AnalysingEnergy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-overview">Project Overview</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#development-setup">Development Setup</a><ul>
-<li><a class="reference internal" href="#fork-and-clone">1. Fork and Clone</a></li>
-<li><a class="reference internal" href="#environment-setup">2. Environment Setup</a></li>
-<li><a class="reference internal" href="#development-dependencies">3. Development Dependencies</a></li>
-<li><a class="reference internal" href="#verify-installation">4. Verify Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-setup">Development Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fork-and-clone">1. Fork and Clone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-setup">2. Environment Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development-dependencies">3. Development Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-installation">4. Verify Installation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#contributing-guidelines">Contributing Guidelines</a><ul>
-<li><a class="reference internal" href="#types-of-contributions">Types of Contributions</a></li>
-<li><a class="reference internal" href="#before-you-start">Before You Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing-guidelines">Contributing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#types-of-contributions">Types of Contributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#before-you-start">Before You Start</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#code-standards">Code Standards</a><ul>
-<li><a class="reference internal" href="#python-code-style">Python Code Style</a><ul>
-<li><a class="reference internal" href="#formatting">Formatting</a></li>
-<li><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
-<li><a class="reference internal" href="#documentation-strings">Documentation Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-standards">Code Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-code-style">Python Code Style</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#formatting">Formatting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentation-strings">Documentation Strings</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#machine-learning-code-guidelines">Machine Learning Code Guidelines</a><ul>
-<li><a class="reference internal" href="#model-training">Model Training</a></li>
-<li><a class="reference internal" href="#data-processing">Data Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#machine-learning-code-guidelines">Machine Learning Code Guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model-training">Model Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-processing">Data Processing</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#file-organization">File Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#file-organization">File Organization</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#testing">Testing</a><ul>
-<li><a class="reference internal" href="#writing-tests">Writing Tests</a></li>
-<li><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#documentation">Documentation</a><ul>
-<li><a class="reference internal" href="#adding-documentation">Adding Documentation</a></li>
-<li><a class="reference internal" href="#documentation-style">Documentation Style</a></li>
-<li><a class="reference internal" href="#jupyter-notebook-guidelines">Jupyter Notebook Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-documentation">Adding Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation-style">Documentation Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jupyter-notebook-guidelines">Jupyter Notebook Guidelines</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#submitting-contributions">Submitting Contributions</a><ul>
-<li><a class="reference internal" href="#creating-pull-requests">Creating Pull Requests</a></li>
-<li><a class="reference internal" href="#pull-request-guidelines">Pull Request Guidelines</a><ul>
-<li><a class="reference internal" href="#title-and-description">Title and Description</a></li>
-<li><a class="reference internal" href="#checklist">Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submitting-contributions">Submitting Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-pull-requests">Creating Pull Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pull-request-guidelines">Pull Request Guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#title-and-description">Title and Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checklist">Checklist</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#review-process">Review Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review-process">Review Process</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#community-guidelines">Community Guidelines</a><ul>
-<li><a class="reference internal" href="#communication">Communication</a></li>
-<li><a class="reference internal" href="#code-of-conduct">Code of Conduct</a></li>
-<li><a class="reference internal" href="#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#community-guidelines">Community Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#communication">Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-help">Getting Help</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#development-roadmap">Development Roadmap</a><ul>
-<li><a class="reference internal" href="#current-priorities">Current Priorities</a></li>
-<li><a class="reference internal" href="#future-goals">Future Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-roadmap">Development Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#current-priorities">Current Priorities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-goals">Future Goals</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#recognition">Recognition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recognition">Recognition</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
-</div>
+
         </div>
       </div>
     </nav>
@@ -703,7 +731,10 @@ pytest<span class="w"> </span>-v
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notebooks/predicting_365_days.html" class="btn btn-neutral float-left" title="Predicting Next 365 Days Notebook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -20,7 +20,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Preprocessing Notebook" href="../notebooks/data_preprocessing.html" />
+    <link rel="prev" title="Model Training Tutorial" href="model_training.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,63 +44,89 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Making Predictions Tutorial</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li><a class="reference internal" href="#step-1-environment-setup">Step 1: Environment Setup</a><ul>
-<li><a class="reference internal" href="#import-required-libraries">Import Required Libraries</a></li>
-<li><a class="reference internal" href="#load-data-and-configuration">Load Data and Configuration</a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_overview.html">Data Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_architecture.html">Model Architecture</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/interface.html">Interface API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/models.html">Models API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_training.html">Model Training Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Making Predictions Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-environment-setup">Step 1: Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import-required-libraries">Import Required Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-data-and-configuration">Load Data and Configuration</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-2-load-trained-models-and-scalers">Step 2: Load Trained Models and Scalers</a><ul>
-<li><a class="reference internal" href="#load-main-model">Load Main Model</a></li>
-<li><a class="reference internal" href="#load-scalers">Load Scalers</a></li>
-<li><a class="reference internal" href="#load-individual-feature-models">Load Individual Feature Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-load-trained-models-and-scalers">Step 2: Load Trained Models and Scalers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#load-main-model">Load Main Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-scalers">Load Scalers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-individual-feature-models">Load Individual Feature Models</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-3-single-step-prediction">Step 3: Single-Step Prediction</a><ul>
-<li><a class="reference internal" href="#prepare-input-data">Prepare Input Data</a></li>
-<li><a class="reference internal" href="#make-single-predictions">Make Single Predictions</a></li>
-<li><a class="reference internal" href="#evaluate-single-predictions">Evaluate Single Predictions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-single-step-prediction">Step 3: Single-Step Prediction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-input-data">Prepare Input Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#make-single-predictions">Make Single Predictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluate-single-predictions">Evaluate Single Predictions</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-4-multi-step-forecasting-365-days">Step 4: Multi-Step Forecasting (365 Days)</a><ul>
-<li><a class="reference internal" href="#implement-future-prediction-function">Implement Future Prediction Function</a></li>
-<li><a class="reference internal" href="#create-future-dates">Create Future Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-multi-step-forecasting-365-days">Step 4: Multi-Step Forecasting (365 Days)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#implement-future-prediction-function">Implement Future Prediction Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-future-dates">Create Future Dates</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-5-ensemble-predictions-with-individual-models">Step 5: Ensemble Predictions with Individual Models</a><ul>
-<li><a class="reference internal" href="#predict-individual-features-for-future">Predict Individual Features for Future</a></li>
-<li><a class="reference internal" href="#ensemble-prediction">Ensemble Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-ensemble-predictions-with-individual-models">Step 5: Ensemble Predictions with Individual Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#predict-individual-features-for-future">Predict Individual Features for Future</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ensemble-prediction">Ensemble Prediction</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-6-prediction-confidence-intervals">Step 6: Prediction Confidence Intervals</a><ul>
-<li><a class="reference internal" href="#calculate-prediction-uncertainty">Calculate Prediction Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-prediction-confidence-intervals">Step 6: Prediction Confidence Intervals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calculate-prediction-uncertainty">Calculate Prediction Uncertainty</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-7-visualization-and-analysis">Step 7: Visualization and Analysis</a><ul>
-<li><a class="reference internal" href="#plot-predictions">Plot Predictions</a></li>
-<li><a class="reference internal" href="#seasonal-analysis">Seasonal Analysis</a></li>
-<li><a class="reference internal" href="#feature-importance-analysis">Feature Importance Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-visualization-and-analysis">Step 7: Visualization and Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plot-predictions">Plot Predictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seasonal-analysis">Seasonal Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-importance-analysis">Feature Importance Analysis</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-8-export-results">Step 8: Export Results</a><ul>
-<li><a class="reference internal" href="#save-predictions">Save Predictions</a></li>
-<li><a class="reference internal" href="#create-prediction-report">Create Prediction Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-8-export-results">Step 8: Export Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#save-predictions">Save Predictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-prediction-report">Create Prediction Report</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#best-practices-for-predictions">Best Practices for Predictions</a><ul>
-<li><a class="reference internal" href="#model-maintenance">Model Maintenance</a></li>
-<li><a class="reference internal" href="#uncertainty-quantification">Uncertainty Quantification</a></li>
-<li><a class="reference internal" href="#practical-applications">Practical Applications</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices-for-predictions">Best Practices for Predictions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#model-maintenance">Model Maintenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uncertainty-quantification">Uncertainty Quantification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#practical-applications">Practical Applications</a></li>
 </ul>
 </li>
 </ul>
-</div>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/data_preprocessing.html">Data Preprocessing Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to AnalysingEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -963,7 +991,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model_training.html" class="btn btn-neutral float-left" title="Model Training Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../notebooks/data_preprocessing.html" class="btn btn-neutral float-right" title="Data Preprocessing Notebook" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

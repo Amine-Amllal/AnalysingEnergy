@@ -14,6 +14,21 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
+# Mock imports for packages not available during documentation build
+autodoc_mock_imports = [
+    'tensorflow',
+    'streamlit', 
+    'sklearn',
+    'scikit-learn',
+    'plotly',
+    'seaborn',
+    'matplotlib',
+    'optuna',
+    'statsmodels',
+    'joblib',
+    'tqdm',
+]
+
 
 # -- Project information -----------------------------------------------------
 
@@ -45,7 +60,14 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = [
+    '_build', 
+    'Thumbs.db', 
+    '.DS_Store',
+    'README.md',  # Developer documentation, not for end users
+    'READTHEDOCS_FIX.md',  # Troubleshooting guide, not for end users
+    'RST_SYNTAX_FIXED.md',  # Developer notes, not for end users
+]
 
 # The master toctree document.
 master_doc = 'index'

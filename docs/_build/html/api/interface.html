@@ -20,7 +20,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Models API Reference" href="models.html" />
+    <link rel="prev" title="Model Architecture" href="../model_architecture.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,44 +44,70 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Interface API Reference</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#main-application-app-py">Main Application (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>)</a><ul>
-<li><a class="reference internal" href="#core-functions">Core Functions</a><ul>
-<li><a class="reference internal" href="#load-data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
-<li><a class="reference internal" href="#preprocess-data-data"><code class="docutils literal notranslate"><span class="pre">preprocess_data(data)</span></code></a></li>
-<li><a class="reference internal" href="#load-models"><code class="docutils literal notranslate"><span class="pre">load_models()</span></code></a></li>
-<li><a class="reference internal" href="#make-predictions-models-data-days-365"><code class="docutils literal notranslate"><span class="pre">make_predictions(models,</span> <span class="pre">data,</span> <span class="pre">days=365)</span></code></a></li>
-<li><a class="reference internal" href="#plot-predictions-predictions-historical-data-none"><code class="docutils literal notranslate"><span class="pre">plot_predictions(predictions,</span> <span class="pre">historical_data=None)</span></code></a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_overview.html">Data Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_architecture.html">Model Architecture</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interface API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-application-app-py">Main Application (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#load-data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#preprocess-data-data"><code class="docutils literal notranslate"><span class="pre">preprocess_data(data)</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#load-models"><code class="docutils literal notranslate"><span class="pre">load_models()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#make-predictions-models-data-days-365"><code class="docutils literal notranslate"><span class="pre">make_predictions(models,</span> <span class="pre">data,</span> <span class="pre">days=365)</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-predictions-predictions-historical-data-none"><code class="docutils literal notranslate"><span class="pre">plot_predictions(predictions,</span> <span class="pre">historical_data=None)</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#streamlit-components">Streamlit Components</a><ul>
-<li><a class="reference internal" href="#sidebar-controls">Sidebar Controls</a></li>
-<li><a class="reference internal" href="#main-display-area">Main Display Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlit-components">Streamlit Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sidebar-controls">Sidebar Controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-display-area">Main Display Area</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configuration">Configuration</a><ul>
-<li><a class="reference internal" href="#session-state-variables">Session State Variables</a></li>
-<li><a class="reference internal" href="#layout-configuration">Layout Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#session-state-variables">Session State Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#layout-configuration">Layout Configuration</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#error-handling">Error Handling</a></li>
-<li><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
-<li><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
-<li><a class="reference internal" href="#accessing-via-browser">Accessing via Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-via-browser">Accessing via Browser</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
-<li><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
-<li><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models API Reference</a></li>
 </ul>
-</div>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/model_training.html">Model Training Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/making_predictions.html">Making Predictions Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/data_preprocessing.html">Data Preprocessing Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to AnalysingEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -302,7 +330,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../model_architecture.html" class="btn btn-neutral float-left" title="Model Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.html" class="btn btn-neutral float-right" title="Models API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -1,112 +1,115 @@
-# AnalysingEnergy Documentation
+AnalysingEnergy Documentation
+==============================
 
 Welcome to the **AnalysingEnergy** project documentation! This project provides advanced energy prediction and analysis using LSTM neural networks and machine learning techniques.
 
-## Overview
+Overview
+--------
 
 AnalysingEnergy is a comprehensive machine learning solution for predicting energy generation and consumption patterns. The project combines meteorological data with energy demand forecasting to provide accurate predictions for the next 365 days.
 
-### Key Features
+Key Features
+~~~~~~~~~~~~
 
 - **LSTM Neural Networks**: Advanced time series forecasting using optimized LSTM models
 - **Multi-variable Prediction**: Predicts multiple energy-related parameters including:
+
   - Maximum energy generation (MW)
   - Total energy demand (MW)
   - Temperature variations
   - Wind speed metrics
   - Surface pressure
   - Precipitation correlation
+
 - **Interactive Web Interface**: User-friendly Streamlit application for visualization
 - **Hyperparameter Optimization**: Automated model tuning using Optuna
 - **365-Day Forecasting**: Extended prediction capabilities for annual planning
 
-### Project Structure
+Project Structure
+~~~~~~~~~~~~~~~~~
 
-```
-AnalysingEnergy/
-├── Data/                    # Dataset files
-│   ├── data.csv            # Main dataset
-│   ├── train_data.csv      # Training data
-│   └── test_data.csv       # Testing data
-├── Notebooks/              # Jupyter notebooks
-│   ├── models/             # Trained LSTM models
-│   ├── scalers/            # Data preprocessing scalers
-│   └── *.ipynb            # Analysis and modeling notebooks
-├── interface/              # Web application
-│   └── app.py             # Streamlit interface
-├── docs/                   # Documentation
-└── requirements.txt        # Dependencies
-```
+::
 
-## Quick Start
+    AnalysingEnergy/
+    ├── Data/                    # Dataset files
+    │   ├── data.csv            # Main dataset
+    │   ├── train_data.csv      # Training data
+    │   └── test_data.csv       # Testing data
+    ├── Notebooks/              # Jupyter notebooks
+    │   ├── models/             # Trained LSTM models
+    │   ├── scalers/            # Data preprocessing scalers
+    │   └── *.ipynb            # Analysis and modeling notebooks
+    ├── interface/              # Web application
+    │   └── app.py             # Streamlit interface
+    ├── docs/                   # Documentation
+    └── requirements.txt        # Dependencies
 
-### Installation
+Quick Start
+-----------
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/AnalysingEnergy.git
-cd AnalysingEnergy
-```
+Installation
+~~~~~~~~~~~~
 
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+1. Clone the repository::
 
-3. Run the Streamlit interface:
-```bash
-streamlit run interface/app.py
-```
+    git clone https://github.com/yourusername/AnalysingEnergy.git
+    cd AnalysingEnergy
 
-## Table of Contents
+2. Install dependencies::
 
-```{toctree}
-:maxdepth: 2
-:caption: User Guide
+    pip install -r requirements.txt
 
-getting_started
-data_overview
-model_architecture
-```
+3. Run the Streamlit interface::
 
-```{toctree}
-:maxdepth: 2
-:caption: API Reference
+    streamlit run interface/app.py
 
-api/interface
-api/models
-```
+Table of Contents
+-----------------
 
-```{toctree}
-:maxdepth: 2
-:caption: Tutorials
+.. toctree::
+   :maxdepth: 2
+   :caption: User Guide
 
-tutorials/data_preprocessing
-tutorials/model_training
-tutorials/making_predictions
-```
+   getting_started
+   data_overview
+   model_architecture
 
-```{toctree}
-:maxdepth: 2
-:caption: Notebooks
+.. toctree::
+   :maxdepth: 2
+   :caption: API Reference
 
-notebooks/data_preprocessing
-notebooks/lstm_generation
-notebooks/lstm_complete
-notebooks/predicting_365_days
-```
+   api/interface
+   api/models
 
-```{toctree}
-:maxdepth: 2
-:caption: Development
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorials
 
-contributing
-changelog
-license
-```
+   tutorials/data_preprocessing
+   tutorials/model_training
+   tutorials/making_predictions
 
-## Indices and tables
+.. toctree::
+   :maxdepth: 2
+   :caption: Notebooks
 
-* {ref}`genindex`
-* {ref}`modindex`
+   notebooks/data_preprocessing
+   notebooks/lstm_generation
+   notebooks/lstm_complete
+   notebooks/predicting_365_days
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Development
+
+   contributing
+   changelog
+   license
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
 * {ref}`search`

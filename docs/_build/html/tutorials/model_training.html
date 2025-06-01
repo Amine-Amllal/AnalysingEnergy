@@ -20,7 +20,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Making Predictions Tutorial" href="making_predictions.html" />
+    <link rel="prev" title="Data Preprocessing Tutorial" href="data_preprocessing.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,73 +44,99 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Model Training Tutorial</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li><a class="reference internal" href="#step-1-environment-setup">Step 1: Environment Setup</a><ul>
-<li><a class="reference internal" href="#import-required-libraries">Import Required Libraries</a></li>
-<li><a class="reference internal" href="#load-preprocessed-data">Load Preprocessed Data</a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_overview.html">Data Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_architecture.html">Model Architecture</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/interface.html">Interface API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/models.html">Models API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Model Training Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-environment-setup">Step 1: Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import-required-libraries">Import Required Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-preprocessed-data">Load Preprocessed Data</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-2-data-preparation">Step 2: Data Preparation</a><ul>
-<li><a class="reference internal" href="#prepare-features-and-target">Prepare Features and Target</a></li>
-<li><a class="reference internal" href="#scale-the-data">Scale the Data</a></li>
-<li><a class="reference internal" href="#create-time-series-sequences">Create Time Series Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-data-preparation">Step 2: Data Preparation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-features-and-target">Prepare Features and Target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scale-the-data">Scale the Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-time-series-sequences">Create Time Series Sequences</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-3-model-architecture">Step 3: Model Architecture</a><ul>
-<li><a class="reference internal" href="#define-model-building-function">Define Model Building Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-model-architecture">Step 3: Model Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#define-model-building-function">Define Model Building Function</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-4-hyperparameter-optimization">Step 4: Hyperparameter Optimization</a><ul>
-<li><a class="reference internal" href="#define-optuna-objective-function">Define Optuna Objective Function</a></li>
-<li><a class="reference internal" href="#run-hyperparameter-optimization">Run Hyperparameter Optimization</a></li>
-<li><a class="reference internal" href="#analyze-optimization-results">Analyze Optimization Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-hyperparameter-optimization">Step 4: Hyperparameter Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#define-optuna-objective-function">Define Optuna Objective Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-hyperparameter-optimization">Run Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyze-optimization-results">Analyze Optimization Results</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-5-train-final-model">Step 5: Train Final Model</a><ul>
-<li><a class="reference internal" href="#build-final-model-with-best-parameters">Build Final Model with Best Parameters</a></li>
-<li><a class="reference internal" href="#define-training-callbacks">Define Training Callbacks</a></li>
-<li><a class="reference internal" href="#train-the-model">Train the Model</a></li>
-<li><a class="reference internal" href="#visualize-training-history">Visualize Training History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-train-final-model">Step 5: Train Final Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-final-model-with-best-parameters">Build Final Model with Best Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-training-callbacks">Define Training Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#train-the-model">Train the Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualize-training-history">Visualize Training History</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-6-model-evaluation">Step 6: Model Evaluation</a><ul>
-<li><a class="reference internal" href="#make-predictions">Make Predictions</a></li>
-<li><a class="reference internal" href="#calculate-performance-metrics">Calculate Performance Metrics</a></li>
-<li><a class="reference internal" href="#visualize-predictions">Visualize Predictions</a></li>
-<li><a class="reference internal" href="#residual-analysis">Residual Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-model-evaluation">Step 6: Model Evaluation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#make-predictions">Make Predictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calculate-performance-metrics">Calculate Performance Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualize-predictions">Visualize Predictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#residual-analysis">Residual Analysis</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-7-model-persistence">Step 7: Model Persistence</a><ul>
-<li><a class="reference internal" href="#save-the-final-model">Save the Final Model</a></li>
-<li><a class="reference internal" href="#save-model-metadata">Save Model Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-model-persistence">Step 7: Model Persistence</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#save-the-final-model">Save the Final Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-model-metadata">Save Model Metadata</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-8-model-loading-and-verification">Step 8: Model Loading and Verification</a><ul>
-<li><a class="reference internal" href="#load-and-test-saved-model">Load and Test Saved Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-8-model-loading-and-verification">Step 8: Model Loading and Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#load-and-test-saved-model">Load and Test Saved Model</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#step-9-model-performance-summary">Step 9: Model Performance Summary</a><ul>
-<li><a class="reference internal" href="#create-performance-report">Create Performance Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-9-model-performance-summary">Step 9: Model Performance Summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-performance-report">Create Performance Report</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#best-practices-and-tips">Best Practices and Tips</a><ul>
-<li><a class="reference internal" href="#training-best-practices">Training Best Practices</a></li>
-<li><a class="reference internal" href="#hyperparameter-optimization-tips">Hyperparameter Optimization Tips</a></li>
-<li><a class="reference internal" href="#performance-evaluation">Performance Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices-and-tips">Best Practices and Tips</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#training-best-practices">Training Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hyperparameter-optimization-tips">Hyperparameter Optimization Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-evaluation">Performance Evaluation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
-<li><a class="reference internal" href="#common-issues-and-solutions">Common Issues and Solutions</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-issues-and-solutions">Common Issues and Solutions</a></li>
 </ul>
 </li>
 </ul>
-</div>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="making_predictions.html">Making Predictions Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/data_preprocessing.html">Data Preprocessing Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to AnalysingEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -792,7 +820,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_preprocessing.html" class="btn btn-neutral float-left" title="Data Preprocessing Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="making_predictions.html" class="btn btn-neutral float-right" title="Making Predictions Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

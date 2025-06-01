@@ -20,7 +20,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Model Architecture" href="model_architecture.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,70 +44,96 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Data Overview</a><ul>
-<li><a class="reference internal" href="#dataset-structure">Dataset Structure</a><ul>
-<li><a class="reference internal" href="#core-datasets">Core Datasets</a></li>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dataset-structure">Dataset Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core-datasets">Core Datasets</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-features">Data Features</a><ul>
-<li><a class="reference internal" href="#temporal-index">Temporal Index</a></li>
-<li><a class="reference internal" href="#meteorological-features">Meteorological Features</a><ul>
-<li><a class="reference internal" href="#temperature-measurements-c">Temperature Measurements (°C)</a></li>
-<li><a class="reference internal" href="#atmospheric-conditions">Atmospheric Conditions</a></li>
-<li><a class="reference internal" href="#wind-measurements-m-s">Wind Measurements (m/s)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-features">Data Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#temporal-index">Temporal Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#meteorological-features">Meteorological Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#temperature-measurements-c">Temperature Measurements (°C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#atmospheric-conditions">Atmospheric Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wind-measurements-m-s">Wind Measurements (m/s)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#energy-features">Energy Features</a><ul>
-<li><a class="reference internal" href="#energy-demand">Energy Demand</a></li>
-<li><a class="reference internal" href="#energy-generation">Energy Generation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-characteristics">Data Characteristics</a><ul>
-<li><a class="reference internal" href="#temporal-coverage">Temporal Coverage</a></li>
-<li><a class="reference internal" href="#data-quality">Data Quality</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#sample-data-structure">Sample Data Structure</a></li>
-<li><a class="reference internal" href="#data-preprocessing">Data Preprocessing</a><ul>
-<li><a class="reference internal" href="#scaling-and-normalization">Scaling and Normalization</a></li>
-<li><a class="reference internal" href="#feature-engineering">Feature Engineering</a><ul>
-<li><a class="reference internal" href="#lag-features">Lag Features</a></li>
-<li><a class="reference internal" href="#target-variable-processing">Target Variable Processing</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-splitting-strategy">Data Splitting Strategy</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-relationships">Data Relationships</a><ul>
-<li><a class="reference internal" href="#correlation-analysis">Correlation Analysis</a></li>
-<li><a class="reference internal" href="#seasonal-patterns">Seasonal Patterns</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-quality-metrics">Data Quality Metrics</a><ul>
-<li><a class="reference internal" href="#completeness">Completeness</a></li>
-<li><a class="reference internal" href="#consistency">Consistency</a></li>
-<li><a class="reference internal" href="#validation-rules">Validation Rules</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#usage-in-machine-learning-pipeline">Usage in Machine Learning Pipeline</a><ul>
-<li><a class="reference internal" href="#feature-selection">Feature Selection</a></li>
-<li><a class="reference internal" href="#time-series-preparation">Time Series Preparation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-visualization">Data Visualization</a></li>
-<li><a class="reference internal" href="#storage-and-access">Storage and Access</a><ul>
-<li><a class="reference internal" href="#file-formats">File Formats</a></li>
-<li><a class="reference internal" href="#loading-data">Loading Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#energy-features">Energy Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#energy-demand">Energy Demand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#energy-generation">Energy Generation</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#data-characteristics">Data Characteristics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#temporal-coverage">Temporal Coverage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-quality">Data Quality</a></li>
 </ul>
-</div>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-data-structure">Sample Data Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-preprocessing">Data Preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scaling-and-normalization">Scaling and Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-engineering">Feature Engineering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lag-features">Lag Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#target-variable-processing">Target Variable Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#data-splitting-strategy">Data Splitting Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-relationships">Data Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-analysis">Correlation Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seasonal-patterns">Seasonal Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-quality-metrics">Data Quality Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#completeness">Completeness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#consistency">Consistency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-rules">Validation Rules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-in-machine-learning-pipeline">Usage in Machine Learning Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#feature-selection">Feature Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-series-preparation">Time Series Preparation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-visualization">Data Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#storage-and-access">Storage and Access</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#file-formats">File Formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-data">Loading Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model_architecture.html">Model Architecture</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/interface.html">Interface API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/models.html">Models API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_preprocessing.html">Data Preprocessing Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/model_training.html">Model Training Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/making_predictions.html">Making Predictions Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/data_preprocessing.html">Data Preprocessing Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_generation.html">LSTM Generation Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/lstm_complete.html">LSTM Complete Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/predicting_365_days.html">Predicting Next 365 Days Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to AnalysingEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -451,7 +479,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model_architecture.html" class="btn btn-neutral float-right" title="Model Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
