@@ -1,0 +1,608 @@
+Interface utilisateur
+====================
+
+Cette section présente l'application Streamlit qui offre une interface interactive pour visualiser et analyser les prédictions de production d'énergie.
+
+Vue d'ensemble de l'interface
+-----------------------------
+
+L'application Streamlit (`interface/app.py`) fournit une interface web conviviale permettant aux utilisateurs de :
+
+- Visualiser les données de production et consommation d'énergie
+- Ajuster les paramètres d'analyse interactivement
+- Comparer différents scénarios
+- Exporter les résultats
+
+Architecture de l'application
+-----------------------------
+
+Structure du code
+~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    # interface/app.py
+    import streamlit as st
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    
+    # Configuration de la page
+    st.set_page_config(
+        page_title="🔋 Analyse Production vs Consommation", 
+        layout="centered"
+    )
+    
+    # Interface principale
+    def main():
+        st.title("🔍 Analyse de la Production vs la Consommation d'Énergie")
+        
+        # Sidebar pour les contrôles
+        sidebar_controls()
+        
+        # Contenu principal
+        main_content()
+        
+        # Pied de page
+        footer()
+
+Configuration et paramètres
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def sidebar_controls():
+        """Configuration des contrôles dans la barre latérale."""
+        
+        st.sidebar.header("⚙️ Paramètres d'analyse")
+        
+        # Sélection de la période
+        nb_jours = st.sidebar.slider(
+            "📅 Nombre de jours à analyser", 
+            min_value=10, 
+            max_value=365, 
+            value=30,
+            help="Choisissez la période d'analyse"
+        )
+        
+        # Type de données
+        data_source = st.sidebar.selectbox(
+            "📊 Source des données",
+            ["Données simulées", "Données historiques", "Prédictions"],
+            help="Sélectionnez le type de données à afficher"
+        )
+        
+        # Options d'affichage
+        show_trends = st.sidebar.checkbox("📈 Afficher les tendances", True)
+        show_statistics = st.sidebar.checkbox("📋 Afficher les statistiques", True)
+        
+        return nb_jours, data_source, show_trends, show_statistics
+
+Fonctionnalités principales
+---------------------------
+
+Génération de données
+~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def generate_sample_data(nb_jours):
+        """Génère des données d'exemple pour la démonstration."""
+        
+        np.random.seed(42)  # Reproductibilité
+        
+        # Génération avec patterns réalistes
+        base_generation = 500
+        base_consumption = 450
+        
+        # Variation saisonnière
+        days = np.arange(nb_jours)
+        seasonal_factor = 1 + 0.3 * np.sin(2 * np.pi * days / 365)
+        
+        # Variation hebdomadaire
+        weekly_factor = 1 + 0.1 * np.sin(2 * np.pi * days / 7)
+        
+        # Bruit aléatoire
+        noise = np.random.normal(0, 0.1, nb_jours)
+        
+        generation = base_generation * seasonal_factor * weekly_factor * (1 + noise)
+        consommation = base_consumption * seasonal_factor * weekly_factor * (1 + noise * 1.2)
+        
+        # Assurer des valeurs positives
+        generation = np.clip(generation, 200, 1000)
+        consommation = np.clip(consommation, 150, 900)
+        
+        return generation, consommation
+
+Visualisations interactives
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def create_energy_plot(generation, consommation, jours):
+        """Crée un graphique interactif de production vs consommation."""
+        
+        fig, ax = plt.subplots(figsize=(12, 8))
+        
+        # Graphiques en aires
+        ax.fill_between(range(len(jours)), generation, alpha=0.7, 
+                       color='green', label='🔋 Énergie Générée')
+        ax.fill_between(range(len(jours)), consommation, alpha=0.7, 
+                       color='orange', label='⚡ Énergie Consommée')
+        
+        # Ligne de différence
+        difference = generation - consommation
+        ax.plot(range(len(jours)), difference, 'r--', linewidth=2, 
+               label='📊 Différence (Production - Consommation)')
+        
+        # Personnalisation
+        ax.set_xlabel('Période')
+        ax.set_ylabel('Énergie (MW)')
+        ax.set_title('Production vs Consommation d\'Énergie')
+        ax.legend()
+        ax.grid(True, alpha=0.3)
+        
+        # Rotation des labels si nombreux
+        if len(jours) > 20:
+            ax.set_xticks(range(0, len(jours), max(1, len(jours)//10)))
+            ax.set_xticklabels([jours[i] for i in range(0, len(jours), max(1, len(jours)//10))], 
+                              rotation=45)
+        else:
+            ax.set_xticks(range(len(jours)))
+            ax.set_xticklabels(jours, rotation=45)
+        
+        plt.tight_layout()
+        return fig
+
+Dashboard principal
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def main_dashboard():
+        """Interface principale du dashboard."""
+        
+        # Métriques en haut de page
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.metric(
+                label="🔋 Production Moyenne",
+                value=f"{np.mean(generation):.1f} MW",
+                delta=f"{np.mean(generation) - 500:.1f}"
+            )
+        
+        with col2:
+            st.metric(
+                label="⚡ Consommation Moyenne", 
+                value=f"{np.mean(consommation):.1f} MW",
+                delta=f"{np.mean(consommation) - 450:.1f}"
+            )
+        
+        with col3:
+            excess = np.sum(np.maximum(0, generation - consommation))
+            st.metric(
+                label="📈 Surplus Total",
+                value=f"{excess:.1f} MWh",
+                delta="Positif" if excess > 0 else "Négatif"
+            )
+        
+        with col4:
+            efficiency = (np.sum(np.minimum(generation, consommation)) / 
+                         np.sum(consommation) * 100)
+            st.metric(
+                label="⚡ Efficacité",
+                value=f"{efficiency:.1f}%",
+                delta=f"{efficiency - 85:.1f}%"
+            )
+
+Fonctionnalités avancées
+-----------------------
+
+Intégration des modèles LSTM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    @st.cache_resource
+    def load_trained_models():
+        """Charge les modèles LSTM pré-entraînés."""
+        
+        try:
+            from tensorflow.keras.models import load_model
+            import joblib
+            
+            # Charger le modèle principal
+            model = load_model('Notebooks/models/final_model 291.19.h5')
+            
+            # Charger les scalers
+            scaler_X = joblib.load('Notebooks/scalers/X_train_scaler.pkl')
+            scaler_y = joblib.load('Notebooks/scalers/y_train_scaler.pkl')
+            
+            return model, scaler_X, scaler_y
+            
+        except Exception as e:
+            st.error(f"Erreur lors du chargement des modèles: {e}")
+            return None, None, None
+    
+    def prediction_interface():
+        """Interface pour les prédictions avec modèles LSTM."""
+        
+        st.header("🤖 Prédictions avec Intelligence Artificielle")
+        
+        model, scaler_X, scaler_y = load_trained_models()
+        
+        if model is not None:
+            st.success("✅ Modèles chargés avec succès")
+            
+            # Interface de prédiction
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.subheader("📊 Paramètres météorologiques")
+                temp_max = st.slider("Température max (°C)", 15, 40, 25)
+                temp_min = st.slider("Température min (°C)", 5, 30, 20)
+                wind_speed = st.slider("Vitesse du vent (m/s)", 0, 15, 5)
+                pressure = st.slider("Pression (kPa)", 98, 105, 101)
+            
+            with col2:
+                st.subheader("⚡ Paramètres énergétiques")
+                demand = st.slider("Demande totale (MW)", 4000, 10000, 7000)
+                
+                if st.button("🔮 Prédire la production"):
+                    # Préparer les données d'entrée
+                    input_data = np.array([[temp_max, temp_min, (temp_max+temp_min)/2, 
+                                          pressure*1000, wind_speed*1.2, wind_speed*0.8, 
+                                          wind_speed, 0.1, demand]])
+                    
+                    # Normaliser
+                    input_scaled = scaler_X.transform(input_data)
+                    input_reshaped = input_scaled.reshape(1, 1, -1)
+                    
+                    # Prédiction
+                    pred_scaled = model.predict(input_reshaped, verbose=0)
+                    prediction = scaler_y.inverse_transform(pred_scaled)[0, 0]
+                    
+                    # Affichage du résultat
+                    st.success(f"🎯 Production prédite: **{prediction:.0f} MW**")
+                    
+                    # Analyse comparative
+                    if prediction > demand:
+                        st.info("💚 Surplus de production prévu")
+                    else:
+                        st.warning("⚠️ Déficit de production possible")
+        
+        else:
+            st.error("❌ Impossible de charger les modèles")
+
+Analyse comparative
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def comparative_analysis():
+        """Interface d'analyse comparative."""
+        
+        st.header("📊 Analyse Comparative")
+        
+        # Sélection de scénarios
+        scenario_type = st.selectbox(
+            "Choisissez le type d'analyse",
+            ["Comparaison mensuelle", "Analyse saisonnière", "Scénarios d'optimisation"]
+        )
+        
+        if scenario_type == "Comparaison mensuelle":
+            monthly_comparison()
+        elif scenario_type == "Analyse saisonnière":
+            seasonal_analysis()
+        else:
+            optimization_scenarios()
+    
+    def monthly_comparison():
+        """Comparaison mensuelle de production."""
+        
+        months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun',
+                 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc']
+        
+        # Données simulées pour chaque mois
+        production_data = np.random.normal(6500, 800, 12)
+        consumption_data = np.random.normal(6200, 600, 12)
+        
+        # Graphique en barres
+        fig, ax = plt.subplots(figsize=(12, 6))
+        
+        x = np.arange(len(months))
+        width = 0.35
+        
+        ax.bar(x - width/2, production_data, width, label='Production', alpha=0.8)
+        ax.bar(x + width/2, consumption_data, width, label='Consommation', alpha=0.8)
+        
+        ax.set_xlabel('Mois')
+        ax.set_ylabel('Énergie (MW)')
+        ax.set_title('Comparaison Mensuelle Production vs Consommation')
+        ax.set_xticks(x)
+        ax.set_xticklabels(months)
+        ax.legend()
+        ax.grid(True, alpha=0.3)
+        
+        st.pyplot(fig)
+
+Export et rapports
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def export_functionality():
+        """Fonctionnalités d'export et de rapports."""
+        
+        st.header("📤 Export et Rapports")
+        
+        # Options d'export
+        export_format = st.selectbox(
+            "Format d'export",
+            ["CSV", "Excel", "PDF", "JSON"]
+        )
+        
+        if st.button("📊 Générer le rapport"):
+            
+            # Créer le DataFrame des résultats
+            df_results = pd.DataFrame({
+                'Période': jours,
+                'Production_MW': generation,
+                'Consommation_MW': consommation,
+                'Différence_MW': generation - consommation,
+                'Efficacité_%': (np.minimum(generation, consommation) / consommation * 100)
+            })
+            
+            if export_format == "CSV":
+                csv = df_results.to_csv(index=False)
+                st.download_button(
+                    label="💾 Télécharger CSV",
+                    data=csv,
+                    file_name=f"analyse_energie_{pd.Timestamp.now().strftime('%Y%m%d')}.csv",
+                    mime="text/csv"
+                )
+            
+            elif export_format == "Excel":
+                # Utiliser un buffer en mémoire pour Excel
+                from io import BytesIO
+                
+                buffer = BytesIO()
+                with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
+                    df_results.to_excel(writer, sheet_name='Analyse_Energie', index=False)
+                
+                st.download_button(
+                    label="💾 Télécharger Excel",
+                    data=buffer.getvalue(),
+                    file_name=f"analyse_energie_{pd.Timestamp.now().strftime('%Y%m%d')}.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+            
+            elif export_format == "JSON":
+                json_data = df_results.to_json(orient='records', indent=2)
+                st.download_button(
+                    label="💾 Télécharger JSON",
+                    data=json_data,
+                    file_name=f"analyse_energie_{pd.Timestamp.now().strftime('%Y%m%d')}.json",
+                    mime="application/json"
+                )
+
+Configuration avancée
+--------------------
+
+Personnalisation de l'interface
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def custom_css():
+        """CSS personnalisé pour l'interface."""
+        
+        st.markdown("""
+        <style>
+        /* Personnalisation de la sidebar */
+        .css-1d391kg {
+            background-color: #f0f2f6;
+        }
+        
+        /* Style des métriques */
+        .metric-container {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* Style des boutons */
+        .stButton > button {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        /* Style du titre principal */
+        .main-title {
+            color: #2E8B57;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+Gestion des erreurs
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def error_handling():
+        """Gestion globale des erreurs de l'application."""
+        
+        try:
+            main()
+        except Exception as e:
+            st.error("Une erreur est survenue dans l'application")
+            
+            with st.expander("Détails de l'erreur"):
+                st.code(str(e))
+                
+            st.info("Suggestions pour résoudre le problème:")
+            st.markdown("""
+            - Vérifiez que tous les fichiers de données sont présents
+            - Assurez-vous que les modèles sont correctement chargés
+            - Rechargez la page (F5)
+            - Contactez l'administrateur si le problème persiste
+            """)
+
+Performance et optimisation
+--------------------------
+
+Mise en cache
+~~~~~~~~~~~~
+
+.. code-block:: python
+
+    @st.cache_data
+    def load_historical_data():
+        """Charge les données historiques avec mise en cache."""
+        
+        try:
+            data = pd.read_csv('Data/data.csv', parse_dates=['date'])
+            return data
+        except FileNotFoundError:
+            st.warning("Données historiques non trouvées")
+            return None
+    
+    @st.cache_resource
+    def load_models():
+        """Charge les modèles avec mise en cache des ressources."""
+        
+        # Cette fonction ne sera exécutée qu'une seule fois
+        return load_trained_models()
+
+Configuration des sessions
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    def init_session_state():
+        """Initialise l'état de session de Streamlit."""
+        
+        if 'analysis_params' not in st.session_state:
+            st.session_state.analysis_params = {
+                'nb_jours': 30,
+                'data_source': 'Données simulées',
+                'last_update': pd.Timestamp.now()
+            }
+        
+        if 'cached_predictions' not in st.session_state:
+            st.session_state.cached_predictions = {}
+
+Déploiement de l'application
+----------------------------
+
+Configuration locale
+~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    # Lancement en local
+    streamlit run interface/app.py
+    
+    # Avec port personnalisé
+    streamlit run interface/app.py --server.port 8502
+    
+    # Avec configuration avancée
+    streamlit run interface/app.py --server.headless true --server.port 8501
+
+Configuration pour production
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    # config.toml pour Streamlit
+    [server]
+    port = 8501
+    enableCORS = false
+    enableXsrfProtection = false
+    
+    [browser]
+    gatherUsageStats = false
+    
+    [theme]
+    primaryColor = "#4CAF50"
+    backgroundColor = "#FFFFFF"
+    secondaryBackgroundColor = "#F0F2F6"
+    textColor = "#262730"
+
+Déploiement Docker
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: dockerfile
+
+    # Dockerfile
+    FROM python:3.9-slim
+    
+    WORKDIR /app
+    
+    COPY requirements.txt .
+    RUN pip install -r requirements.txt
+    
+    COPY . .
+    
+    EXPOSE 8501
+    
+    HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+    
+    ENTRYPOINT ["streamlit", "run", "interface/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+Utilisation pratique
+-------------------
+
+Guide d'utilisation
+~~~~~~~~~~~~~~~~~~
+
+1. **Lancement de l'application**
+
+   .. code-block:: bash
+
+       streamlit run interface/app.py
+
+2. **Navigation dans l'interface**
+   
+   - Utilisez la barre latérale pour ajuster les paramètres
+   - Explorez les différents onglets pour diverses analyses
+   - Téléchargez les résultats selon vos besoins
+
+3. **Interprétation des résultats**
+   
+   - Les zones vertes représentent la production
+   - Les zones orange montrent la consommation
+   - La ligne rouge indique la différence (surplus/déficit)
+
+Cas d'usage typiques
+~~~~~~~~~~~~~~~~~~
+
+**Analyse quotidienne**
+- Paramétrer 30 jours d'analyse
+- Activer les tendances et statistiques
+- Exporter en CSV pour archivage
+
+**Planification énergétique**
+- Utiliser les prédictions IA
+- Tester différents scénarios météorologiques
+- Analyser les patterns saisonniers
+
+**Reporting exécutif**
+- Générer des rapports mensuels
+- Utiliser les métriques résumées
+- Exporter en format de présentation
+
+Prochaines étapes
+----------------
+
+Pour aller plus loin avec l'interface :
+
+1. Consultez :doc:`notebooks/data_preprocessing` pour comprendre les données
+2. Explorez :doc:`lstm_models` pour comprendre les prédictions
+3. Visitez :doc:`troubleshooting` pour résoudre les problèmes courants
