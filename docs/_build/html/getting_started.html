@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+      <script src="_static/doctools.js"></script>
+      <script src="_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#clone-the-repository">1. Clone the Repository</a></li>
+<li><a class="reference internal" href="#create-a-virtual-environment-recommended">2. Create a Virtual Environment (Recommended)</a></li>
+<li><a class="reference internal" href="#install-dependencies">3. Install Dependencies</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-the-application">Running the Application</a><ul>
+<li><a class="reference internal" href="#web-interface">Web Interface</a></li>
+<li><a class="reference internal" href="#jupyter-notebooks">Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#quick-tour">Quick Tour</a><ul>
+<li><a class="reference internal" href="#data-overview">1. Data Overview</a></li>
+<li><a class="reference internal" href="#model-architecture">2. Model Architecture</a></li>
+<li><a class="reference internal" href="#prediction-capabilities">3. Prediction Capabilities</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+<li><a class="reference internal" href="#model-paths">Model Paths</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#common-issues">Common Issues</a></li>
+<li><a class="reference internal" href="#performance-optimization">Performance Optimization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li><a class="reference internal" href="#support">Support</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting_started.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<p>This guide will help you set up and run the AnalysingEnergy project on your local machine.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>Before you begin, ensure you have the following installed:</p>
+<ul class="simple">
+<li><p>Python 3.8 or higher</p></li>
+<li><p>pip (Python package installer)</p></li>
+<li><p>Git</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<section id="clone-the-repository">
+<h3>1. Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/AnalysingEnergy.git
+<span class="nb">cd</span><span class="w"> </span>AnalysingEnergy
+</pre></div>
+</div>
+</section>
+<section id="create-a-virtual-environment-recommended">
+<h3>2. Create a Virtual Environment (Recommended)<a class="headerlink" href="#create-a-virtual-environment-recommended" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Windows</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+
+<span class="c1"># Linux/Mac</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="install-dependencies">
+<h3>3. Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>The project requires the following main dependencies:</p>
+<ul class="simple">
+<li><p><strong>pandas</strong>: Data manipulation and analysis</p></li>
+<li><p><strong>numpy</strong>: Numerical computing</p></li>
+<li><p><strong>scikit-learn</strong>: Machine learning library</p></li>
+<li><p><strong>tensorflow</strong>: Deep learning framework</p></li>
+<li><p><strong>streamlit</strong>: Web application framework</p></li>
+<li><p><strong>matplotlib</strong>: Data visualization</p></li>
+<li><p><strong>seaborn</strong>: Statistical data visualization</p></li>
+<li><p><strong>plotly</strong>: Interactive plotting</p></li>
+<li><p><strong>optuna</strong>: Hyperparameter optimization</p></li>
+<li><p><strong>joblib</strong>: Model serialization</p></li>
+</ul>
+</section>
+</section>
+<section id="running-the-application">
+<h2>Running the Application<a class="headerlink" href="#running-the-application" title="Permalink to this heading"></a></h2>
+<section id="web-interface">
+<h3>Web Interface<a class="headerlink" href="#web-interface" title="Permalink to this heading"></a></h3>
+<p>Launch the Streamlit web interface:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py
+</pre></div>
+</div>
+<p>This will start a local web server, typically at <code class="docutils literal notranslate"><span class="pre">http://localhost:8501</span></code>, where you can interact with the energy analysis interface.</p>
+</section>
+<section id="jupyter-notebooks">
+<h3>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this heading"></a></h3>
+<p>To explore the data analysis and model training notebooks:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+<p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Notebooks/</span></code> directory to access:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">preprocessing.ipynb</span></code>: Data cleaning and preparation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LSTM</span> <span class="pre">Generation.ipynb</span></code>: Model architecture and training</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LSTM</span> <span class="pre">complet.ipynb</span></code>: Complete LSTM implementation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Predicting_next_365days.ipynb</span></code>: Long-term forecasting</p></li>
+</ul>
+</section>
+</section>
+<section id="quick-tour">
+<h2>Quick Tour<a class="headerlink" href="#quick-tour" title="Permalink to this heading"></a></h2>
+<section id="data-overview">
+<h3>1. Data Overview<a class="headerlink" href="#data-overview" title="Permalink to this heading"></a></h3>
+<p>The project uses meteorological and energy data with the following features:</p>
+<ul class="simple">
+<li><p><strong>Temperature</strong>: Maximum, minimum, and average temperatures (°C)</p></li>
+<li><p><strong>Surface Pressure</strong>: Atmospheric pressure (Pa)</p></li>
+<li><p><strong>Wind Speed</strong>: Maximum, minimum, and average wind speeds (m/s)</p></li>
+<li><p><strong>Precipitation</strong>: Precipitation correlation values</p></li>
+<li><p><strong>Energy Demand</strong>: Total energy demand (MW)</p></li>
+<li><p><strong>Energy Generation</strong>: Maximum energy generation (MW)</p></li>
+</ul>
+</section>
+<section id="model-architecture">
+<h3>2. Model Architecture<a class="headerlink" href="#model-architecture" title="Permalink to this heading"></a></h3>
+<p>The core prediction system uses LSTM (Long Short-Term Memory) neural networks optimized for time series forecasting:</p>
+<ul class="simple">
+<li><p><strong>Multi-layered LSTM</strong>: Two LSTM layers with dropout for regularization</p></li>
+<li><p><strong>Hyperparameter Optimization</strong>: Automated tuning using Optuna</p></li>
+<li><p><strong>Feature Scaling</strong>: MinMax scaling for improved model performance</p></li>
+<li><p><strong>Time Series Generation</strong>: Proper sequence preparation for LSTM input</p></li>
+</ul>
+</section>
+<section id="prediction-capabilities">
+<h3>3. Prediction Capabilities<a class="headerlink" href="#prediction-capabilities" title="Permalink to this heading"></a></h3>
+<p>The system can predict:</p>
+<ul class="simple">
+<li><p>Next 365 days of energy generation</p></li>
+<li><p>Multiple meteorological parameters</p></li>
+<li><p>Energy demand patterns</p></li>
+<li><p>Comparative analysis between production and consumption</p></li>
+</ul>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
+<section id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading"></a></h3>
+<p>You may need to set up the following environment variables:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optional: Set TensorFlow logging level</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">TF_CPP_MIN_LOG_LEVEL</span><span class="o">=</span><span class="m">2</span>
+
+<span class="c1"># Optional: CUDA configuration for GPU usage</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+</section>
+<section id="model-paths">
+<h3>Model Paths<a class="headerlink" href="#model-paths" title="Permalink to this heading"></a></h3>
+<p>The pre-trained models are located in:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Notebooks/models/</span></code>: LSTM model files (.h5 format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Notebooks/scalers/</span></code>: Data preprocessing scalers (.pkl format)</p></li>
+</ul>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Permalink to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>TensorFlow Installation Issues</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">tensorflow</span><span class="o">==</span><span class="m">2</span>.13.0
+</pre></div>
+</div>
+</li>
+<li><p><strong>Memory Issues with Large Datasets</strong>:</p>
+<ul class="simple">
+<li><p>Reduce batch size in model training</p></li>
+<li><p>Use data generators for large files</p></li>
+</ul>
+</li>
+<li><p><strong>Streamlit Port Conflicts</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<span class="w"> </span>--server.port<span class="w"> </span><span class="m">8502</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Missing Dependencies</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="performance-optimization">
+<h3>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>GPU Usage</strong>: Install tensorflow-gpu for CUDA support</p></li>
+<li><p><strong>Memory Management</strong>: Monitor RAM usage during model training</p></li>
+<li><p><strong>Parallel Processing</strong>: Utilize multiprocessing for data preprocessing</p></li>
+</ul>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Explore the <a class="reference internal" href="data_overview.html"><span class="doc">Data Overview</span></a> to understand the dataset structure</p></li>
+<li><p>Learn about the <a class="reference internal" href="model_architecture.html"><span class="doc">Model Architecture</span></a> for technical details</p></li>
+<li><p>Follow the <a class="reference internal" href="tutorials/model_training.html"><span class="doc">Model Training Tutorial</span></a> tutorial for hands-on experience</p></li>
+<li><p>Check out the <a class="reference internal" href="notebooks/lstm_generation.html"><span class="doc">LSTM Generation Notebook</span></a> for implementation details</p></li>
+</ol>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading"></a></h2>
+<p>If you encounter any issues:</p>
+<ol class="arabic simple">
+<li><p>Check the troubleshooting section above</p></li>
+<li><p>Review the project’s GitHub issues</p></li>
+<li><p>Consult the API documentation for specific function usage</p></li>
+<li><p>Refer to the Jupyter notebooks for implementation examples</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

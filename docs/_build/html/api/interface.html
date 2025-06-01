@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interface API Reference &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Interface API Reference</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#main-application-app-py">Main Application (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>)</a><ul>
+<li><a class="reference internal" href="#core-functions">Core Functions</a><ul>
+<li><a class="reference internal" href="#load-data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
+<li><a class="reference internal" href="#preprocess-data-data"><code class="docutils literal notranslate"><span class="pre">preprocess_data(data)</span></code></a></li>
+<li><a class="reference internal" href="#load-models"><code class="docutils literal notranslate"><span class="pre">load_models()</span></code></a></li>
+<li><a class="reference internal" href="#make-predictions-models-data-days-365"><code class="docutils literal notranslate"><span class="pre">make_predictions(models,</span> <span class="pre">data,</span> <span class="pre">days=365)</span></code></a></li>
+<li><a class="reference internal" href="#plot-predictions-predictions-historical-data-none"><code class="docutils literal notranslate"><span class="pre">plot_predictions(predictions,</span> <span class="pre">historical_data=None)</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#streamlit-components">Streamlit Components</a><ul>
+<li><a class="reference internal" href="#sidebar-controls">Sidebar Controls</a></li>
+<li><a class="reference internal" href="#main-display-area">Main Display Area</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#session-state-variables">Session State Variables</a></li>
+<li><a class="reference internal" href="#layout-configuration">Layout Configuration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li><a class="reference internal" href="#accessing-via-browser">Accessing via Browser</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Interface API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/interface.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="interface-api-reference">
+<h1>Interface API Reference<a class="headerlink" href="#interface-api-reference" title="Permalink to this heading"></a></h1>
+<p>This section documents the Streamlit web interface for the AnalysingEnergy project.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>The interface provides an interactive web application for:</p>
+<ul class="simple">
+<li><p>Uploading and visualizing energy data</p></li>
+<li><p>Running LSTM predictions</p></li>
+<li><p>Displaying forecast results</p></li>
+<li><p>Comparing multiple prediction models</p></li>
+</ul>
+</section>
+<section id="main-application-app-py">
+<h2>Main Application (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>)<a class="headerlink" href="#main-application-app-py" title="Permalink to this heading"></a></h2>
+<section id="core-functions">
+<h3>Core Functions<a class="headerlink" href="#core-functions" title="Permalink to this heading"></a></h3>
+<section id="load-data">
+<h4><code class="docutils literal notranslate"><span class="pre">load_data()</span></code><a class="headerlink" href="#load-data" title="Permalink to this heading"></a></h4>
+<p>Loads the energy dataset from CSV files.</p>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>: Loaded dataset with parsed datetime index</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="preprocess-data-data">
+<h4><code class="docutils literal notranslate"><span class="pre">preprocess_data(data)</span></code><a class="headerlink" href="#preprocess-data-data" title="Permalink to this heading"></a></h4>
+<p>Preprocesses the input data for LSTM model consumption.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> (pandas.DataFrame): Raw energy dataset</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code>: Scaled features and target variables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>: Fitted scalers for inverse transformation</p></li>
+</ul>
+</section>
+<section id="load-models">
+<h4><code class="docutils literal notranslate"><span class="pre">load_models()</span></code><a class="headerlink" href="#load-models" title="Permalink to this heading"></a></h4>
+<p>Loads all trained LSTM models and scalers from the models directory.</p>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>: Dictionary containing loaded models for each target variable</p></li>
+</ul>
+<p><strong>Models loaded:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">temp2_max(c)_LSTM.h5</span></code>: Maximum temperature prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">temp2_min(c)_LSTM.h5</span></code>: Minimum temperature prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">temp2_ave(c)_LSTM.h5</span></code>: Average temperature prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wind_speed50_max(ms)_LSTM.h5</span></code>: Maximum wind speed prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wind_speed50_min(ms)_LSTM.h5</span></code>: Minimum wind speed prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wind_speed50_ave(ms)_LSTM.h5</span></code>: Average wind speed prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">suface_pressure(pa)_LSTM.h5</span></code>: Surface pressure prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prectotcorr_LSTM.h5</span></code>: Precipitation correlation prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_demand(mw)_LSTM.h5</span></code>: Total energy demand prediction</p></li>
+</ul>
+</section>
+<section id="make-predictions-models-data-days-365">
+<h4><code class="docutils literal notranslate"><span class="pre">make_predictions(models,</span> <span class="pre">data,</span> <span class="pre">days=365)</span></code><a class="headerlink" href="#make-predictions-models-data-days-365" title="Permalink to this heading"></a></h4>
+<p>Generates predictions for the specified number of days.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">models</span></code> (dict): Dictionary of loaded LSTM models</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> (pandas.DataFrame): Input data for prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">days</span></code> (int, optional): Number of days to predict (default: 365)</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>: Predictions for all target variables</p></li>
+</ul>
+</section>
+<section id="plot-predictions-predictions-historical-data-none">
+<h4><code class="docutils literal notranslate"><span class="pre">plot_predictions(predictions,</span> <span class="pre">historical_data=None)</span></code><a class="headerlink" href="#plot-predictions-predictions-historical-data-none" title="Permalink to this heading"></a></h4>
+<p>Creates interactive plots for prediction visualization.</p>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">predictions</span></code> (pandas.DataFrame): Model predictions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">historical_data</span></code> (pandas.DataFrame, optional): Historical data for comparison</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plotly.graph_objects.Figure</span></code>: Interactive plot object</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="streamlit-components">
+<h2>Streamlit Components<a class="headerlink" href="#streamlit-components" title="Permalink to this heading"></a></h2>
+<section id="sidebar-controls">
+<h3>Sidebar Controls<a class="headerlink" href="#sidebar-controls" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Data Upload</strong>: File uploader for custom datasets</p></li>
+<li><p><strong>Prediction Period</strong>: Slider for selecting forecast duration</p></li>
+<li><p><strong>Model Selection</strong>: Dropdown for choosing specific models</p></li>
+<li><p><strong>Visualization Options</strong>: Checkboxes for plot customization</p></li>
+</ul>
+</section>
+<section id="main-display-area">
+<h3>Main Display Area<a class="headerlink" href="#main-display-area" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Data Overview</strong>: Summary statistics and data preview</p></li>
+<li><p><strong>Prediction Results</strong>: Tabular display of forecast values</p></li>
+<li><p><strong>Interactive Plots</strong>: Time series visualizations</p></li>
+<li><p><strong>Model Performance</strong>: Accuracy metrics and validation scores</p></li>
+</ul>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
+<section id="session-state-variables">
+<h3>Session State Variables<a class="headerlink" href="#session-state-variables" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize session state</span>
+<span class="k">if</span> <span class="s1">&#39;data_loaded&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">:</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">data_loaded</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="s1">&#39;models_loaded&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">:</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">models_loaded</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="s1">&#39;predictions&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">:</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">predictions</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="layout-configuration">
+<h3>Layout Configuration<a class="headerlink" href="#layout-configuration" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Page configuration</span>
+<span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span>
+    <span class="n">page_title</span><span class="o">=</span><span class="s2">&quot;AnalysingEnergy&quot;</span><span class="p">,</span>
+    <span class="n">page_icon</span><span class="o">=</span><span class="s2">&quot;⚡&quot;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;wide&quot;</span><span class="p">,</span>
+    <span class="n">initial_sidebar_state</span><span class="o">=</span><span class="s2">&quot;expanded&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this heading"></a></h2>
+<p>The interface includes comprehensive error handling for:</p>
+<ul class="simple">
+<li><p>Invalid data formats</p></li>
+<li><p>Missing model files</p></li>
+<li><p>Prediction failures</p></li>
+<li><p>Visualization errors</p></li>
+</ul>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Permalink to this heading"></a></h2>
+<section id="basic-usage">
+<h3>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the Streamlit application</span>
+<span class="n">streamlit</span> <span class="n">run</span> <span class="n">interface</span><span class="o">/</span><span class="n">app</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="accessing-via-browser">
+<h3>Accessing via Browser<a class="headerlink" href="#accessing-via-browser" title="Permalink to this heading"></a></h3>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:8501</span></code> after starting the application.</p>
+</section>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
+<p>The interface requires:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">streamlit</span></code>: Web application framework</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>: Data manipulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>: Numerical computing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plotly</span></code>: Interactive visualizations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tensorflow</span></code>: Model loading and prediction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>: Data preprocessing</p></li>
+</ul>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Model Caching</strong>: Models are cached in session state for faster subsequent predictions</p></li>
+<li><p><strong>Data Processing</strong>: Large datasets are processed in chunks to maintain responsiveness</p></li>
+<li><p><strong>Memory Management</strong>: Automatic cleanup of temporary variables</p></li>
+</ul>
+</section>
+<section id="future-enhancements">
+<h2>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Real-time data streaming</p></li>
+<li><p>Model comparison dashboard</p></li>
+<li><p>Export functionality for predictions</p></li>
+<li><p>Advanced visualization options</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

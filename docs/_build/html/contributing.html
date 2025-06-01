@@ -1,0 +1,731 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing to AnalysingEnergy &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+      <script src="_static/doctools.js"></script>
+      <script src="_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Contributing to AnalysingEnergy</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#project-overview">Project Overview</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#development-setup">Development Setup</a><ul>
+<li><a class="reference internal" href="#fork-and-clone">1. Fork and Clone</a></li>
+<li><a class="reference internal" href="#environment-setup">2. Environment Setup</a></li>
+<li><a class="reference internal" href="#development-dependencies">3. Development Dependencies</a></li>
+<li><a class="reference internal" href="#verify-installation">4. Verify Installation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contributing-guidelines">Contributing Guidelines</a><ul>
+<li><a class="reference internal" href="#types-of-contributions">Types of Contributions</a></li>
+<li><a class="reference internal" href="#before-you-start">Before You Start</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#code-standards">Code Standards</a><ul>
+<li><a class="reference internal" href="#python-code-style">Python Code Style</a><ul>
+<li><a class="reference internal" href="#formatting">Formatting</a></li>
+<li><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
+<li><a class="reference internal" href="#documentation-strings">Documentation Strings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#machine-learning-code-guidelines">Machine Learning Code Guidelines</a><ul>
+<li><a class="reference internal" href="#model-training">Model Training</a></li>
+<li><a class="reference internal" href="#data-processing">Data Processing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#file-organization">File Organization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing">Testing</a><ul>
+<li><a class="reference internal" href="#writing-tests">Writing Tests</a></li>
+<li><a class="reference internal" href="#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li><a class="reference internal" href="#adding-documentation">Adding Documentation</a></li>
+<li><a class="reference internal" href="#documentation-style">Documentation Style</a></li>
+<li><a class="reference internal" href="#jupyter-notebook-guidelines">Jupyter Notebook Guidelines</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#submitting-contributions">Submitting Contributions</a><ul>
+<li><a class="reference internal" href="#creating-pull-requests">Creating Pull Requests</a></li>
+<li><a class="reference internal" href="#pull-request-guidelines">Pull Request Guidelines</a><ul>
+<li><a class="reference internal" href="#title-and-description">Title and Description</a></li>
+<li><a class="reference internal" href="#checklist">Checklist</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#review-process">Review Process</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#community-guidelines">Community Guidelines</a><ul>
+<li><a class="reference internal" href="#communication">Communication</a></li>
+<li><a class="reference internal" href="#code-of-conduct">Code of Conduct</a></li>
+<li><a class="reference internal" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#development-roadmap">Development Roadmap</a><ul>
+<li><a class="reference internal" href="#current-priorities">Current Priorities</a></li>
+<li><a class="reference internal" href="#future-goals">Future Goals</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#recognition">Recognition</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contributing to AnalysingEnergy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="contributing-to-analysingenergy">
+<h1>Contributing to AnalysingEnergy<a class="headerlink" href="#contributing-to-analysingenergy" title="Permalink to this heading"></a></h1>
+<p>Thank you for your interest in contributing to the AnalysingEnergy project! This guide will help you understand how to contribute effectively to this energy prediction and analysis system.</p>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#getting-started"><span class="std std-ref">Getting Started</span></a></p></li>
+<li><p><a class="reference internal" href="#development-setup"><span class="std std-ref">Development Setup</span></a></p></li>
+<li><p><a class="reference internal" href="#contributing-guidelines"><span class="std std-ref">Contributing Guidelines</span></a></p></li>
+<li><p><a class="reference internal" href="#code-standards"><span class="std std-ref">Code Standards</span></a></p></li>
+<li><p><a class="reference internal" href="#testing"><span class="std std-ref">Testing</span></a></p></li>
+<li><p><a class="reference internal" href="#documentation"><span class="std std-ref">Documentation</span></a></p></li>
+<li><p><a class="reference internal" href="#submitting-contributions"><span class="std std-ref">Submitting Contributions</span></a></p></li>
+<li><p><a class="reference internal" href="#community-guidelines"><span class="std std-ref">Community Guidelines</span></a></p></li>
+</ol>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<p>Before contributing, ensure you have:</p>
+<ul class="simple">
+<li><p>Python 3.8 or higher</p></li>
+<li><p>Git for version control</p></li>
+<li><p>Basic understanding of machine learning and time series analysis</p></li>
+<li><p>Familiarity with TensorFlow/Keras and data science libraries</p></li>
+</ul>
+</section>
+<section id="project-overview">
+<h3>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this heading"></a></h3>
+<p>AnalysingEnergy is a machine learning project that:</p>
+<ul class="simple">
+<li><p>Predicts energy generation and consumption using LSTM neural networks</p></li>
+<li><p>Analyzes meteorological data for energy forecasting</p></li>
+<li><p>Provides a Streamlit web interface for interactive predictions</p></li>
+<li><p>Supports 365-day long-term forecasting</p></li>
+</ul>
+</section>
+</section>
+<section id="development-setup">
+<h2>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this heading"></a></h2>
+<section id="fork-and-clone">
+<h3>1. Fork and Clone<a class="headerlink" href="#fork-and-clone" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fork the repository on GitHub, then clone your fork</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/AnalysingEnergy.git
+<span class="nb">cd</span><span class="w"> </span>AnalysingEnergy
+
+<span class="c1"># Add the original repository as upstream</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/originaluser/AnalysingEnergy.git
+</pre></div>
+</div>
+</section>
+<section id="environment-setup">
+<h3>2. Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+
+<span class="c1"># Activate virtual environment</span>
+<span class="c1"># Windows</span>
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+<span class="c1"># Linux/Mac</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># Install development dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt<span class="w">  </span><span class="c1"># If available</span>
+</pre></div>
+</div>
+</section>
+<section id="development-dependencies">
+<h3>3. Development Dependencies<a class="headerlink" href="#development-dependencies" title="Permalink to this heading"></a></h3>
+<p>Install additional tools for development:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pytest<span class="w"> </span>pytest-cov<span class="w"> </span>black<span class="w"> </span>flake8<span class="w"> </span>isort<span class="w"> </span>jupyter-lab
+</pre></div>
+</div>
+</section>
+<section id="verify-installation">
+<h3>4. Verify Installation<a class="headerlink" href="#verify-installation" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test basic functionality</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import tensorflow; import pandas; import streamlit; print(&#39;Setup successful!&#39;)&quot;</span>
+
+<span class="c1"># Run tests (if available)</span>
+pytest<span class="w"> </span>tests/
+</pre></div>
+</div>
+</section>
+</section>
+<section id="contributing-guidelines">
+<h2>Contributing Guidelines<a class="headerlink" href="#contributing-guidelines" title="Permalink to this heading"></a></h2>
+<section id="types-of-contributions">
+<h3>Types of Contributions<a class="headerlink" href="#types-of-contributions" title="Permalink to this heading"></a></h3>
+<p>We welcome various types of contributions:</p>
+<ol class="arabic simple">
+<li><p><strong>Bug Reports</strong>: Found an issue? Report it!</p></li>
+<li><p><strong>Feature Requests</strong>: Have an idea for improvement?</p></li>
+<li><p><strong>Code Contributions</strong>: Bug fixes, new features, optimizations</p></li>
+<li><p><strong>Documentation</strong>: Improve existing docs or add new ones</p></li>
+<li><p><strong>Examples</strong>: Jupyter notebooks, tutorials, use cases</p></li>
+<li><p><strong>Performance Improvements</strong>: Model optimization, code efficiency</p></li>
+</ol>
+</section>
+<section id="before-you-start">
+<h3>Before You Start<a class="headerlink" href="#before-you-start" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Check existing issues</strong>: Look for similar bug reports or feature requests</p></li>
+<li><p><strong>Create an issue</strong>: For significant changes, create an issue first to discuss</p></li>
+<li><p><strong>Follow project standards</strong>: Review this guide and existing code style</p></li>
+</ol>
+</section>
+</section>
+<section id="code-standards">
+<h2>Code Standards<a class="headerlink" href="#code-standards" title="Permalink to this heading"></a></h2>
+<section id="python-code-style">
+<h3>Python Code Style<a class="headerlink" href="#python-code-style" title="Permalink to this heading"></a></h3>
+<p>We follow PEP 8 with some specific guidelines:</p>
+<section id="formatting">
+<h4>Formatting<a class="headerlink" href="#formatting" title="Permalink to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Format code with Black</span>
+black<span class="w"> </span>--line-length<span class="w"> </span><span class="m">88</span><span class="w"> </span>your_file.py
+
+<span class="c1"># Sort imports with isort</span>
+isort<span class="w"> </span>your_file.py
+
+<span class="c1"># Check style with flake8</span>
+flake8<span class="w"> </span>your_file.py
+</pre></div>
+</div>
+</section>
+<section id="naming-conventions">
+<h4>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variables and functions: snake_case</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_energy_data</span><span class="p">():</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;data/energy_data.csv&quot;</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># Classes: PascalCase</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LSTMPredictor</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Constants: UPPER_SNAKE_CASE</span>
+<span class="n">MAX_SEQUENCE_LENGTH</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">DEFAULT_BATCH_SIZE</span> <span class="o">=</span> <span class="mi">32</span>
+</pre></div>
+</div>
+</section>
+<section id="documentation-strings">
+<h4>Documentation Strings<a class="headerlink" href="#documentation-strings" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">train_lstm_model</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_variable</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Train LSTM model for energy prediction.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        data (pandas.DataFrame): Input training data</span>
+<span class="sd">        target_variable (str): Name of target column</span>
+<span class="sd">        epochs (int, optional): Number of training epochs. Defaults to 100.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        tensorflow.keras.Model: Trained LSTM model</span>
+<span class="sd">        </span>
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If target_variable not in data columns</span>
+<span class="sd">        </span>
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; model = train_lstm_model(data, &#39;total_demand(mw)&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; predictions = model.predict(test_data)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="machine-learning-code-guidelines">
+<h3>Machine Learning Code Guidelines<a class="headerlink" href="#machine-learning-code-guidelines" title="Permalink to this heading"></a></h3>
+<section id="model-training">
+<h4>Model Training<a class="headerlink" href="#model-training" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Clear, reproducible model training</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_lstm_model</span><span class="p">(</span><span class="n">input_shape</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create reproducible LSTM model.&quot;&quot;&quot;</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">),</span>
+        <span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">),</span>
+        <span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">),</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Good: Comprehensive evaluation</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">scaler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluate model with multiple metrics.&quot;&quot;&quot;</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">predictions_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+    
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;mae&#39;</span><span class="p">:</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions_scaled</span><span class="p">),</span>
+        <span class="s1">&#39;rmse&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions_scaled</span><span class="p">)),</span>
+        <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions_scaled</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">metrics</span>
+</pre></div>
+</div>
+</section>
+<section id="data-processing">
+<h4>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Good: Robust data preprocessing</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">preprocess_energy_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">handle_outliers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Preprocess energy data with comprehensive cleaning.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        data: Raw energy dataset</span>
+<span class="sd">        handle_outliers: Whether to remove statistical outliers</span>
+<span class="sd">        fill_missing: Whether to fill missing values</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Cleaned and preprocessed dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data_clean</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">fill_missing</span><span class="p">:</span>
+        <span class="n">data_clean</span> <span class="o">=</span> <span class="n">data_clean</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">handle_outliers</span><span class="p">:</span>
+        <span class="n">data_clean</span> <span class="o">=</span> <span class="n">remove_outliers</span><span class="p">(</span><span class="n">data_clean</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">data_clean</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="file-organization">
+<h3>File Organization<a class="headerlink" href="#file-organization" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AnalysingEnergy/
+├── Data/                    # Datasets
+├── Notebooks/              # Jupyter notebooks
+│   ├── models/             # Trained models
+│   ├── scalers/           # Data scalers
+│   └── *.ipynb           # Analysis notebooks
+├── interface/              # Web application
+├── src/                   # Source code modules (if adding)
+│   ├── models/           # Model definitions
+│   ├── data/             # Data processing
+│   └── utils/            # Utility functions
+├── tests/                 # Test files
+├── docs/                  # Documentation
+└── requirements.txt       # Dependencies
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading"></a></h2>
+<section id="writing-tests">
+<h3>Writing Tests<a class="headerlink" href="#writing-tests" title="Permalink to this heading"></a></h3>
+<p>Create tests for new functionality:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/test_models.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.models.lstm_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_lstm_model</span><span class="p">,</span> <span class="n">preprocess_data</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_lstm_model_creation</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test LSTM model creation with valid parameters.&quot;&quot;&quot;</span>
+    <span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">create_lstm_model</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+    
+    <span class="k">assert</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>  <span class="c1"># 2 LSTM + 2 Dropout + 1 Dense</span>
+    <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">input_shape</span> <span class="o">==</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_data_preprocessing</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test data preprocessing pipeline.&quot;&quot;&quot;</span>
+    <span class="c1"># Create sample data</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;temp_max&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+        <span class="s1">&#39;wind_speed&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+        <span class="s1">&#39;energy_demand&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">)</span>
+    
+    <span class="c1"># Add some missing values</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    
+    <span class="n">processed_data</span> <span class="o">=</span> <span class="n">preprocess_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    
+    <span class="k">assert</span> <span class="n">processed_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">processed_data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_energy_data</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fixture providing sample energy data for tests.&quot;&quot;&quot;</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">365</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;temp2_max(c)&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">365</span><span class="p">),</span>
+        <span class="s1">&#39;wind_speed50_ave(ms)&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">365</span><span class="p">),</span>
+        <span class="s1">&#39;total_demand(mw)&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span>
+    <span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all tests</span>
+pytest
+
+<span class="c1"># Run with coverage</span>
+pytest<span class="w"> </span>--cov<span class="o">=</span>src
+
+<span class="c1"># Run specific test file</span>
+pytest<span class="w"> </span>tests/test_models.py
+
+<span class="c1"># Run with verbose output</span>
+pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+</section>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
+<section id="adding-documentation">
+<h3>Adding Documentation<a class="headerlink" href="#adding-documentation" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Code Documentation</strong>: Use comprehensive docstrings</p></li>
+<li><p><strong>README Updates</strong>: Update README.md for significant changes</p></li>
+<li><p><strong>Notebook Documentation</strong>: Add markdown cells explaining code</p></li>
+<li><p><strong>API Documentation</strong>: Document new functions and classes</p></li>
+</ol>
+</section>
+<section id="documentation-style">
+<h3>Documentation Style<a class="headerlink" href="#documentation-style" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predict_energy_demand</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">days_ahead</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Predict energy demand for specified number of days.</span>
+<span class="sd">    </span>
+<span class="sd">    This function uses a trained LSTM model to generate energy demand</span>
+<span class="sd">    predictions based on meteorological features.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        model (tensorflow.keras.Model): Trained LSTM model</span>
+<span class="sd">        features (numpy.ndarray): Input features for prediction</span>
+<span class="sd">        scaler (sklearn.preprocessing.MinMaxScaler): Fitted scaler for inverse transform</span>
+<span class="sd">        days_ahead (int, optional): Number of days to predict. Defaults to 30.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        numpy.ndarray: Predicted energy demand values</span>
+<span class="sd">        </span>
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If input features have incorrect shape</span>
+<span class="sd">        TypeError: If model is not a Keras model</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; model = load_model(&#39;energy_model.h5&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; features = np.random.rand(1, 30, 9)</span>
+<span class="sd">        &gt;&gt;&gt; predictions = predict_energy_demand(model, features, scaler)</span>
+<span class="sd">        &gt;&gt;&gt; print(f&quot;Predicted demand: {predictions[0]:.2f} MW&quot;)</span>
+<span class="sd">        </span>
+<span class="sd">    Note:</span>
+<span class="sd">        Ensure that input features are scaled using the same scaler</span>
+<span class="sd">        that was used during model training.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="jupyter-notebook-guidelines">
+<h3>Jupyter Notebook Guidelines<a class="headerlink" href="#jupyter-notebook-guidelines" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cell 1: Title and Overview</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"># Energy Demand Prediction Analysis</span>
+
+<span class="sd">This notebook demonstrates the implementation of LSTM models for </span>
+<span class="sd">predicting energy demand based on meteorological data.</span>
+
+<span class="sd">## Objectives:</span>
+<span class="sd">1. Load and preprocess energy data</span>
+<span class="sd">2. Train LSTM model</span>
+<span class="sd">3. Evaluate model performance</span>
+<span class="sd">4. Generate predictions</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Cell 2: Imports with explanations</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">## Library Imports</span>
+
+<span class="sd">We use the following libraries:</span>
+<span class="sd">- pandas: Data manipulation and analysis</span>
+<span class="sd">- numpy: Numerical computing</span>
+<span class="sd">- tensorflow: Deep learning framework</span>
+<span class="sd">- matplotlib: Data visualization</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1"># ... other imports</span>
+
+<span class="c1"># Cell 3: Data loading with description</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">## Data Loading</span>
+
+<span class="sd">Loading the energy dataset which contains:</span>
+<span class="sd">- Meteorological features (temperature, wind speed, pressure)</span>
+<span class="sd">- Energy demand values</span>
+<span class="sd">- Temporal information (daily frequency)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="submitting-contributions">
+<h2>Submitting Contributions<a class="headerlink" href="#submitting-contributions" title="Permalink to this heading"></a></h2>
+<section id="creating-pull-requests">
+<h3>Creating Pull Requests<a class="headerlink" href="#creating-pull-requests" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Create a branch</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Make changes</strong>: Implement your feature or fix</p></li>
+<li><p><strong>Test thoroughly</strong>: Ensure all tests pass</p></li>
+<li><p><strong>Commit with clear messages</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add energy demand forecasting module</span>
+
+<span class="s2">- Implement LSTM-based demand prediction</span>
+<span class="s2">- Add comprehensive error handling</span>
+<span class="s2">- Include unit tests and documentation</span>
+<span class="s2">- Optimize for 365-day forecasting&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Push to your fork</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>Create Pull Request</strong>: Use GitHub interface</p></li>
+</ol>
+</section>
+<section id="pull-request-guidelines">
+<h3>Pull Request Guidelines<a class="headerlink" href="#pull-request-guidelines" title="Permalink to this heading"></a></h3>
+<section id="title-and-description">
+<h4>Title and Description<a class="headerlink" href="#title-and-description" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Clear title</strong>: Summarize the change in one line</p></li>
+<li><p><strong>Detailed description</strong>: Explain what, why, and how</p></li>
+<li><p><strong>Link issues</strong>: Reference related issues with <code class="docutils literal notranslate"><span class="pre">Fixes</span> <span class="pre">#123</span></code></p></li>
+</ul>
+</section>
+<section id="checklist">
+<h4>Checklist<a class="headerlink" href="#checklist" title="Permalink to this heading"></a></h4>
+<p>Before submitting, ensure:</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Code follows project style guidelines</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Tests added for new functionality</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> All tests pass</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Documentation updated</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> No breaking changes (or clearly documented)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Performance impact considered</p></li>
+</ul>
+</section>
+</section>
+<section id="review-process">
+<h3>Review Process<a class="headerlink" href="#review-process" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Automated checks</strong>: CI/CD pipeline runs tests</p></li>
+<li><p><strong>Code review</strong>: Maintainers review your code</p></li>
+<li><p><strong>Feedback incorporation</strong>: Address review comments</p></li>
+<li><p><strong>Merge</strong>: After approval, code is merged</p></li>
+</ol>
+</section>
+</section>
+<section id="community-guidelines">
+<h2>Community Guidelines<a class="headerlink" href="#community-guidelines" title="Permalink to this heading"></a></h2>
+<section id="communication">
+<h3>Communication<a class="headerlink" href="#communication" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Be respectful</strong>: Treat all community members with respect</p></li>
+<li><p><strong>Be constructive</strong>: Provide helpful feedback and suggestions</p></li>
+<li><p><strong>Be patient</strong>: Remember that this is a volunteer-driven project</p></li>
+<li><p><strong>Ask questions</strong>: Don’t hesitate to ask for help or clarification</p></li>
+</ul>
+</section>
+<section id="code-of-conduct">
+<h3>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Use welcoming and inclusive language</p></li>
+<li><p>Be respectful of differing viewpoints and experiences</p></li>
+<li><p>Gracefully accept constructive criticism</p></li>
+<li><p>Focus on what is best for the community</p></li>
+<li><p>Show empathy towards other community members</p></li>
+</ul>
+</section>
+<section id="getting-help">
+<h3>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this heading"></a></h3>
+<p>If you need help:</p>
+<ol class="arabic simple">
+<li><p><strong>Check documentation</strong>: Review existing docs and examples</p></li>
+<li><p><strong>Search issues</strong>: Look for similar questions or problems</p></li>
+<li><p><strong>Create an issue</strong>: For bugs or questions</p></li>
+<li><p><strong>Join discussions</strong>: Participate in issue discussions</p></li>
+</ol>
+</section>
+</section>
+<section id="development-roadmap">
+<h2>Development Roadmap<a class="headerlink" href="#development-roadmap" title="Permalink to this heading"></a></h2>
+<section id="current-priorities">
+<h3>Current Priorities<a class="headerlink" href="#current-priorities" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Model Improvements</strong>:</p>
+<ul class="simple">
+<li><p>Implement attention mechanisms</p></li>
+<li><p>Add ensemble methods</p></li>
+<li><p>Optimize hyperparameters</p></li>
+</ul>
+</li>
+<li><p><strong>Interface Enhancements</strong>:</p>
+<ul class="simple">
+<li><p>Real-time data integration</p></li>
+<li><p>Advanced visualization options</p></li>
+<li><p>Export functionality</p></li>
+</ul>
+</li>
+<li><p><strong>Documentation</strong>:</p>
+<ul class="simple">
+<li><p>Complete API documentation</p></li>
+<li><p>Tutorial videos</p></li>
+<li><p>Best practices guide</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="future-goals">
+<h3>Future Goals<a class="headerlink" href="#future-goals" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Multi-region energy predictions</p></li>
+<li><p>Integration with external weather APIs</p></li>
+<li><p>Deployment automation</p></li>
+<li><p>Mobile application</p></li>
+</ul>
+</section>
+</section>
+<section id="recognition">
+<h2>Recognition<a class="headerlink" href="#recognition" title="Permalink to this heading"></a></h2>
+<p>Contributors will be recognized in:</p>
+<ul class="simple">
+<li><p>README.md contributors section</p></li>
+<li><p>Release notes for significant contributions</p></li>
+<li><p>Project documentation</p></li>
+</ul>
+<p>Thank you for contributing to AnalysingEnergy!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

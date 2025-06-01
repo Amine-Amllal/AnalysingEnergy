@@ -1,0 +1,523 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Models API Reference &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Models API Reference</a><ul>
+<li><a class="reference internal" href="#model-architecture-overview">Model Architecture Overview</a></li>
+<li><a class="reference internal" href="#model-classes-and-functions">Model Classes and Functions</a><ul>
+<li><a class="reference internal" href="#lstm-model-structure">LSTM Model Structure</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#individual-model-specifications">Individual Model Specifications</a><ul>
+<li><a class="reference internal" href="#temperature-models">Temperature Models</a><ul>
+<li><a class="reference internal" href="#maximum-temperature-model">Maximum Temperature Model</a></li>
+<li><a class="reference internal" href="#minimum-temperature-model">Minimum Temperature Model</a></li>
+<li><a class="reference internal" href="#average-temperature-model">Average Temperature Model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#wind-speed-models">Wind Speed Models</a><ul>
+<li><a class="reference internal" href="#maximum-wind-speed-model">Maximum Wind Speed Model</a></li>
+<li><a class="reference internal" href="#minimum-wind-speed-model">Minimum Wind Speed Model</a></li>
+<li><a class="reference internal" href="#average-wind-speed-model">Average Wind Speed Model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pressure-and-precipitation-models">Pressure and Precipitation Models</a><ul>
+<li><a class="reference internal" href="#surface-pressure-model">Surface Pressure Model</a></li>
+<li><a class="reference internal" href="#precipitation-correlation-model">Precipitation Correlation Model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#energy-demand-model">Energy Demand Model</a><ul>
+<li><a class="reference internal" href="#total-demand-model">Total Demand Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model-utilities">Model Utilities</a><ul>
+<li><a class="reference internal" href="#data-preprocessing">Data Preprocessing</a></li>
+<li><a class="reference internal" href="#model-loading-and-saving">Model Loading and Saving</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#prediction-pipeline">Prediction Pipeline</a><ul>
+<li><a class="reference internal" href="#single-model-prediction">Single Model Prediction</a></li>
+<li><a class="reference internal" href="#multi-model-ensemble">Multi-Model Ensemble</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model-performance-metrics">Model Performance Metrics</a><ul>
+<li><a class="reference internal" href="#evaluation-functions">Evaluation Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hyperparameter-optimization">Hyperparameter Optimization</a></li>
+<li><a class="reference internal" href="#model-validation">Model Validation</a></li>
+<li><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Models API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/models.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="models-api-reference">
+<h1>Models API Reference<a class="headerlink" href="#models-api-reference" title="Permalink to this heading"></a></h1>
+<p>This section provides detailed documentation for the LSTM models and related utilities used in the AnalysingEnergy project.</p>
+<section id="model-architecture-overview">
+<h2>Model Architecture Overview<a class="headerlink" href="#model-architecture-overview" title="Permalink to this heading"></a></h2>
+<p>The project uses individual LSTM models for each target variable, allowing for specialized prediction of different energy and meteorological parameters.</p>
+</section>
+<section id="model-classes-and-functions">
+<h2>Model Classes and Functions<a class="headerlink" href="#model-classes-and-functions" title="Permalink to this heading"></a></h2>
+<section id="lstm-model-structure">
+<h3>LSTM Model Structure<a class="headerlink" href="#lstm-model-structure" title="Permalink to this heading"></a></h3>
+<p>Each model follows a consistent architecture pattern:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_lstm_model</span><span class="p">(</span><span class="n">input_shape</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates an LSTM model for time series prediction.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        input_shape (tuple): Shape of input data (timesteps, features)</span>
+<span class="sd">        units (int): Number of LSTM units in each layer</span>
+<span class="sd">        dropout_rate (float): Dropout rate for regularization</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        tensorflow.keras.Model: Compiled LSTM model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+        <span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">),</span>
+        <span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">),</span>
+        <span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">),</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+    
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+        <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">,</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="individual-model-specifications">
+<h2>Individual Model Specifications<a class="headerlink" href="#individual-model-specifications" title="Permalink to this heading"></a></h2>
+<section id="temperature-models">
+<h3>Temperature Models<a class="headerlink" href="#temperature-models" title="Permalink to this heading"></a></h3>
+<section id="maximum-temperature-model">
+<h4>Maximum Temperature Model<a class="headerlink" href="#maximum-temperature-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">temp2_max(c)_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Maximum daily temperature (°C)</p></li>
+<li><p><strong>Input Features</strong>: All meteorological variables</p></li>
+<li><p><strong>Architecture</strong>: 2-layer LSTM with 50 units each</p></li>
+<li><p><strong>Optimization</strong>: Optuna-tuned hyperparameters</p></li>
+</ul>
+</section>
+<section id="minimum-temperature-model">
+<h4>Minimum Temperature Model<a class="headerlink" href="#minimum-temperature-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">temp2_min(c)_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Minimum daily temperature (°C)</p></li>
+<li><p><strong>Seasonality</strong>: Captures winter/summer variations</p></li>
+<li><p><strong>Performance</strong>: High accuracy for extreme temperature events</p></li>
+</ul>
+</section>
+<section id="average-temperature-model">
+<h4>Average Temperature Model<a class="headerlink" href="#average-temperature-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">temp2_ave(c)_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Average daily temperature (°C)</p></li>
+<li><p><strong>Use Case</strong>: General temperature trend prediction</p></li>
+</ul>
+</section>
+</section>
+<section id="wind-speed-models">
+<h3>Wind Speed Models<a class="headerlink" href="#wind-speed-models" title="Permalink to this heading"></a></h3>
+<section id="maximum-wind-speed-model">
+<h4>Maximum Wind Speed Model<a class="headerlink" href="#maximum-wind-speed-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">wind_speed50_max(ms)_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Maximum wind speed at 50m height (m/s)</p></li>
+<li><p><strong>Critical for</strong>: Peak energy generation capacity</p></li>
+</ul>
+</section>
+<section id="minimum-wind-speed-model">
+<h4>Minimum Wind Speed Model<a class="headerlink" href="#minimum-wind-speed-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">wind_speed50_min(ms)_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Minimum wind speed at 50m height (m/s)</p></li>
+<li><p><strong>Use Case</strong>: Energy generation baseline estimation</p></li>
+</ul>
+</section>
+<section id="average-wind-speed-model">
+<h4>Average Wind Speed Model<a class="headerlink" href="#average-wind-speed-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">wind_speed50_ave(ms)_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Average wind speed at 50m height (m/s)</p></li>
+<li><p><strong>Primary use</strong>: Daily energy production forecasting</p></li>
+</ul>
+</section>
+</section>
+<section id="pressure-and-precipitation-models">
+<h3>Pressure and Precipitation Models<a class="headerlink" href="#pressure-and-precipitation-models" title="Permalink to this heading"></a></h3>
+<section id="surface-pressure-model">
+<h4>Surface Pressure Model<a class="headerlink" href="#surface-pressure-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">suface_pressure(pa)_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Surface atmospheric pressure (Pa)</p></li>
+<li><p><strong>Correlation</strong>: Weather pattern prediction</p></li>
+</ul>
+</section>
+<section id="precipitation-correlation-model">
+<h4>Precipitation Correlation Model<a class="headerlink" href="#precipitation-correlation-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">prectotcorr_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Precipitation correlation values</p></li>
+<li><p><strong>Impact</strong>: Solar energy generation prediction</p></li>
+</ul>
+</section>
+</section>
+<section id="energy-demand-model">
+<h3>Energy Demand Model<a class="headerlink" href="#energy-demand-model" title="Permalink to this heading"></a></h3>
+<section id="total-demand-model">
+<h4>Total Demand Model<a class="headerlink" href="#total-demand-model" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>File</strong>: <code class="docutils literal notranslate"><span class="pre">total_demand(mw)_LSTM.h5</span></code></p></li>
+<li><p><strong>Target</strong>: Total energy demand (MW)</p></li>
+<li><p><strong>Critical</strong>: Grid planning and load balancing</p></li>
+<li><p><strong>Features</strong>: Temperature-dependent demand patterns</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="model-utilities">
+<h2>Model Utilities<a class="headerlink" href="#model-utilities" title="Permalink to this heading"></a></h2>
+<section id="data-preprocessing">
+<h3>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeSeriesPreprocessor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles data preprocessing for LSTM models.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">=</span> <span class="n">sequence_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">target_column</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates sequences for LSTM input.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            data (pandas.DataFrame): Input data</span>
+<span class="sd">            target_column (str): Target variable column name</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: (X_sequences, y_values, scaler)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Implementation details...</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">scaler</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts scaled predictions back to original scale.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            predictions (numpy.array): Scaled predictions</span>
+<span class="sd">            scaler (MinMaxScaler): Fitted scaler object</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.array: Original scale predictions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="model-loading-and-saving">
+<h3>Model Loading and Saving<a class="headerlink" href="#model-loading-and-saving" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ModelManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Manages model and scaler loading/saving operations.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models_path</span><span class="o">=</span><span class="s2">&quot;Notebooks/models/&quot;</span><span class="p">,</span> <span class="n">scalers_path</span><span class="o">=</span><span class="s2">&quot;Notebooks/scalers/&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">models_path</span> <span class="o">=</span> <span class="n">models_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalers_path</span> <span class="o">=</span> <span class="n">scalers_path</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads a trained LSTM model.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            model_name (str): Name of the model file</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            tensorflow.keras.Model: Loaded model</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">model_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">models_path</span><span class="si">}{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_scaler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scaler_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads a fitted scaler.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            scaler_name (str): Name of the scaler file</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            sklearn.preprocessing.MinMaxScaler: Fitted scaler</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">scaler_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">scalers_path</span><span class="si">}{</span><span class="n">scaler_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">scaler_path</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_all_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads all available models and scalers.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Dictionary containing models and scalers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">models</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">scalers</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="n">model_files</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;temp2_max(c)_LSTM.h5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;temp2_min(c)_LSTM.h5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;temp2_ave(c)_LSTM.h5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;wind_speed50_max(ms)_LSTM.h5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;wind_speed50_min(ms)_LSTM.h5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;wind_speed50_ave(ms)_LSTM.h5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;suface_pressure(pa)_LSTM.h5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;prectotcorr_LSTM.h5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;total_demand(mw)_LSTM.h5&quot;</span>
+        <span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">model_file</span> <span class="ow">in</span> <span class="n">model_files</span><span class="p">:</span>
+            <span class="n">target_name</span> <span class="o">=</span> <span class="n">model_file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_LSTM.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">models</span><span class="p">[</span><span class="n">target_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_file</span><span class="p">)</span>
+            <span class="n">scalers</span><span class="p">[</span><span class="n">target_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_scaler</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">target_name</span><span class="si">}</span><span class="s2">_scaler.pkl&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;models&quot;</span><span class="p">:</span> <span class="n">models</span><span class="p">,</span> <span class="s2">&quot;scalers&quot;</span><span class="p">:</span> <span class="n">scalers</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="prediction-pipeline">
+<h2>Prediction Pipeline<a class="headerlink" href="#prediction-pipeline" title="Permalink to this heading"></a></h2>
+<section id="single-model-prediction">
+<h3>Single Model Prediction<a class="headerlink" href="#single-model-prediction" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predict_single_variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">days_ahead</span><span class="o">=</span><span class="mi">365</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes predictions for a single target variable.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        model: Trained LSTM model</span>
+<span class="sd">        scaler: Fitted MinMaxScaler</span>
+<span class="sd">        input_data: Preprocessed input sequences</span>
+<span class="sd">        days_ahead: Number of days to predict</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        numpy.array: Predictions in original scale</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_sequence</span> <span class="o">=</span> <span class="n">input_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">days_ahead</span><span class="p">):</span>
+        <span class="c1"># Predict next value</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">current_sequence</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        
+        <span class="c1"># Update sequence for next prediction</span>
+        <span class="n">current_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">current_sequence</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">current_sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># Inverse transform to original scale</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-model-ensemble">
+<h3>Multi-Model Ensemble<a class="headerlink" href="#multi-model-ensemble" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ensemble_predictions</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">scalers</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">target_variables</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates predictions using multiple models.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        models (dict): Dictionary of trained models</span>
+<span class="sd">        scalers (dict): Dictionary of fitted scalers</span>
+<span class="sd">        input_data: Preprocessed input data</span>
+<span class="sd">        target_variables (list): List of target variable names</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame: Combined predictions for all variables</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">target_variables</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">models</span> <span class="ow">and</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">scalers</span><span class="p">:</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">predict_single_variable</span><span class="p">(</span>
+                <span class="n">models</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> 
+                <span class="n">scalers</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> 
+                <span class="n">input_data</span>
+            <span class="p">)</span>
+            <span class="n">predictions</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="model-performance-metrics">
+<h2>Model Performance Metrics<a class="headerlink" href="#model-performance-metrics" title="Permalink to this heading"></a></h2>
+<section id="evaluation-functions">
+<h3>Evaluation Functions<a class="headerlink" href="#evaluation-functions" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_model</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates comprehensive model performance metrics.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        y_true: True values</span>
+<span class="sd">        y_pred: Predicted values</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Performance metrics</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;mae&#39;</span><span class="p">:</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+        <span class="s1">&#39;mse&#39;</span><span class="p">:</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+        <span class="s1">&#39;rmse&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)),</span>
+        <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+        <span class="s1">&#39;mape&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="hyperparameter-optimization">
+<h2>Hyperparameter Optimization<a class="headerlink" href="#hyperparameter-optimization" title="Permalink to this heading"></a></h2>
+<p>The models use Optuna for automated hyperparameter tuning:</p>
+<ul class="simple">
+<li><p><strong>Learning Rate</strong>: 0.001 - 0.1</p></li>
+<li><p><strong>LSTM Units</strong>: 20 - 100</p></li>
+<li><p><strong>Dropout Rate</strong>: 0.1 - 0.5</p></li>
+<li><p><strong>Batch Size</strong>: 16 - 128</p></li>
+<li><p><strong>Sequence Length</strong>: 10 - 60 days</p></li>
+</ul>
+</section>
+<section id="model-validation">
+<h2>Model Validation<a class="headerlink" href="#model-validation" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Time Series Split</strong>: Chronological train/validation/test splits</p></li>
+<li><p><strong>Cross-Validation</strong>: Time series cross-validation with rolling windows</p></li>
+<li><p><strong>Performance Tracking</strong>: MLflow integration for experiment tracking</p></li>
+</ul>
+</section>
+<section id="future-enhancements">
+<h2>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Attention Mechanisms</strong>: Transformer-based architectures</p></li>
+<li><p><strong>Multi-variate Models</strong>: Single model predicting multiple variables</p></li>
+<li><p><strong>Uncertainty Quantification</strong>: Bayesian LSTM implementations</p></li>
+<li><p><strong>Real-time Updates</strong>: Online learning capabilities</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

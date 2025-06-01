@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Overview &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+      <script src="_static/doctools.js"></script>
+      <script src="_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Data Overview</a><ul>
+<li><a class="reference internal" href="#dataset-structure">Dataset Structure</a><ul>
+<li><a class="reference internal" href="#core-datasets">Core Datasets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-features">Data Features</a><ul>
+<li><a class="reference internal" href="#temporal-index">Temporal Index</a></li>
+<li><a class="reference internal" href="#meteorological-features">Meteorological Features</a><ul>
+<li><a class="reference internal" href="#temperature-measurements-c">Temperature Measurements (°C)</a></li>
+<li><a class="reference internal" href="#atmospheric-conditions">Atmospheric Conditions</a></li>
+<li><a class="reference internal" href="#wind-measurements-m-s">Wind Measurements (m/s)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#energy-features">Energy Features</a><ul>
+<li><a class="reference internal" href="#energy-demand">Energy Demand</a></li>
+<li><a class="reference internal" href="#energy-generation">Energy Generation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-characteristics">Data Characteristics</a><ul>
+<li><a class="reference internal" href="#temporal-coverage">Temporal Coverage</a></li>
+<li><a class="reference internal" href="#data-quality">Data Quality</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sample-data-structure">Sample Data Structure</a></li>
+<li><a class="reference internal" href="#data-preprocessing">Data Preprocessing</a><ul>
+<li><a class="reference internal" href="#scaling-and-normalization">Scaling and Normalization</a></li>
+<li><a class="reference internal" href="#feature-engineering">Feature Engineering</a><ul>
+<li><a class="reference internal" href="#lag-features">Lag Features</a></li>
+<li><a class="reference internal" href="#target-variable-processing">Target Variable Processing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-splitting-strategy">Data Splitting Strategy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-relationships">Data Relationships</a><ul>
+<li><a class="reference internal" href="#correlation-analysis">Correlation Analysis</a></li>
+<li><a class="reference internal" href="#seasonal-patterns">Seasonal Patterns</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-quality-metrics">Data Quality Metrics</a><ul>
+<li><a class="reference internal" href="#completeness">Completeness</a></li>
+<li><a class="reference internal" href="#consistency">Consistency</a></li>
+<li><a class="reference internal" href="#validation-rules">Validation Rules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage-in-machine-learning-pipeline">Usage in Machine Learning Pipeline</a><ul>
+<li><a class="reference internal" href="#feature-selection">Feature Selection</a></li>
+<li><a class="reference internal" href="#time-series-preparation">Time Series Preparation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-visualization">Data Visualization</a></li>
+<li><a class="reference internal" href="#storage-and-access">Storage and Access</a><ul>
+<li><a class="reference internal" href="#file-formats">File Formats</a></li>
+<li><a class="reference internal" href="#loading-data">Loading Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Data Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/data_overview.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="data-overview">
+<h1>Data Overview<a class="headerlink" href="#data-overview" title="Permalink to this heading"></a></h1>
+<p>This section provides a comprehensive overview of the datasets used in the AnalysingEnergy project, including data structure, features, and preprocessing steps.</p>
+<section id="dataset-structure">
+<h2>Dataset Structure<a class="headerlink" href="#dataset-structure" title="Permalink to this heading"></a></h2>
+<p>The project uses three main datasets located in the <code class="docutils literal notranslate"><span class="pre">Data/</span></code> directory:</p>
+<section id="core-datasets">
+<h3>Core Datasets<a class="headerlink" href="#core-datasets" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">data.csv</span></code></strong>: Complete dataset containing all historical records</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">train_data.csv</span></code></strong>: Training subset for model development</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">test_data.csv</span></code></strong>: Testing subset for model evaluation</p></li>
+</ol>
+</section>
+</section>
+<section id="data-features">
+<h2>Data Features<a class="headerlink" href="#data-features" title="Permalink to this heading"></a></h2>
+<p>The datasets contain the following features with temporal indexing:</p>
+<section id="temporal-index">
+<h3>Temporal Index<a class="headerlink" href="#temporal-index" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">date</span></code></strong>: Date index in YYYY-MM-DD format, used as the primary time series index</p></li>
+</ul>
+</section>
+<section id="meteorological-features">
+<h3>Meteorological Features<a class="headerlink" href="#meteorological-features" title="Permalink to this heading"></a></h3>
+<section id="temperature-measurements-c">
+<h4>Temperature Measurements (°C)<a class="headerlink" href="#temperature-measurements-c" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">temp2_max(c)</span></code></strong>: Daily maximum temperature</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">temp2_min(c)</span></code></strong>: Daily minimum temperature</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">temp2_ave(c)</span></code></strong>: Daily average temperature</p></li>
+</ul>
+</section>
+<section id="atmospheric-conditions">
+<h4>Atmospheric Conditions<a class="headerlink" href="#atmospheric-conditions" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">suface_pressure(pa)</span></code></strong>: Surface atmospheric pressure in Pascals</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">prectotcorr</span></code></strong>: Precipitation correlation coefficient</p></li>
+</ul>
+</section>
+<section id="wind-measurements-m-s">
+<h4>Wind Measurements (m/s)<a class="headerlink" href="#wind-measurements-m-s" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wind_speed50_max(m/s)</span></code></strong>: Daily maximum wind speed at 50m height</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wind_speed50_min(m/s)</span></code></strong>: Daily minimum wind speed at 50m height</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wind_speed50_ave(m/s)</span></code></strong>: Daily average wind speed at 50m height</p></li>
+</ul>
+</section>
+</section>
+<section id="energy-features">
+<h3>Energy Features<a class="headerlink" href="#energy-features" title="Permalink to this heading"></a></h3>
+<section id="energy-demand">
+<h4>Energy Demand<a class="headerlink" href="#energy-demand" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">total_demand(mw)</span></code></strong>: Total energy demand in Megawatts</p></li>
+</ul>
+</section>
+<section id="energy-generation">
+<h4>Energy Generation<a class="headerlink" href="#energy-generation" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">max_generation(mw)</span></code></strong>: Maximum energy generation capacity in Megawatts</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="data-characteristics">
+<h2>Data Characteristics<a class="headerlink" href="#data-characteristics" title="Permalink to this heading"></a></h2>
+<section id="temporal-coverage">
+<h3>Temporal Coverage<a class="headerlink" href="#temporal-coverage" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Time Period</strong>: Starting from 2018-01-01</p></li>
+<li><p><strong>Frequency</strong>: Daily measurements</p></li>
+<li><p><strong>Duration</strong>: Multi-year historical data for comprehensive analysis</p></li>
+</ul>
+</section>
+<section id="data-quality">
+<h3>Data Quality<a class="headerlink" href="#data-quality" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Completeness</strong>: High data completeness with minimal missing values</p></li>
+<li><p><strong>Consistency</strong>: Standardized units and measurement intervals</p></li>
+<li><p><strong>Validation</strong>: Data quality checks implemented in preprocessing notebooks</p></li>
+</ul>
+</section>
+</section>
+<section id="sample-data-structure">
+<h2>Sample Data Structure<a class="headerlink" href="#sample-data-structure" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Example data structure</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>date</p></th>
+<th class="head"><p>temp2_max©</p></th>
+<th class="head"><p>temp2_min©</p></th>
+<th class="head"><p>temp2_ave©</p></th>
+<th class="head"><p>suface_pressure(pa)</p></th>
+<th class="head"><p>wind_speed50_max(m/s)</p></th>
+<th class="head"><p>wind_speed50_min(m/s)</p></th>
+<th class="head"><p>wind_speed50_ave(m/s)</p></th>
+<th class="head"><p>prectotcorr</p></th>
+<th class="head"><p>total_demand(mw)</p></th>
+<th class="head"><p>max_generation(mw)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2018-01-01</p></td>
+<td><p>24.48</p></td>
+<td><p>13.78</p></td>
+<td><p>19.130</p></td>
+<td><p>101.08</p></td>
+<td><p>5.05</p></td>
+<td><p>0.23</p></td>
+<td><p>2.640</p></td>
+<td><p>0.00</p></td>
+<td><p>8000.0</p></td>
+<td><p>7651.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2018-01-02</p></td>
+<td><p>23.16</p></td>
+<td><p>15.28</p></td>
+<td><p>19.220</p></td>
+<td><p>100.94</p></td>
+<td><p>6.20</p></td>
+<td><p>1.59</p></td>
+<td><p>3.895</p></td>
+<td><p>0.01</p></td>
+<td><p>7900.0</p></td>
+<td><p>7782.0</p></td>
+</tr>
+<tr class="row-even"><td><p>2018-01-03</p></td>
+<td><p>22.65</p></td>
+<td><p>11.52</p></td>
+<td><p>17.085</p></td>
+<td><p>101.12</p></td>
+<td><p>6.96</p></td>
+<td><p>3.64</p></td>
+<td><p>5.300</p></td>
+<td><p>0.17</p></td>
+<td><p>7900.0</p></td>
+<td><p>7707.0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-preprocessing">
+<h2>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading"></a></h2>
+<section id="scaling-and-normalization">
+<h3>Scaling and Normalization<a class="headerlink" href="#scaling-and-normalization" title="Permalink to this heading"></a></h3>
+<p>The project employs MinMax scaling for all numerical features:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="c1"># Individual scalers for each feature</span>
+<span class="n">scaler_X</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">scaler_y</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+
+<span class="c1"># Scaling applied to maintain feature relationships</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler_X</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_features</span><span class="p">)</span>
+<span class="n">y_scaled</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_target</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="feature-engineering">
+<h3>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this heading"></a></h3>
+<section id="lag-features">
+<h4>Lag Features<a class="headerlink" href="#lag-features" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Time lag</strong>: 1-day lag for sequence generation</p></li>
+<li><p><strong>Sequence length</strong>: Optimized for LSTM input requirements</p></li>
+</ul>
+</section>
+<section id="target-variable-processing">
+<h4>Target Variable Processing<a class="headerlink" href="#target-variable-processing" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Primary target</strong>: <code class="docutils literal notranslate"><span class="pre">max_generation(mw)</span></code> for energy generation prediction</p></li>
+<li><p><strong>Secondary targets</strong>: Individual meteorological parameters for comprehensive forecasting</p></li>
+</ul>
+</section>
+</section>
+<section id="data-splitting-strategy">
+<h3>Data Splitting Strategy<a class="headerlink" href="#data-splitting-strategy" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Temporal split to maintain chronological order</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="s1">&#39;2019-12-31&#39;</span><span class="p">]</span>  <span class="c1"># Training period</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">:]</span>   <span class="c1"># Testing period</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-relationships">
+<h2>Data Relationships<a class="headerlink" href="#data-relationships" title="Permalink to this heading"></a></h2>
+<section id="correlation-analysis">
+<h3>Correlation Analysis<a class="headerlink" href="#correlation-analysis" title="Permalink to this heading"></a></h3>
+<p>Key correlations observed in the dataset:</p>
+<ol class="arabic simple">
+<li><p><strong>Temperature-Energy Relationship</strong>:</p>
+<ul class="simple">
+<li><p>Higher temperatures correlate with increased energy demand</p></li>
+<li><p>Seasonal patterns in both temperature and energy consumption</p></li>
+</ul>
+</li>
+<li><p><strong>Wind-Generation Relationship</strong>:</p>
+<ul class="simple">
+<li><p>Wind speed variations impact renewable energy generation</p></li>
+<li><p>Strong correlation between wind patterns and generation capacity</p></li>
+</ul>
+</li>
+<li><p><strong>Pressure-Weather Patterns</strong>:</p>
+<ul class="simple">
+<li><p>Surface pressure influences overall weather conditions</p></li>
+<li><p>Indirect impact on energy demand through weather patterns</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="seasonal-patterns">
+<h3>Seasonal Patterns<a class="headerlink" href="#seasonal-patterns" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Daily Cycles</strong>: Clear daily patterns in energy demand</p></li>
+<li><p><strong>Seasonal Variations</strong>: Temperature and wind patterns show seasonal trends</p></li>
+<li><p><strong>Weather Dependencies</strong>: Energy generation correlates with meteorological conditions</p></li>
+</ul>
+</section>
+</section>
+<section id="data-quality-metrics">
+<h2>Data Quality Metrics<a class="headerlink" href="#data-quality-metrics" title="Permalink to this heading"></a></h2>
+<section id="completeness">
+<h3>Completeness<a class="headerlink" href="#completeness" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Missing Values</strong>: &lt; 1% across all features</p></li>
+<li><p><strong>Data Gaps</strong>: No significant temporal gaps in the time series</p></li>
+</ul>
+</section>
+<section id="consistency">
+<h3>Consistency<a class="headerlink" href="#consistency" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Unit Standardization</strong>: All measurements in consistent units</p></li>
+<li><p><strong>Temporal Alignment</strong>: All features aligned to daily timestamps</p></li>
+</ul>
+</section>
+<section id="validation-rules">
+<h3>Validation Rules<a class="headerlink" href="#validation-rules" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Range Checks</strong>: Values within expected physical limits</p></li>
+<li><p><strong>Outlier Detection</strong>: Statistical outlier identification and handling</p></li>
+<li><p><strong>Temporal Consistency</strong>: Chronological order validation</p></li>
+</ul>
+</section>
+</section>
+<section id="usage-in-machine-learning-pipeline">
+<h2>Usage in Machine Learning Pipeline<a class="headerlink" href="#usage-in-machine-learning-pipeline" title="Permalink to this heading"></a></h2>
+<section id="feature-selection">
+<h3>Feature Selection<a class="headerlink" href="#feature-selection" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Features used for prediction</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;temp2_max(c)&quot;</span><span class="p">,</span> <span class="s2">&quot;temp2_min(c)&quot;</span><span class="p">,</span> <span class="s2">&quot;temp2_ave(c)&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;suface_pressure(pa)&quot;</span><span class="p">,</span> <span class="s2">&quot;wind_speed50_max(m/s)&quot;</span><span class="p">,</span> <span class="s2">&quot;wind_speed50_min(m/s)&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;wind_speed50_ave(m/s)&quot;</span><span class="p">,</span> <span class="s2">&quot;prectotcorr&quot;</span><span class="p">,</span> <span class="s2">&quot;total_demand(mw)&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Target variable</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;max_generation(mw)&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="time-series-preparation">
+<h3>Time Series Preparation<a class="headerlink" href="#time-series-preparation" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.preprocessing.sequence</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeseriesGenerator</span>
+
+<span class="c1"># Sequence generation for LSTM input</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">TimeseriesGenerator</span><span class="p">(</span>
+    <span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_scaled</span><span class="p">,</span> 
+    <span class="n">length</span><span class="o">=</span><span class="n">n_input</span><span class="p">,</span> 
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-visualization">
+<h2>Data Visualization<a class="headerlink" href="#data-visualization" title="Permalink to this heading"></a></h2>
+<p>The project includes comprehensive data visualization for:</p>
+<ul class="simple">
+<li><p><strong>Time series plots</strong>: Temporal patterns in all features</p></li>
+<li><p><strong>Correlation matrices</strong>: Feature relationships</p></li>
+<li><p><strong>Distribution plots</strong>: Statistical distributions of variables</p></li>
+<li><p><strong>Seasonal decomposition</strong>: Trend, seasonal, and residual components</p></li>
+</ul>
+</section>
+<section id="storage-and-access">
+<h2>Storage and Access<a class="headerlink" href="#storage-and-access" title="Permalink to this heading"></a></h2>
+<section id="file-formats">
+<h3>File Formats<a class="headerlink" href="#file-formats" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>CSV format</strong>: Human-readable and widely compatible</p></li>
+<li><p><strong>Pandas integration</strong>: Direct loading with date parsing</p></li>
+<li><p><strong>Memory efficiency</strong>: Optimized data types for processing</p></li>
+</ul>
+</section>
+<section id="loading-data">
+<h3>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Load with proper date indexing</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;Data/data.csv&quot;</span><span class="p">,</span> 
+    <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> 
+    <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This data structure provides the foundation for all machine learning models and analysis in the AnalysingEnergy project.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

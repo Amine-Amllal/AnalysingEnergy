@@ -1,0 +1,601 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Preprocessing Tutorial &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Data Preprocessing Tutorial</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#step-1-data-loading">Step 1: Data Loading</a><ul>
+<li><a class="reference internal" href="#loading-the-dataset">Loading the Dataset</a></li>
+<li><a class="reference internal" href="#initial-data-exploration">Initial Data Exploration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-2-data-quality-assessment">Step 2: Data Quality Assessment</a><ul>
+<li><a class="reference internal" href="#check-for-missing-values">Check for Missing Values</a></li>
+<li><a class="reference internal" href="#data-validation">Data Validation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-3-data-cleaning">Step 3: Data Cleaning</a><ul>
+<li><a class="reference internal" href="#handle-missing-values">Handle Missing Values</a></li>
+<li><a class="reference internal" href="#handle-outliers">Handle Outliers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-4-feature-engineering">Step 4: Feature Engineering</a><ul>
+<li><a class="reference internal" href="#create-additional-features">Create Additional Features</a></li>
+<li><a class="reference internal" href="#lag-features">Lag Features</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-5-feature-selection">Step 5: Feature Selection</a><ul>
+<li><a class="reference internal" href="#define-core-features">Define Core Features</a></li>
+<li><a class="reference internal" href="#correlation-analysis">Correlation Analysis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-6-data-scaling">Step 6: Data Scaling</a><ul>
+<li><a class="reference internal" href="#minmax-scaling">MinMax Scaling</a></li>
+<li><a class="reference internal" href="#verify-scaling">Verify Scaling</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-7-train-test-split">Step 7: Train-Test Split</a><ul>
+<li><a class="reference internal" href="#temporal-split">Temporal Split</a></li>
+<li><a class="reference internal" href="#scale-split-data">Scale Split Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-8-time-series-preparation">Step 8: Time Series Preparation</a><ul>
+<li><a class="reference internal" href="#create-lstm-sequences">Create LSTM Sequences</a></li>
+<li><a class="reference internal" href="#prepare-test-data">Prepare Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-9-save-processed-data">Step 9: Save Processed Data</a><ul>
+<li><a class="reference internal" href="#export-processed-datasets">Export Processed Datasets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-10-data-visualization">Step 10: Data Visualization</a><ul>
+<li><a class="reference internal" href="#plot-processed-data">Plot Processed Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+<li><a class="reference internal" href="#best-practices">Best Practices</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Data Preprocessing Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/data_preprocessing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="data-preprocessing-tutorial">
+<h1>Data Preprocessing Tutorial<a class="headerlink" href="#data-preprocessing-tutorial" title="Permalink to this heading"></a></h1>
+<p>This tutorial walks you through the data preprocessing steps used in the AnalysingEnergy project, from raw data loading to model-ready datasets.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>Data preprocessing is a crucial step in the AnalysingEnergy pipeline. This tutorial covers:</p>
+<ol class="arabic simple">
+<li><p>Data loading and exploration</p></li>
+<li><p>Data cleaning and validation</p></li>
+<li><p>Feature engineering</p></li>
+<li><p>Scaling and normalization</p></li>
+<li><p>Time series preparation</p></li>
+<li><p>Train-test splitting</p></li>
+</ol>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>Before starting, ensure you have the required libraries installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w"> </span>numpy<span class="w"> </span>scikit-learn<span class="w"> </span>matplotlib<span class="w"> </span>seaborn
+</pre></div>
+</div>
+</section>
+<section id="step-1-data-loading">
+<h2>Step 1: Data Loading<a class="headerlink" href="#step-1-data-loading" title="Permalink to this heading"></a></h2>
+<section id="loading-the-dataset">
+<h3>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># Load the main dataset with proper date parsing</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;Data/data.csv&quot;</span><span class="p">,</span> 
+    <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> 
+    <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset shape: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Date range: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="initial-data-exploration">
+<h3>Initial Data Exploration<a class="headerlink" href="#initial-data-exploration" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic information about the dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset Info:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Statistical Summary:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Missing Values:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-2-data-quality-assessment">
+<h2>Step 2: Data Quality Assessment<a class="headerlink" href="#step-2-data-quality-assessment" title="Permalink to this heading"></a></h2>
+<section id="check-for-missing-values">
+<h3>Check for Missing Values<a class="headerlink" href="#check-for-missing-values" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize missing values</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Missing Values Heatmap&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Calculate missing value percentages</span>
+<span class="n">missing_percentages</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing value percentages:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">pct</span> <span class="ow">in</span> <span class="n">missing_percentages</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">pct</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pct</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="data-validation">
+<h3>Data Validation<a class="headerlink" href="#data-validation" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check for duplicate dates</span>
+<span class="n">duplicates</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duplicate dates: </span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check for unrealistic values</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_ranges</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">validation_rules</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;temp2_max(c)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span>
+        <span class="s1">&#39;temp2_min(c)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span>
+        <span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">),</span>
+        <span class="s1">&#39;suface_pressure(pa)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">120</span><span class="p">),</span>
+        <span class="s1">&#39;wind_speed50_max(m/s)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="s1">&#39;wind_speed50_min(m/s)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="s1">&#39;wind_speed50_ave(m/s)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="s1">&#39;prectotcorr&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="s1">&#39;total_demand(mw)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">),</span>
+        <span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">)</span> <span class="ow">in</span> <span class="n">validation_rules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">outliers</span> <span class="o">=</span> <span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min_val</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_val</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">outliers</span><span class="si">}</span><span class="s2"> values outside range [</span><span class="si">{</span><span class="n">min_val</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">max_val</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="n">validate_ranges</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-3-data-cleaning">
+<h2>Step 3: Data Cleaning<a class="headerlink" href="#step-3-data-cleaning" title="Permalink to this heading"></a></h2>
+<section id="handle-missing-values">
+<h3>Handle Missing Values<a class="headerlink" href="#handle-missing-values" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Forward fill for small gaps (up to 3 days)</span>
+<span class="n">data_cleaned</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data_cleaned</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="c1"># Forward fill small gaps</span>
+    <span class="n">data_cleaned</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    
+    <span class="c1"># Backward fill remaining gaps</span>
+    <span class="n">data_cleaned</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;bfill&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Remaining missing values: </span><span class="si">{</span><span class="n">data_cleaned</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="handle-outliers">
+<h3>Handle Outliers<a class="headerlink" href="#handle-outliers" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_outliers_zscore</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove outliers using Z-score method&quot;&quot;&quot;</span>
+    <span class="n">data_no_outliers</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">z_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()))</span>
+        <span class="n">outlier_mask</span> <span class="o">=</span> <span class="n">z_scores</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+        
+        <span class="c1"># Replace outliers with median</span>
+        <span class="n">median_value</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+        <span class="n">data_no_outliers</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">outlier_mask</span><span class="p">],</span> <span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">median_value</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">outlier_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> outliers replaced&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">data_no_outliers</span>
+
+<span class="c1"># Apply outlier removal</span>
+<span class="n">data_cleaned</span> <span class="o">=</span> <span class="n">remove_outliers_zscore</span><span class="p">(</span><span class="n">data_cleaned</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-4-feature-engineering">
+<h2>Step 4: Feature Engineering<a class="headerlink" href="#step-4-feature-engineering" title="Permalink to this heading"></a></h2>
+<section id="create-additional-features">
+<h3>Create Additional Features<a class="headerlink" href="#create-additional-features" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Temperature-based features</span>
+<span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;temp_range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;temp2_max(c)&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;temp2_min(c)&#39;</span><span class="p">]</span>
+<span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;temp_volatility&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="c1"># Wind-based features</span>
+<span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;wind_range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;wind_speed50_max(m/s)&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;wind_speed50_min(m/s)&#39;</span><span class="p">]</span>
+<span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;wind_volatility&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;wind_speed50_ave(m/s)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="c1"># Energy efficiency ratio</span>
+<span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;energy_efficiency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;total_demand(mw)&#39;</span><span class="p">]</span>
+
+<span class="c1"># Temporal features</span>
+<span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span>
+<span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;day_of_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofyear</span>
+<span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;quarter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">quarter</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New dataset shape with engineered features: </span><span class="si">{</span><span class="n">data_cleaned</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="lag-features">
+<h3>Lag Features<a class="headerlink" href="#lag-features" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_lag_features</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">30</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create lag features for specified columns&quot;&quot;&quot;</span>
+    <span class="n">data_with_lags</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">lag</span> <span class="ow">in</span> <span class="n">lags</span><span class="p">:</span>
+            <span class="n">lag_column</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">_lag_</span><span class="si">{</span><span class="n">lag</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">data_with_lags</span><span class="p">[</span><span class="n">lag_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">data_with_lags</span>
+
+<span class="c1"># Create lag features for key variables</span>
+<span class="n">lag_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_speed50_ave(m/s)&#39;</span><span class="p">,</span> <span class="s1">&#39;total_demand(mw)&#39;</span><span class="p">]</span>
+<span class="n">data_with_lags</span> <span class="o">=</span> <span class="n">create_lag_features</span><span class="p">(</span><span class="n">data_cleaned</span><span class="p">,</span> <span class="n">lag_columns</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset with lag features: </span><span class="si">{</span><span class="n">data_with_lags</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-5-feature-selection">
+<h2>Step 5: Feature Selection<a class="headerlink" href="#step-5-feature-selection" title="Permalink to this heading"></a></h2>
+<section id="define-core-features">
+<h3>Define Core Features<a class="headerlink" href="#define-core-features" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Core features for LSTM model</span>
+<span class="n">core_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;temp2_max(c)&quot;</span><span class="p">,</span> <span class="s2">&quot;temp2_min(c)&quot;</span><span class="p">,</span> <span class="s2">&quot;temp2_ave(c)&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;suface_pressure(pa)&quot;</span><span class="p">,</span> <span class="s2">&quot;wind_speed50_max(m/s)&quot;</span><span class="p">,</span> <span class="s2">&quot;wind_speed50_min(m/s)&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;wind_speed50_ave(m/s)&quot;</span><span class="p">,</span> <span class="s2">&quot;prectotcorr&quot;</span><span class="p">,</span> <span class="s2">&quot;total_demand(mw)&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Target variable</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;max_generation(mw)&quot;</span>
+
+<span class="c1"># Prepare feature matrix and target vector</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="n">core_features</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Feature matrix shape: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target vector shape: </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="correlation-analysis">
+<h3>Correlation Analysis<a class="headerlink" href="#correlation-analysis" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlation matrix</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="n">core_features</span> <span class="o">+</span> <span class="p">[</span><span class="n">target</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Feature Correlation Matrix&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Feature importance based on correlation with target</span>
+<span class="n">target_correlation</span> <span class="o">=</span> <span class="n">correlation_matrix</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feature importance (correlation with target):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">target_correlation</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>  <span class="c1"># Exclude self-correlation</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-6-data-scaling">
+<h2>Step 6: Data Scaling<a class="headerlink" href="#step-6-data-scaling" title="Permalink to this heading"></a></h2>
+<section id="minmax-scaling">
+<h3>MinMax Scaling<a class="headerlink" href="#minmax-scaling" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+
+<span class="c1"># Initialize scalers</span>
+<span class="n">scaler_X</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">scaler_y</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+
+<span class="c1"># Fit scalers on training data (we&#39;ll define train/test split next)</span>
+<span class="c1"># For now, fit on entire dataset</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler_X</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="n">y_scaled</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Save scalers for later use</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler_X</span><span class="p">,</span> <span class="s2">&quot;scalers/X_scaler.pkl&quot;</span><span class="p">)</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler_y</span><span class="p">,</span> <span class="s2">&quot;scalers/y_scaler.pkl&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scaling completed and scalers saved&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-scaling">
+<h3>Verify Scaling<a class="headerlink" href="#verify-scaling" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check scaling results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original data ranges:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Scaled data ranges:&quot;</span><span class="p">)</span>
+<span class="n">X_scaled_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_scaled_df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-7-train-test-split">
+<h2>Step 7: Train-Test Split<a class="headerlink" href="#step-7-train-test-split" title="Permalink to this heading"></a></h2>
+<section id="temporal-split">
+<h3>Temporal Split<a class="headerlink" href="#temporal-split" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define split date</span>
+<span class="n">split_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01&#39;</span>
+
+<span class="c1"># Create temporal split</span>
+<span class="n">train_mask</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">split_date</span>
+<span class="n">test_mask</span> <span class="o">=</span> <span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">split_date</span>
+
+<span class="c1"># Split features and target</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">test_mask</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_mask</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">test_mask</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training set: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test set: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training period: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test period: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="scale-split-data">
+<h3>Scale Split Data<a class="headerlink" href="#scale-split-data" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Re-fit scalers on training data only</span>
+<span class="n">scaler_X</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">scaler_y</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler_X</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_train_scaled</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Transform test data using training scalers</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler_X</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">y_test_scaled</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Save final scalers</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler_X</span><span class="p">,</span> <span class="s2">&quot;scalers/X_train_scaler.pkl&quot;</span><span class="p">)</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler_y</span><span class="p">,</span> <span class="s2">&quot;scalers/y_train_scaler.pkl&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final scaling completed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-8-time-series-preparation">
+<h2>Step 8: Time Series Preparation<a class="headerlink" href="#step-8-time-series-preparation" title="Permalink to this heading"></a></h2>
+<section id="create-lstm-sequences">
+<h3>Create LSTM Sequences<a class="headerlink" href="#create-lstm-sequences" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.preprocessing.sequence</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeseriesGenerator</span>
+
+<span class="c1"># Parameters for LSTM</span>
+<span class="n">n_input</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Sequence length</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Number of features</span>
+
+<span class="c1"># Create time series generator</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">TimeseriesGenerator</span><span class="p">(</span>
+    <span class="n">X_train_scaled</span><span class="p">,</span> 
+    <span class="n">y_train_scaled</span><span class="p">,</span> 
+    <span class="n">length</span><span class="o">=</span><span class="n">n_input</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">generator</span><span class="p">)</span><span class="si">}</span><span class="s2"> sequences&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input shape per sequence: </span><span class="si">{</span><span class="n">generator</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output shape per sequence: </span><span class="si">{</span><span class="n">generator</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="prepare-test-data">
+<h3>Prepare Test Data<a class="headerlink" href="#prepare-test-data" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshape test data for LSTM input</span>
+<span class="n">X_test_scaled_reshaped</span> <span class="o">=</span> <span class="n">X_test_scaled</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">X_test_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_input</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test data reshaped: </span><span class="si">{</span><span class="n">X_test_scaled_reshaped</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-9-save-processed-data">
+<h2>Step 9: Save Processed Data<a class="headerlink" href="#step-9-save-processed-data" title="Permalink to this heading"></a></h2>
+<section id="export-processed-datasets">
+<h3>Export Processed Datasets<a class="headerlink" href="#export-processed-datasets" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save processed training and test sets</span>
+<span class="n">train_processed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> 
+                              <span class="n">columns</span><span class="o">=</span><span class="n">core_features</span><span class="p">,</span> 
+                              <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">train_processed</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_train_scaled</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">test_processed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> 
+                             <span class="n">columns</span><span class="o">=</span><span class="n">core_features</span><span class="p">,</span> 
+                             <span class="n">index</span><span class="o">=</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">test_processed</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_test_scaled</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Save to CSV</span>
+<span class="n">train_processed</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;Data/train_data_processed.csv&quot;</span><span class="p">)</span>
+<span class="n">test_processed</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;Data/test_data_processed.csv&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processed datasets saved&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-10-data-visualization">
+<h2>Step 10: Data Visualization<a class="headerlink" href="#step-10-data-visualization" title="Permalink to this heading"></a></h2>
+<section id="plot-processed-data">
+<h3>Plot Processed Data<a class="headerlink" href="#plot-processed-data" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot original vs processed data comparison</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Temperature</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Average Temperature&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (°C)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Wind Speed</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;wind_speed50_ave(m/s)&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Average Wind Speed&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Energy Demand</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;total_demand(mw)&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Energy Demand&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Demand (MW)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Energy Generation</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_cleaned</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">data_cleaned</span><span class="p">[</span><span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Energy Generation&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Generation (MW)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<p>This preprocessing pipeline:</p>
+<ol class="arabic simple">
+<li><p><strong>Loaded and validated</strong> the raw energy dataset</p></li>
+<li><p><strong>Cleaned</strong> missing values and outliers</p></li>
+<li><p><strong>Engineered</strong> additional features for better prediction</p></li>
+<li><p><strong>Selected</strong> core features for model training</p></li>
+<li><p><strong>Scaled</strong> data using MinMax normalization</p></li>
+<li><p><strong>Split</strong> data temporally for proper validation</p></li>
+<li><p><strong>Prepared</strong> sequences for LSTM input</p></li>
+<li><p><strong>Saved</strong> processed data and scalers</p></li>
+</ol>
+<p>The processed data is now ready for LSTM model training. The next step would be to follow the <a class="reference internal" href="model_training.html"><span class="doc">Model Training Tutorial</span></a> tutorial to build and train the neural network.</p>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Always</strong> use temporal splitting for time series data</p></li>
+<li><p><strong>Save scalers</strong> fitted on training data only</p></li>
+<li><p><strong>Validate</strong> data ranges and check for anomalies</p></li>
+<li><p><strong>Engineer features</strong> based on domain knowledge</p></li>
+<li><p><strong>Visualize</strong> data at each preprocessing step</p></li>
+<li><p><strong>Document</strong> all preprocessing decisions for reproducibility</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

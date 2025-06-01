@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Training Tutorial &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Model Training Tutorial</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#step-1-environment-setup">Step 1: Environment Setup</a><ul>
+<li><a class="reference internal" href="#import-required-libraries">Import Required Libraries</a></li>
+<li><a class="reference internal" href="#load-preprocessed-data">Load Preprocessed Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-2-data-preparation">Step 2: Data Preparation</a><ul>
+<li><a class="reference internal" href="#prepare-features-and-target">Prepare Features and Target</a></li>
+<li><a class="reference internal" href="#scale-the-data">Scale the Data</a></li>
+<li><a class="reference internal" href="#create-time-series-sequences">Create Time Series Sequences</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-3-model-architecture">Step 3: Model Architecture</a><ul>
+<li><a class="reference internal" href="#define-model-building-function">Define Model Building Function</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-4-hyperparameter-optimization">Step 4: Hyperparameter Optimization</a><ul>
+<li><a class="reference internal" href="#define-optuna-objective-function">Define Optuna Objective Function</a></li>
+<li><a class="reference internal" href="#run-hyperparameter-optimization">Run Hyperparameter Optimization</a></li>
+<li><a class="reference internal" href="#analyze-optimization-results">Analyze Optimization Results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-5-train-final-model">Step 5: Train Final Model</a><ul>
+<li><a class="reference internal" href="#build-final-model-with-best-parameters">Build Final Model with Best Parameters</a></li>
+<li><a class="reference internal" href="#define-training-callbacks">Define Training Callbacks</a></li>
+<li><a class="reference internal" href="#train-the-model">Train the Model</a></li>
+<li><a class="reference internal" href="#visualize-training-history">Visualize Training History</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-6-model-evaluation">Step 6: Model Evaluation</a><ul>
+<li><a class="reference internal" href="#make-predictions">Make Predictions</a></li>
+<li><a class="reference internal" href="#calculate-performance-metrics">Calculate Performance Metrics</a></li>
+<li><a class="reference internal" href="#visualize-predictions">Visualize Predictions</a></li>
+<li><a class="reference internal" href="#residual-analysis">Residual Analysis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-7-model-persistence">Step 7: Model Persistence</a><ul>
+<li><a class="reference internal" href="#save-the-final-model">Save the Final Model</a></li>
+<li><a class="reference internal" href="#save-model-metadata">Save Model Metadata</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-8-model-loading-and-verification">Step 8: Model Loading and Verification</a><ul>
+<li><a class="reference internal" href="#load-and-test-saved-model">Load and Test Saved Model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-9-model-performance-summary">Step 9: Model Performance Summary</a><ul>
+<li><a class="reference internal" href="#create-performance-report">Create Performance Report</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#best-practices-and-tips">Best Practices and Tips</a><ul>
+<li><a class="reference internal" href="#training-best-practices">Training Best Practices</a></li>
+<li><a class="reference internal" href="#hyperparameter-optimization-tips">Hyperparameter Optimization Tips</a></li>
+<li><a class="reference internal" href="#performance-evaluation">Performance Evaluation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Model Training Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/model_training.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="model-training-tutorial">
+<h1>Model Training Tutorial<a class="headerlink" href="#model-training-tutorial" title="Permalink to this heading"></a></h1>
+<p>This comprehensive tutorial guides you through training LSTM models for energy prediction in the AnalysingEnergy project.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This tutorial covers:</p>
+<ol class="arabic simple">
+<li><p>Setting up the training environment</p></li>
+<li><p>Building the LSTM architecture</p></li>
+<li><p>Hyperparameter optimization with Optuna</p></li>
+<li><p>Training the model</p></li>
+<li><p>Model evaluation and validation</p></li>
+<li><p>Saving and loading models</p></li>
+</ol>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>Ensure you have completed the <a class="reference internal" href="data_preprocessing.html"><span class="doc">Data Preprocessing Tutorial</span></a> tutorial and have the following installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tensorflow<span class="w"> </span>optuna<span class="w"> </span>scikit-learn<span class="w"> </span>matplotlib<span class="w"> </span>seaborn<span class="w"> </span>joblib
+</pre></div>
+</div>
+</section>
+<section id="step-1-environment-setup">
+<h2>Step 1: Environment Setup<a class="headerlink" href="#step-1-environment-setup" title="Permalink to this heading"></a></h2>
+<section id="import-required-libraries">
+<h3>Import Required Libraries<a class="headerlink" href="#import-required-libraries" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="c1"># TensorFlow imports</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.preprocessing.sequence</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeseriesGenerator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">EarlyStopping</span><span class="p">,</span> <span class="n">ModelCheckpoint</span>
+
+<span class="c1"># Optimization</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">optuna</span>
+
+<span class="c1"># Set random seeds for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TensorFlow version: </span><span class="si">{</span><span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU available: </span><span class="si">{</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-preprocessed-data">
+<h3>Load Preprocessed Data<a class="headerlink" href="#load-preprocessed-data" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the preprocessed datasets</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/train_data.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Data/test_data.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training data shape: </span><span class="si">{</span><span class="n">train_data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test data shape: </span><span class="si">{</span><span class="n">test_data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define features and target</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;temp2_max(c)&quot;</span><span class="p">,</span> <span class="s2">&quot;temp2_min(c)&quot;</span><span class="p">,</span> <span class="s2">&quot;temp2_ave(c)&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;suface_pressure(pa)&quot;</span><span class="p">,</span> <span class="s2">&quot;wind_speed50_max(m/s)&quot;</span><span class="p">,</span> <span class="s2">&quot;wind_speed50_min(m/s)&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;wind_speed50_ave(m/s)&quot;</span><span class="p">,</span> <span class="s2">&quot;prectotcorr&quot;</span><span class="p">,</span> <span class="s2">&quot;total_demand(mw)&quot;</span>
+<span class="p">]</span>
+
+<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;max_generation(mw)&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-2-data-preparation">
+<h2>Step 2: Data Preparation<a class="headerlink" href="#step-2-data-preparation" title="Permalink to this heading"></a></h2>
+<section id="prepare-features-and-target">
+<h3>Prepare Features and Target<a class="headerlink" href="#prepare-features-and-target" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract features and target</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Feature matrix shapes - Train: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Test: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target vector shapes - Train: </span><span class="si">{</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Test: </span><span class="si">{</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="scale-the-data">
+<h3>Scale the Data<a class="headerlink" href="#scale-the-data" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize scalers</span>
+<span class="n">scaler_X</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">scaler_y</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+
+<span class="c1"># Fit on training data</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler_X</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_train_scaled</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Transform test data</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler_X</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">y_test_scaled</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Save scalers</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler_X</span><span class="p">,</span> <span class="s2">&quot;scalers/X_train_scaler.pkl&quot;</span><span class="p">)</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler_y</span><span class="p">,</span> <span class="s2">&quot;scalers/y_train_scaler.pkl&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data scaling completed and scalers saved&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="create-time-series-sequences">
+<h3>Create Time Series Sequences<a class="headerlink" href="#create-time-series-sequences" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define sequence parameters</span>
+<span class="n">n_input</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Number of time steps to look back</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Number of features</span>
+
+<span class="c1"># Create time series generator for training</span>
+<span class="n">train_generator</span> <span class="o">=</span> <span class="n">TimeseriesGenerator</span><span class="p">(</span>
+    <span class="n">X_train_scaled</span><span class="p">,</span> 
+    <span class="n">y_train_scaled</span><span class="p">,</span> 
+    <span class="n">length</span><span class="o">=</span><span class="n">n_input</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># Prepare test data</span>
+<span class="n">X_test_reshaped</span> <span class="o">=</span> <span class="n">X_test_scaled</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">X_test_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_input</span><span class="p">,</span> <span class="n">n_features</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training sequences: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_generator</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test data shape: </span><span class="si">{</span><span class="n">X_test_reshaped</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-3-model-architecture">
+<h2>Step 3: Model Architecture<a class="headerlink" href="#step-3-model-architecture" title="Permalink to this heading"></a></h2>
+<section id="define-model-building-function">
+<h3>Define Model Building Function<a class="headerlink" href="#define-model-building-function" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_lstm_model</span><span class="p">(</span><span class="n">units_1</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">units_2</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build LSTM model with specified parameters</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    units_1 : int</span>
+<span class="sd">        Number of units in first LSTM layer</span>
+<span class="sd">    units_2 : int</span>
+<span class="sd">        Number of units in second LSTM layer</span>
+<span class="sd">    dropout_rate : float</span>
+<span class="sd">        Dropout rate for regularization</span>
+<span class="sd">    activation : str</span>
+<span class="sd">        Activation function for LSTM layers</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    model : tensorflow.keras.Model</span>
+<span class="sd">        Compiled LSTM model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+        <span class="c1"># First LSTM layer with return sequences</span>
+        <span class="n">LSTM</span><span class="p">(</span><span class="n">units_1</span><span class="p">,</span> 
+             <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">,</span> 
+             <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+             <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_input</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)),</span>
+        
+        <span class="c1"># Second LSTM layer</span>
+        <span class="n">LSTM</span><span class="p">(</span><span class="n">units_2</span><span class="p">,</span> 
+             <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">,</span> 
+             <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        
+        <span class="c1"># Dropout for regularization</span>
+        <span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">),</span>
+        
+        <span class="c1"># Dense hidden layer</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>
+        
+        <span class="c1"># Additional dropout</span>
+        <span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">),</span>
+        
+        <span class="c1"># Output layer for regression</span>
+        <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># Compile model</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+        <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Test model building</span>
+<span class="n">test_model</span> <span class="o">=</span> <span class="n">build_lstm_model</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-4-hyperparameter-optimization">
+<h2>Step 4: Hyperparameter Optimization<a class="headerlink" href="#step-4-hyperparameter-optimization" title="Permalink to this heading"></a></h2>
+<section id="define-optuna-objective-function">
+<h3>Define Optuna Objective Function<a class="headerlink" href="#define-optuna-objective-function" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Optuna objective function for hyperparameter optimization</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    trial : optuna.Trial</span>
+<span class="sd">        Optuna trial object</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    float</span>
+<span class="sd">        Validation loss to minimize</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Suggest hyperparameters</span>
+    <span class="n">units_1</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s1">&#39;units_1&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+    <span class="n">units_2</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s1">&#39;units_2&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">dropout_rate</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="s1">&#39;dropout_rate&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">activation</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s1">&#39;activation&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;tanh&#39;</span><span class="p">,</span> <span class="s1">&#39;relu&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Build model with suggested parameters</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">build_lstm_model</span><span class="p">(</span>
+        <span class="n">units_1</span><span class="o">=</span><span class="n">units_1</span><span class="p">,</span>
+        <span class="n">units_2</span><span class="o">=</span><span class="n">units_2</span><span class="p">,</span>
+        <span class="n">dropout_rate</span><span class="o">=</span><span class="n">dropout_rate</span><span class="p">,</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">activation</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Define callbacks</span>
+    <span class="n">early_stopping</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span>
+        <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span>
+        <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Train model</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">train_generator</span><span class="p">,</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">,</span> <span class="n">y_test_scaled</span><span class="p">),</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">early_stopping</span><span class="p">],</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Return best validation loss</span>
+    <span class="n">best_loss</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">best_loss</span>
+</pre></div>
+</div>
+</section>
+<section id="run-hyperparameter-optimization">
+<h3>Run Hyperparameter Optimization<a class="headerlink" href="#run-hyperparameter-optimization" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create study</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;minimize&#39;</span><span class="p">)</span>
+
+<span class="c1"># Run optimization</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting hyperparameter optimization...&quot;</span><span class="p">)</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>  <span class="c1"># 1 hour timeout</span>
+
+<span class="c1"># Get best parameters</span>
+<span class="n">best_params</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_params</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best parameters: </span><span class="si">{</span><span class="n">best_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best validation loss: </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="analyze-optimization-results">
+<h3>Analyze Optimization Results<a class="headerlink" href="#analyze-optimization-results" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot optimization history</span>
+<span class="n">optuna</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">plot_optimization_history</span><span class="p">(</span><span class="n">study</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot parameter importance</span>
+<span class="n">optuna</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">plot_param_importances</span><span class="p">(</span><span class="n">study</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot parameter relationships</span>
+<span class="n">optuna</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">plot_parallel_coordinate</span><span class="p">(</span><span class="n">study</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-5-train-final-model">
+<h2>Step 5: Train Final Model<a class="headerlink" href="#step-5-train-final-model" title="Permalink to this heading"></a></h2>
+<section id="build-final-model-with-best-parameters">
+<h3>Build Final Model with Best Parameters<a class="headerlink" href="#build-final-model-with-best-parameters" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use optimized parameters (or use the found best parameters)</span>
+<span class="n">best_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;units_1&#39;</span><span class="p">:</span> <span class="mi">74</span><span class="p">,</span>
+    <span class="s1">&#39;units_2&#39;</span><span class="p">:</span> <span class="mi">69</span><span class="p">,</span>
+    <span class="s1">&#39;dropout_rate&#39;</span><span class="p">:</span> <span class="mf">0.1938213639314652</span><span class="p">,</span>
+    <span class="s1">&#39;activation&#39;</span><span class="p">:</span> <span class="s1">&#39;relu&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Build final model</span>
+<span class="n">final_model</span> <span class="o">=</span> <span class="n">build_lstm_model</span><span class="p">(</span><span class="o">**</span><span class="n">best_params</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final model architecture:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">final_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="define-training-callbacks">
+<h3>Define Training Callbacks<a class="headerlink" href="#define-training-callbacks" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define callbacks for training</span>
+<span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">EarlyStopping</span><span class="p">(</span>
+        <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span>
+        <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">),</span>
+    <span class="n">ModelCheckpoint</span><span class="p">(</span>
+        <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;models/best_model_checkpoint.h5&#39;</span><span class="p">,</span>
+        <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span>
+        <span class="n">save_best_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="train-the-model">
+<h3>Train the Model<a class="headerlink" href="#train-the-model" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train the final model</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training final model...&quot;</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">final_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">train_generator</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">,</span> <span class="n">y_test_scaled</span><span class="p">),</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training completed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualize-training-history">
+<h3>Visualize Training History<a class="headerlink" href="#visualize-training-history" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot training history</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Loss plot</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Loss&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Loss&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Model Loss&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># MAE plot</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training MAE&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_mae&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation MAE&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Model MAE&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Error&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-6-model-evaluation">
+<h2>Step 6: Model Evaluation<a class="headerlink" href="#step-6-model-evaluation" title="Permalink to this heading"></a></h2>
+<section id="make-predictions">
+<h3>Make Predictions<a class="headerlink" href="#make-predictions" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions on test data</span>
+<span class="n">y_pred_scaled</span> <span class="o">=</span> <span class="n">final_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">scaler_y</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred_scaled</span><span class="p">)</span>
+
+<span class="c1"># Convert to 1D arrays for evaluation</span>
+<span class="n">y_test_actual</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y_pred_final</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predictions shape: </span><span class="si">{</span><span class="n">y_pred_final</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Actual values shape: </span><span class="si">{</span><span class="n">y_test_actual</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="calculate-performance-metrics">
+<h3>Calculate Performance Metrics<a class="headerlink" href="#calculate-performance-metrics" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate metrics</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test_actual</span><span class="p">,</span> <span class="n">y_pred_final</span><span class="p">)</span>
+<span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test_actual</span><span class="p">,</span> <span class="n">y_pred_final</span><span class="p">)</span>
+<span class="n">mape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y_test_actual</span> <span class="o">-</span> <span class="n">y_pred_final</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_test_actual</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Performance Metrics:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSE: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MAPE: </span><span class="si">{</span><span class="n">mape</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+<span class="c1"># R-squared</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test_actual</span> <span class="o">-</span> <span class="n">y_pred_final</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> 
+          <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test_actual</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test_actual</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualize-predictions">
+<h3>Visualize Predictions<a class="headerlink" href="#visualize-predictions" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create prediction plots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Time series plot</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y_test_actual</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y_pred_final</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Actual vs Predicted Energy Generation&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Max Generation (MW)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Scatter plot</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test_actual</span><span class="p">,</span> <span class="n">y_pred_final</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">y_test_actual</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_test_actual</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+         <span class="p">[</span><span class="n">y_test_actual</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_test_actual</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Actual Generation (MW)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Generation (MW)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Prediction Scatter Plot&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Add R² to scatter plot</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;R² = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> 
+         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;wheat&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="residual-analysis">
+<h3>Residual Analysis<a class="headerlink" href="#residual-analysis" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate residuals</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">y_test_actual</span> <span class="o">-</span> <span class="n">y_pred_final</span>
+
+<span class="c1"># Residual plots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">((</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">),</span> <span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">))</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Residuals vs predictions</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_pred_final</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Values&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals vs Predicted&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Residuals histogram</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals Distribution&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Residuals over time</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals Over Time&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Q-Q plot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s2">&quot;norm&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">ax4</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Q-Q Plot of Residuals&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-7-model-persistence">
+<h2>Step 7: Model Persistence<a class="headerlink" href="#step-7-model-persistence" title="Permalink to this heading"></a></h2>
+<section id="save-the-final-model">
+<h3>Save the Final Model<a class="headerlink" href="#save-the-final-model" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the trained model</span>
+<span class="n">model_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;models/final_model_</span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">.h5&quot;</span>
+<span class="n">final_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_filename</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model saved as: </span><span class="si">{</span><span class="n">model_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Save training history</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;models/training_history.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training history saved&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="save-model-metadata">
+<h3>Save Model Metadata<a class="headerlink" href="#save-model-metadata" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create model metadata</span>
+<span class="n">model_metadata</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;model_file&#39;</span><span class="p">:</span> <span class="n">model_filename</span><span class="p">,</span>
+    <span class="s1">&#39;training_date&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+    <span class="s1">&#39;architecture&#39;</span><span class="p">:</span> <span class="n">best_params</span><span class="p">,</span>
+    <span class="s1">&#39;performance&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;rmse&#39;</span><span class="p">:</span> <span class="n">rmse</span><span class="p">,</span>
+        <span class="s1">&#39;mae&#39;</span><span class="p">:</span> <span class="n">mae</span><span class="p">,</span>
+        <span class="s1">&#39;mape&#39;</span><span class="p">:</span> <span class="n">mape</span><span class="p">,</span>
+        <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">r2</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;training_params&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;n_input&#39;</span><span class="p">:</span> <span class="n">n_input</span><span class="p">,</span>
+        <span class="s1">&#39;n_features&#39;</span><span class="p">:</span> <span class="n">n_features</span><span class="p">,</span>
+        <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="n">features</span><span class="p">,</span>
+        <span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="n">target</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;data_info&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;train_samples&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span>
+        <span class="s1">&#39;test_samples&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span>
+        <span class="s1">&#39;train_period&#39;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()),</span> <span class="nb">str</span><span class="p">(</span><span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">())],</span>
+        <span class="s1">&#39;test_period&#39;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()),</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">())]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Save metadata</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;models/model_metadata.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model_metadata</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model metadata saved&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-8-model-loading-and-verification">
+<h2>Step 8: Model Loading and Verification<a class="headerlink" href="#step-8-model-loading-and-verification" title="Permalink to this heading"></a></h2>
+<section id="load-and-test-saved-model">
+<h3>Load and Test Saved Model<a class="headerlink" href="#load-and-test-saved-model" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+
+<span class="c1"># Load the saved model</span>
+<span class="n">loaded_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">model_filename</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;mse&#39;</span><span class="p">:</span> <span class="n">mean_squared_error</span><span class="p">})</span>
+
+<span class="c1"># Verify model by making predictions</span>
+<span class="n">test_predictions</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">original_predictions</span> <span class="o">=</span> <span class="n">final_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_reshaped</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="c1"># Check if predictions match</span>
+<span class="n">predictions_match</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">test_predictions</span><span class="p">,</span> <span class="n">original_predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model loading verification: </span><span class="si">{</span><span class="s1">&#39;✓ Passed&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">predictions_match</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;✗ Failed&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-9-model-performance-summary">
+<h2>Step 9: Model Performance Summary<a class="headerlink" href="#step-9-model-performance-summary" title="Permalink to this heading"></a></h2>
+<section id="create-performance-report">
+<h3>Create Performance Report<a class="headerlink" href="#create-performance-report" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_performance_report</span><span class="p">(</span><span class="n">model_metadata</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a formatted performance report&quot;&quot;&quot;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MODEL PERFORMANCE REPORT&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model File: </span><span class="si">{</span><span class="n">model_metadata</span><span class="p">[</span><span class="s1">&#39;model_file&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training Date: </span><span class="si">{</span><span class="n">model_metadata</span><span class="p">[</span><span class="s1">&#39;training_date&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ARCHITECTURE:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">model_metadata</span><span class="p">[</span><span class="s1">&#39;architecture&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PERFORMANCE METRICS:&quot;</span><span class="p">)</span>
+    <span class="n">perf</span> <span class="o">=</span> <span class="n">model_metadata</span><span class="p">[</span><span class="s1">&#39;performance&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  RMSE: </span><span class="si">{</span><span class="n">perf</span><span class="p">[</span><span class="s1">&#39;rmse&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MW&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  MAE: </span><span class="si">{</span><span class="n">perf</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MW&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  MAPE: </span><span class="si">{</span><span class="n">perf</span><span class="p">[</span><span class="s1">&#39;mape&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  R²: </span><span class="si">{</span><span class="n">perf</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TRAINING DETAILS:&quot;</span><span class="p">)</span>
+    <span class="n">train</span> <span class="o">=</span> <span class="n">model_metadata</span><span class="p">[</span><span class="s1">&#39;training_params&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Epochs: </span><span class="si">{</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;epochs&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Features: </span><span class="si">{</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;n_features&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Sequence Length: </span><span class="si">{</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;n_input&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA INFORMATION:&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">model_metadata</span><span class="p">[</span><span class="s1">&#39;data_info&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Training Samples: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_samples&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Test Samples: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_samples&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Training Period: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_period&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_period&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Test Period: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_period&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_period&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Generate report</span>
+<span class="n">create_performance_report</span><span class="p">(</span><span class="n">model_metadata</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices-and-tips">
+<h2>Best Practices and Tips<a class="headerlink" href="#best-practices-and-tips" title="Permalink to this heading"></a></h2>
+<section id="training-best-practices">
+<h3>Training Best Practices<a class="headerlink" href="#training-best-practices" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Data Quality</strong>: Ensure clean, properly preprocessed data</p></li>
+<li><p><strong>Temporal Splitting</strong>: Always use temporal splits for time series</p></li>
+<li><p><strong>Scaling</strong>: Fit scalers only on training data</p></li>
+<li><p><strong>Early Stopping</strong>: Prevent overfitting with early stopping</p></li>
+<li><p><strong>Model Checkpoints</strong>: Save best models during training</p></li>
+<li><p><strong>Reproducibility</strong>: Set random seeds for consistent results</p></li>
+</ol>
+</section>
+<section id="hyperparameter-optimization-tips">
+<h3>Hyperparameter Optimization Tips<a class="headerlink" href="#hyperparameter-optimization-tips" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Search Space</strong>: Define reasonable parameter ranges</p></li>
+<li><p><strong>Budget</strong>: Balance optimization time vs. improvement</p></li>
+<li><p><strong>Cross-Validation</strong>: Use proper validation for time series</p></li>
+<li><p><strong>Multiple Runs</strong>: Run optimization multiple times for robustness</p></li>
+</ol>
+</section>
+<section id="performance-evaluation">
+<h3>Performance Evaluation<a class="headerlink" href="#performance-evaluation" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Multiple Metrics</strong>: Use RMSE, MAE, MAPE, and R²</p></li>
+<li><p><strong>Residual Analysis</strong>: Check for patterns in residuals</p></li>
+<li><p><strong>Visual Inspection</strong>: Always plot predictions vs. actual values</p></li>
+<li><p><strong>Domain Knowledge</strong>: Validate results against domain expertise</p></li>
+</ol>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<section id="common-issues-and-solutions">
+<h3>Common Issues and Solutions<a class="headerlink" href="#common-issues-and-solutions" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Memory Errors</strong>: Reduce batch size or use data generators</p></li>
+<li><p><strong>Slow Training</strong>: Check GPU usage, reduce model complexity</p></li>
+<li><p><strong>Poor Performance</strong>: Check data quality, feature engineering</p></li>
+<li><p><strong>Overfitting</strong>: Increase dropout, add regularization</p></li>
+<li><p><strong>Underfitting</strong>: Increase model complexity, more epochs</p></li>
+</ol>
+<p>This completes the model training tutorial. The trained model is now ready for making predictions on new data. Next, proceed to the <a class="reference internal" href="making_predictions.html"><span class="doc">Making Predictions Tutorial</span></a> tutorial to learn how to use the model for forecasting.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

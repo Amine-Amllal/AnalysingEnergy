@@ -1,0 +1,193 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+      <script src="_static/doctools.js"></script>
+      <script src="_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul class="simple">
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p># AnalysingEnergy Documentation</p>
+<p>Welcome to the <strong>AnalysingEnergy</strong> project documentation! This project provides advanced energy prediction and analysis using LSTM neural networks and machine learning techniques.</p>
+<p>## Overview</p>
+<p>AnalysingEnergy is a comprehensive machine learning solution for predicting energy generation and consumption patterns. The project combines meteorological data with energy demand forecasting to provide accurate predictions for the next 365 days.</p>
+<p>### Key Features</p>
+<ul class="simple">
+<li><p><strong>LSTM Neural Networks</strong>: Advanced time series forecasting using optimized LSTM models</p></li>
+<li><p><strong>Multi-variable Prediction</strong>: Predicts multiple energy-related parameters including:
+- Maximum energy generation (MW)
+- Total energy demand (MW)
+- Temperature variations
+- Wind speed metrics
+- Surface pressure
+- Precipitation correlation</p></li>
+<li><p><strong>Interactive Web Interface</strong>: User-friendly Streamlit application for visualization</p></li>
+<li><p><strong>Hyperparameter Optimization</strong>: Automated model tuning using Optuna</p></li>
+<li><p><strong>365-Day Forecasting</strong>: Extended prediction capabilities for annual planning</p></li>
+</ul>
+<p>### Project Structure</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">AnalysingEnergy/</span>
+<span class="pre">├──</span> <span class="pre">Data/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Dataset</span> <span class="pre">files</span>
+<span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">data.csv</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Main</span> <span class="pre">dataset</span>
+<span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">train_data.csv</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Training</span> <span class="pre">data</span>
+<span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">test_data.csv</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Testing</span> <span class="pre">data</span>
+<span class="pre">├──</span> <span class="pre">Notebooks/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Jupyter</span> <span class="pre">notebooks</span>
+<span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">models/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Trained</span> <span class="pre">LSTM</span> <span class="pre">models</span>
+<span class="pre">│</span>&#160;&#160; <span class="pre">├──</span> <span class="pre">scalers/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Data</span> <span class="pre">preprocessing</span> <span class="pre">scalers</span>
+<span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">*.ipynb</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Analysis</span> <span class="pre">and</span> <span class="pre">modeling</span> <span class="pre">notebooks</span>
+<span class="pre">├──</span> <span class="pre">interface/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Web</span> <span class="pre">application</span>
+<span class="pre">│</span>&#160;&#160; <span class="pre">└──</span> <span class="pre">app.py</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Streamlit</span> <span class="pre">interface</span>
+<span class="pre">├──</span> <span class="pre">docs/</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Documentation</span>
+<span class="pre">└──</span> <span class="pre">requirements.txt</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">Dependencies</span>
+<span class="pre">`</span></code></p>
+<p>## Quick Start</p>
+<p>### Installation</p>
+<p>1. Clone the repository:
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/yourusername/AnalysingEnergy.git</span>
+<span class="pre">cd</span> <span class="pre">AnalysingEnergy</span>
+<span class="pre">`</span></code></p>
+<p>2. Install dependencies:
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span>
+<span class="pre">`</span></code></p>
+<p>3. Run the Streamlit interface:
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">interface/app.py</span>
+<span class="pre">`</span></code></p>
+<p>## Table of Contents</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>{toctree}
+:maxdepth: 2
+:caption: User Guide</p>
+<p>getting_started
+data_overview
+model_architecture
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>{toctree}
+:maxdepth: 2
+:caption: API Reference</p>
+<p>api/interface
+api/models
+<a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>{toctree}
+:maxdepth: 2
+:caption: Tutorials</p>
+<p>tutorials/data_preprocessing
+tutorials/model_training
+tutorials/making_predictions
+<a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<p><a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a>{toctree}
+:maxdepth: 2
+:caption: Notebooks</p>
+<p>notebooks/data_preprocessing
+notebooks/lstm_generation
+notebooks/lstm_complete
+notebooks/predicting_365_days
+<a href="#id29"><span class="problematic" id="id30">``</span></a><a href="#id31"><span class="problematic" id="id32">`</span></a></p>
+<p><a href="#id33"><span class="problematic" id="id34">``</span></a><a href="#id35"><span class="problematic" id="id36">`</span></a>{toctree}
+:maxdepth: 2
+:caption: Development</p>
+<p>contributing
+changelog
+license
+<a href="#id37"><span class="problematic" id="id38">``</span></a><a href="#id39"><span class="problematic" id="id40">`</span></a></p>
+<p>## Indices and tables</p>
+<ul class="simple">
+<li><p>{ref}`genindex`</p></li>
+<li><p>{ref}`modindex`</p></li>
+<li><p>{ref}`search`</p></li>
+</ul>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

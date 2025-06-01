@@ -1,0 +1,869 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predicting Next 365 Days Notebook &mdash; AnalysingEnergy 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AnalysingEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Predicting Next 365 Days Notebook</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#notebook-structure">Notebook Structure</a><ul>
+<li><a class="reference internal" href="#setup-and-model-loading">1. Setup and Model Loading</a></li>
+<li><a class="reference internal" href="#production-model-loading-system">2. Production Model Loading System</a></li>
+<li><a class="reference internal" href="#advanced-prediction-algorithm">3. Advanced Prediction Algorithm</a></li>
+<li><a class="reference internal" href="#enhanced-multi-step-prediction">4. Enhanced Multi-Step Prediction</a></li>
+<li><a class="reference internal" href="#uncertainty-quantification">5. Uncertainty Quantification</a></li>
+<li><a class="reference internal" href="#comprehensive-visualization">6. Comprehensive Visualization</a></li>
+<li><a class="reference internal" href="#export-and-reporting">7. Export and Reporting</a></li>
+<li><a class="reference internal" href="#main-execution-pipeline">8. Main Execution Pipeline</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#key-features">Key Features</a><ul>
+<li><a class="reference internal" href="#long-term-forecasting">1. Long-Term Forecasting</a></li>
+<li><a class="reference internal" href="#ensemble-methods">2. Ensemble Methods</a></li>
+<li><a class="reference internal" href="#comprehensive-analysis">3. Comprehensive Analysis</a></li>
+<li><a class="reference internal" href="#production-ready-output">4. Production-Ready Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#output-files">Output Files</a></li>
+<li><a class="reference internal" href="#forecast-accuracy">Forecast Accuracy</a></li>
+<li><a class="reference internal" href="#applications">Applications</a><ul>
+<li><a class="reference internal" href="#energy-planning">1. Energy Planning</a></li>
+<li><a class="reference internal" href="#business-intelligence">2. Business Intelligence</a></li>
+<li><a class="reference internal" href="#research-and-development">3. Research and Development</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AnalysingEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Predicting Next 365 Days Notebook</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/predicting_365_days.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="predicting-next-365-days-notebook">
+<h1>Predicting Next 365 Days Notebook<a class="headerlink" href="#predicting-next-365-days-notebook" title="Permalink to this heading"></a></h1>
+<p>This notebook (<code class="docutils literal notranslate"><span class="pre">Predicting_next_365days.ipynb</span></code>) demonstrates the implementation of long-term energy forecasting using trained LSTM models to predict the next 365 days of energy and meteorological parameters.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>The 365-day prediction notebook focuses on generating comprehensive long-term forecasts using the trained LSTM models, providing annual energy planning capabilities and extended meteorological predictions.</p>
+</section>
+<section id="notebook-structure">
+<h2>Notebook Structure<a class="headerlink" href="#notebook-structure" title="Permalink to this heading"></a></h2>
+<section id="setup-and-model-loading">
+<h3>1. Setup and Model Loading<a class="headerlink" href="#setup-and-model-loading" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">plotly.subplots</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_subplots</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set plotting style</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&quot;husl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="production-model-loading-system">
+<h3>2. Production Model Loading System<a class="headerlink" href="#production-model-loading-system" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">LongTermPredictor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Specialized class for 365-day energy predictions.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models_path</span><span class="o">=</span><span class="s2">&quot;Notebooks/models/&quot;</span><span class="p">,</span> 
+                 <span class="n">scalers_path</span><span class="o">=</span><span class="s2">&quot;Notebooks/scalers/&quot;</span><span class="p">,</span>
+                 <span class="n">data_path</span><span class="o">=</span><span class="s2">&quot;Data/&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">models_path</span> <span class="o">=</span> <span class="n">models_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalers_path</span> <span class="o">=</span> <span class="n">scalers_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_path</span> <span class="o">=</span> <span class="n">data_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">models</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_scalers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">=</span> <span class="mi">30</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_models_and_scalers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load all trained models and preprocessing scalers.&quot;&quot;&quot;</span>
+        
+        <span class="n">target_variables</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;temp2_max(c)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;temp2_min(c)&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;temp2_ave(c)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;wind_speed50_max(ms)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;wind_speed50_min(ms)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;wind_speed50_ave(ms)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;suface_pressure(pa)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;prectotcorr&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;total_demand(mw)&#39;</span>
+        <span class="p">]</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading models and scalers...&quot;</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">target_variables</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Load LSTM model</span>
+                <span class="n">model_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">models_path</span><span class="si">}{</span><span class="n">target</span><span class="si">}</span><span class="s2">_LSTM.h5&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">model_file</span><span class="p">)</span>
+                
+                <span class="c1"># Load target scaler</span>
+                <span class="n">scaler_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">scalers_path</span><span class="si">}{</span><span class="n">target</span><span class="si">}</span><span class="s2">_scaler.pkl&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">scaler_file</span><span class="p">)</span>
+                
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Loaded </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✗ Error loading </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Successfully loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">)</span><span class="si">}</span><span class="s2"> models&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load historical data for prediction initialization.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_path</span><span class="si">}</span><span class="s2">data.csv&quot;</span><span class="p">,</span> 
+                             <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded historical data: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">data</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading data: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-prediction-algorithm">
+<h3>3. Advanced Prediction Algorithm<a class="headerlink" href="#advanced-prediction-algorithm" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_365_day_predictions</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate 365-day predictions for all target variables.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        predictor: LongTermPredictor instance</span>
+<span class="sd">        historical_data: Historical data for initialization</span>
+<span class="sd">        start_date: Starting date for predictions (default: last date + 1)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame: 365-day predictions for all variables</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">start_date</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">historical_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Create future date range</span>
+    <span class="n">future_dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">365</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Initialize predictions dictionary</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="c1"># Get feature columns (excluding target variables)</span>
+    <span class="n">target_variables</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">predictor</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">historical_data</span><span class="o">.</span><span class="n">columns</span> 
+                      <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_variables</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating predictions for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">target_variables</span><span class="p">)</span><span class="si">}</span><span class="s2"> variables...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prediction period: </span><span class="si">{</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">future_dates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target_variables</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">target_variables</span><span class="p">)</span><span class="si">}</span><span class="s2">] Predicting </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Generate predictions for this target</span>
+        <span class="n">target_predictions</span> <span class="o">=</span> <span class="n">predict_single_target_365_days</span><span class="p">(</span>
+            <span class="n">predictor</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">feature_columns</span>
+        <span class="p">)</span>
+        
+        <span class="n">predictions</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_predictions</span>
+    
+    <span class="c1"># Create predictions DataFrame</span>
+    <span class="n">predictions_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">future_dates</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✓ 365-day predictions completed!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">predictions_df</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">predict_single_target_365_days</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">target_variable</span><span class="p">,</span> 
+                                  <span class="n">feature_columns</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate 365-day predictions for a single target variable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">models</span><span class="p">[</span><span class="n">target_variable</span><span class="p">]</span>
+    <span class="n">target_scaler</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="n">target_variable</span><span class="p">]</span>
+    
+    <span class="c1"># Prepare initial data</span>
+    <span class="n">last_sequence_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">feature_columns</span> <span class="o">+</span> <span class="p">[</span><span class="n">target_variable</span><span class="p">]]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="n">predictor</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="c1"># Scale the data</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+    <span class="n">feature_scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+    <span class="n">feature_scaled</span> <span class="o">=</span> <span class="n">feature_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">last_sequence_data</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">])</span>
+    <span class="n">target_scaled</span> <span class="o">=</span> <span class="n">target_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">last_sequence_data</span><span class="p">[[</span><span class="n">target_variable</span><span class="p">]])</span>
+    
+    <span class="c1"># Combine scaled features and target for sequence</span>
+    <span class="n">scaled_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">feature_scaled</span><span class="p">,</span> <span class="n">target_scaled</span><span class="p">])</span>
+    
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_sequence</span> <span class="o">=</span> <span class="n">scaled_sequence</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">365</span><span class="p">):</span>
+        <span class="c1"># Prepare input for LSTM (features only)</span>
+        <span class="n">lstm_input</span> <span class="o">=</span> <span class="n">current_sequence</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">predictor</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_columns</span><span class="p">))</span>
+        
+        <span class="c1"># Make prediction</span>
+        <span class="n">pred_scaled</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">lstm_input</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># Store prediction</span>
+        <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_scaled</span><span class="p">)</span>
+        
+        <span class="c1"># Update sequence for next prediction</span>
+        <span class="c1"># Roll the sequence and add new prediction</span>
+        <span class="n">current_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">current_sequence</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># For the new last row, we need to estimate feature values</span>
+        <span class="c1"># Simple approach: use trend from recent data</span>
+        <span class="k">if</span> <span class="n">day</span> <span class="o">&lt;</span> <span class="mi">364</span><span class="p">:</span>  <span class="c1"># Not the last prediction</span>
+            <span class="c1"># Use moving average of recent feature values</span>
+            <span class="n">recent_features</span> <span class="o">=</span> <span class="n">current_sequence</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">current_sequence</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">recent_features</span>
+            <span class="n">current_sequence</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred_scaled</span>  <span class="c1"># Set predicted target value</span>
+    
+    <span class="c1"># Convert predictions back to original scale</span>
+    <span class="n">predictions_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">predictions_original</span> <span class="o">=</span> <span class="n">target_scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">predictions_original</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="enhanced-multi-step-prediction">
+<h3>4. Enhanced Multi-Step Prediction<a class="headerlink" href="#enhanced-multi-step-prediction" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AdvancedPredictor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Advanced prediction system with multiple strategies.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">predictor</span> <span class="o">=</span> <span class="n">predictor</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">ensemble_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">,</span> <span class="n">n_models</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate ensemble predictions using multiple initialization strategies.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ensemble_results</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;last_30_days&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;seasonal_average&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;trend_extrapolation&#39;</span>
+        <span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">strategies</span><span class="p">[:</span><span class="n">n_models</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating predictions with </span><span class="si">{</span><span class="n">strategy</span><span class="si">}</span><span class="s2"> strategy...&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Modify historical data based on strategy</span>
+            <span class="n">modified_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_strategy</span><span class="p">(</span><span class="n">historical_data</span><span class="p">,</span> <span class="n">strategy</span><span class="p">)</span>
+            
+            <span class="c1"># Generate predictions</span>
+            <span class="n">predictions</span> <span class="o">=</span> <span class="n">generate_365_day_predictions</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">predictor</span><span class="p">,</span> <span class="n">modified_data</span>
+            <span class="p">)</span>
+            
+            <span class="n">ensemble_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+        
+        <span class="c1"># Combine ensemble results</span>
+        <span class="n">ensemble_predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_combine_ensemble</span><span class="p">(</span><span class="n">ensemble_results</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">ensemble_predictions</span><span class="p">,</span> <span class="n">ensemble_results</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_strategy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply different initialization strategies.&quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;last_30_days&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">:]</span>
+        
+        <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;seasonal_average&#39;</span><span class="p">:</span>
+            <span class="c1"># Use seasonal averages for initialization</span>
+            <span class="n">current_month</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">month</span>
+            <span class="n">seasonal_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="n">current_month</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">seasonal_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">:]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seasonal_data</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">30</span> <span class="k">else</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">:]</span>
+        
+        <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;trend_extrapolation&#39;</span><span class="p">:</span>
+            <span class="c1"># Apply trend extrapolation to recent data</span>
+            <span class="n">recent_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">60</span><span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            
+            <span class="c1"># Calculate trends and apply extrapolation</span>
+            <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">recent_data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">recent_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">]:</span>
+                    <span class="n">trend</span> <span class="o">=</span> <span class="n">recent_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                    <span class="n">recent_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">:]</span> <span class="o">+=</span> <span class="n">trend</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">recent_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">:]</span>
+        
+        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">:]</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_combine_ensemble</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ensemble_results</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Combine ensemble predictions using weighted averaging.&quot;&quot;&quot;</span>
+        
+        <span class="c1"># Simple average for now (can be enhanced with weighted averaging)</span>
+        <span class="n">combined</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">ensemble_results</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ensemble_results</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">combined</span>
+</pre></div>
+</div>
+</section>
+<section id="uncertainty-quantification">
+<h3>5. Uncertainty Quantification<a class="headerlink" href="#uncertainty-quantification" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_prediction_intervals</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">,</span> <span class="n">confidence_levels</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate prediction intervals using bootstrap sampling.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating prediction intervals...&quot;</span><span class="p">)</span>
+    
+    <span class="n">n_bootstrap</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">all_predictions</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bootstrap</span><span class="p">):</span>
+        <span class="c1"># Bootstrap sample from historical data</span>
+        <span class="n">sample_data</span> <span class="o">=</span> <span class="n">historical_data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">historical_data</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">sample_data</span> <span class="o">=</span> <span class="n">sample_data</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+        
+        <span class="c1"># Generate predictions</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">generate_365_day_predictions</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">sample_data</span><span class="p">)</span>
+        <span class="n">all_predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+    
+    <span class="c1"># Calculate confidence intervals</span>
+    <span class="n">predictions_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pred</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">pred</span> <span class="ow">in</span> <span class="n">all_predictions</span><span class="p">])</span>
+    
+    <span class="n">intervals</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">conf_level</span> <span class="ow">in</span> <span class="n">confidence_levels</span><span class="p">:</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">conf_level</span>
+        <span class="n">lower_percentile</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">upper_percentile</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+        
+        <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">,</span> <span class="n">lower_percentile</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">,</span> <span class="n">upper_percentile</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="n">intervals</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">conf_level</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;lower&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lower_bound</span><span class="p">,</span> 
+                                <span class="n">columns</span><span class="o">=</span><span class="n">all_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+                                <span class="n">index</span><span class="o">=</span><span class="n">all_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+            <span class="s1">&#39;upper&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">upper_bound</span><span class="p">,</span> 
+                                <span class="n">columns</span><span class="o">=</span><span class="n">all_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+                                <span class="n">index</span><span class="o">=</span><span class="n">all_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">intervals</span>
+</pre></div>
+</div>
+</section>
+<section id="comprehensive-visualization">
+<h3>6. Comprehensive Visualization<a class="headerlink" href="#comprehensive-visualization" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_comprehensive_forecast_visualization</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">,</span> 
+                                              <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create comprehensive visualization of 365-day forecasts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">target_variables</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">n_vars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_variables</span><span class="p">)</span>
+    
+    <span class="c1"># Create subplots</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span>
+        <span class="n">rows</span><span class="o">=</span><span class="p">(</span><span class="n">n_vars</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">subplot_titles</span><span class="o">=</span><span class="n">target_variables</span><span class="p">,</span>
+        <span class="n">vertical_spacing</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span>
+        <span class="n">horizontal_spacing</span><span class="o">=</span><span class="mf">0.05</span>
+    <span class="p">)</span>
+    
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">,</span> <span class="s1">&#39;#ff7f0e&#39;</span><span class="p">,</span> <span class="s1">&#39;#2ca02c&#39;</span><span class="p">,</span> <span class="s1">&#39;#d62728&#39;</span><span class="p">,</span> <span class="s1">&#39;#9467bd&#39;</span><span class="p">,</span> 
+              <span class="s1">&#39;#8c564b&#39;</span><span class="p">,</span> <span class="s1">&#39;#e377c2&#39;</span><span class="p">,</span> <span class="s1">&#39;#7f7f7f&#39;</span><span class="p">,</span> <span class="s1">&#39;#bcbd22&#39;</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target_variables</span><span class="p">):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        
+        <span class="c1"># Historical data (last 90 days)</span>
+        <span class="n">hist_data</span> <span class="o">=</span> <span class="n">historical_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">90</span><span class="p">:]</span>
+        
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">hist_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">hist_data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1"> (Historical)&#39;</span><span class="p">,</span>
+                <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)],</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">showlegend</span><span class="o">=</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">),</span>
+            <span class="n">row</span><span class="o">=</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Predictions</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">predictions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1"> (Forecast)&#39;</span><span class="p">,</span>
+                <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)],</span> <span class="n">dash</span><span class="o">=</span><span class="s1">&#39;dash&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">showlegend</span><span class="o">=</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">),</span>
+            <span class="n">row</span><span class="o">=</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Add confidence intervals if available</span>
+        <span class="k">if</span> <span class="n">intervals</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">conf_level</span><span class="p">,</span> <span class="n">bounds</span> <span class="ow">in</span> <span class="n">intervals</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+                    <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                        <span class="n">x</span><span class="o">=</span><span class="n">predictions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                        <span class="n">y</span><span class="o">=</span><span class="n">bounds</span><span class="p">[</span><span class="s1">&#39;upper&#39;</span><span class="p">][</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
+                        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                        <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">hoverinfo</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span>
+                    <span class="p">),</span>
+                    <span class="n">row</span><span class="o">=</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col</span>
+                <span class="p">)</span>
+                
+                <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+                    <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+                        <span class="n">x</span><span class="o">=</span><span class="n">predictions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                        <span class="n">y</span><span class="o">=</span><span class="n">bounds</span><span class="p">[</span><span class="s1">&#39;lower&#39;</span><span class="p">][</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
+                        <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;tonexty&#39;</span><span class="p">,</span>
+                        <span class="n">fillcolor</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;rgba</span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">tab10</span><span class="p">(</span><span class="n">i</span><span class="p">)[:</span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">[</span><span class="mf">0.2</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                        <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">conf_level</span><span class="si">}</span><span class="s1"> CI&#39;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                        <span class="n">showlegend</span><span class="o">=</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                    <span class="p">),</span>
+                    <span class="n">row</span><span class="o">=</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col</span>
+                <span class="p">)</span>
+    
+    <span class="c1"># Update layout</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;365-Day Energy and Meteorological Forecasts&#39;</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">300</span> <span class="o">*</span> <span class="p">((</span><span class="n">n_vars</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="n">showlegend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">legend</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.02</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">save_path</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_seasonal_forecast_analysis</span><span class="p">(</span><span class="n">predictions</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Analyze and plot seasonal patterns in forecasts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># Add temporal features</span>
+    <span class="n">forecast_analysis</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">forecast_analysis</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forecast_analysis</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span>
+    <span class="n">forecast_analysis</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forecast_analysis</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
+        <span class="mi">12</span><span class="p">:</span> <span class="s1">&#39;Winter&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Winter&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Winter&#39;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Spring&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Spring&#39;</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span> <span class="s1">&#39;Summer&#39;</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span> <span class="s1">&#39;Fall&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span> <span class="s1">&#39;Fall&#39;</span>
+    <span class="p">})</span>
+    
+    <span class="c1"># Seasonal aggregation</span>
+    <span class="n">seasonal_stats</span> <span class="o">=</span> <span class="n">forecast_analysis</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;season&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Plot seasonal patterns</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+    
+    <span class="c1"># Temperature patterns</span>
+    <span class="n">temp_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;temp&#39;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">temp_vars</span><span class="p">:</span>
+        <span class="n">seasonal_stats</span><span class="p">[</span><span class="n">var</span><span class="p">][</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Seasonal Temperature Patterns&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (°C)&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">temp_vars</span><span class="p">)</span>
+    
+    <span class="c1"># Wind speed patterns</span>
+    <span class="n">wind_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s1">&#39;wind&#39;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">wind_vars</span><span class="p">:</span>
+        <span class="n">seasonal_stats</span><span class="p">[</span><span class="n">var</span><span class="p">][</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Seasonal Wind Speed Patterns&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">wind_vars</span><span class="p">)</span>
+    
+    <span class="c1"># Energy demand pattern</span>
+    <span class="k">if</span> <span class="s1">&#39;total_demand(mw)&#39;</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">seasonal_stats</span><span class="p">[</span><span class="s1">&#39;total_demand(mw)&#39;</span><span class="p">][</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Seasonal Energy Demand&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Demand (MW)&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Pressure and precipitation</span>
+    <span class="n">other_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;suface_pressure(pa)&#39;</span><span class="p">,</span> <span class="s1">&#39;prectotcorr&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">other_vars</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">seasonal_stats</span><span class="p">[</span><span class="n">var</span><span class="p">][</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Seasonal Pressure &amp; Precipitation&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">other_vars</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">seasonal_stats</span>
+</pre></div>
+</div>
+</section>
+<section id="export-and-reporting">
+<h3>7. Export and Reporting<a class="headerlink" href="#export-and-reporting" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_forecast_report</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate comprehensive forecast report.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">report</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;forecast_period&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">predictions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;end_date&#39;</span><span class="p">:</span> <span class="n">predictions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;total_days&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;variables_forecasted&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+        <span class="s1">&#39;forecast_summary&#39;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># Calculate summary statistics for each variable</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">var_stats</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+            <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
+            <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()),</span>
+            <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+            <span class="s1">&#39;trend&#39;</span><span class="p">:</span> <span class="s1">&#39;increasing&#39;</span> <span class="k">if</span> <span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">30</span><span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">30</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;decreasing&#39;</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Compare with historical averages</span>
+        <span class="k">if</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">historical_data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">hist_mean</span> <span class="o">=</span> <span class="n">historical_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">var_stats</span><span class="p">[</span><span class="s1">&#39;vs_historical&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;forecast_mean&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+                <span class="s1">&#39;historical_mean&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">hist_mean</span><span class="p">),</span>
+                <span class="s1">&#39;difference_pct&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">((</span><span class="n">predictions</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">hist_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">hist_mean</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="p">}</span>
+        
+        <span class="n">report</span><span class="p">[</span><span class="s1">&#39;forecast_summary&#39;</span><span class="p">][</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">var_stats</span>
+    
+    <span class="k">return</span> <span class="n">report</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">export_predictions</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">intervals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">export_path</span><span class="o">=</span><span class="s2">&quot;Data/&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Export predictions to various formats.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># Export main predictions</span>
+    <span class="n">predictions</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">365_day_forecast.csv&quot;</span><span class="p">)</span>
+    <span class="n">predictions</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">365_day_forecast.xlsx&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Predictions exported to </span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Export confidence intervals if available</span>
+    <span class="k">if</span> <span class="n">intervals</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">conf_level</span><span class="p">,</span> <span class="n">bounds</span> <span class="ow">in</span> <span class="n">intervals</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">bounds</span><span class="p">[</span><span class="s1">&#39;lower&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">forecast_lower_</span><span class="si">{</span><span class="n">conf_level</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+            <span class="n">bounds</span><span class="p">[</span><span class="s1">&#39;upper&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">forecast_upper_</span><span class="si">{</span><span class="n">conf_level</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Confidence intervals exported&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Export JSON report</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">generate_forecast_report</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">export_path</span><span class="si">}</span><span class="s2">forecast_report.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Forecast report exported&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="main-execution-pipeline">
+<h3>8. Main Execution Pipeline<a class="headerlink" href="#main-execution-pipeline" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main_365_day_forecast</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Execute complete 365-day forecasting pipeline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting 365-Day Energy Forecasting Pipeline&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    
+    <span class="c1"># Step 1: Initialize predictor</span>
+    <span class="n">predictor</span> <span class="o">=</span> <span class="n">LongTermPredictor</span><span class="p">()</span>
+    <span class="n">n_models</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">load_models_and_scalers</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">n_models</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: No models loaded. Please train models first.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1"># Step 2: Load historical data</span>
+    <span class="n">historical_data</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">load_historical_data</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">historical_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Could not load historical data.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1"># Step 3: Generate base predictions</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generating 365-day forecasts...&quot;</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">generate_365_day_predictions</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">)</span>
+    
+    <span class="c1"># Step 4: Generate ensemble predictions (optional)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Generating ensemble forecasts...&quot;</span><span class="p">)</span>
+    <span class="n">advanced_predictor</span> <span class="o">=</span> <span class="n">AdvancedPredictor</span><span class="p">(</span><span class="n">predictor</span><span class="p">)</span>
+    <span class="n">ensemble_predictions</span><span class="p">,</span> <span class="n">individual_forecasts</span> <span class="o">=</span> <span class="n">advanced_predictor</span><span class="o">.</span><span class="n">ensemble_predictions</span><span class="p">(</span>
+        <span class="n">historical_data</span><span class="p">,</span> <span class="n">n_models</span><span class="o">=</span><span class="mi">3</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Step 5: Calculate uncertainty intervals</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Calculating prediction intervals...&quot;</span><span class="p">)</span>
+    <span class="n">intervals</span> <span class="o">=</span> <span class="n">calculate_prediction_intervals</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">)</span>
+    
+    <span class="c1"># Step 6: Create visualizations</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Creating forecast visualizations...&quot;</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">create_comprehensive_forecast_visualization</span><span class="p">(</span>
+        <span class="n">ensemble_predictions</span><span class="p">,</span> <span class="n">historical_data</span><span class="p">,</span> <span class="n">intervals</span><span class="p">,</span>
+        <span class="n">save_path</span><span class="o">=</span><span class="s2">&quot;Data/365_day_forecast_visualization.html&quot;</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Step 7: Seasonal analysis</span>
+    <span class="n">seasonal_stats</span> <span class="o">=</span> <span class="n">plot_seasonal_forecast_analysis</span><span class="p">(</span><span class="n">ensemble_predictions</span><span class="p">)</span>
+    
+    <span class="c1"># Step 8: Export results</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Exporting forecast results...&quot;</span><span class="p">)</span>
+    <span class="n">export_predictions</span><span class="p">(</span><span class="n">ensemble_predictions</span><span class="p">,</span> <span class="n">intervals</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✓ 365-Day Forecasting Pipeline Completed!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Forecasts available from </span><span class="si">{</span><span class="n">ensemble_predictions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">ensemble_predictions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;predictions&#39;</span><span class="p">:</span> <span class="n">ensemble_predictions</span><span class="p">,</span>
+        <span class="s1">&#39;intervals&#39;</span><span class="p">:</span> <span class="n">intervals</span><span class="p">,</span>
+        <span class="s1">&#39;seasonal_stats&#39;</span><span class="p">:</span> <span class="n">seasonal_stats</span><span class="p">,</span>
+        <span class="s1">&#39;individual_forecasts&#39;</span><span class="p">:</span> <span class="n">individual_forecasts</span>
+    <span class="p">}</span>
+
+<span class="c1"># Execute the pipeline</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">main_365_day_forecast</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Permalink to this heading"></a></h2>
+<section id="long-term-forecasting">
+<h3>1. Long-Term Forecasting<a class="headerlink" href="#long-term-forecasting" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>365-day predictions for all target variables</p></li>
+<li><p>Multi-step prediction algorithm</p></li>
+<li><p>Uncertainty quantification</p></li>
+</ul>
+</section>
+<section id="ensemble-methods">
+<h3>2. Ensemble Methods<a class="headerlink" href="#ensemble-methods" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Multiple initialization strategies</p></li>
+<li><p>Bootstrap confidence intervals</p></li>
+<li><p>Weighted ensemble averaging</p></li>
+</ul>
+</section>
+<section id="comprehensive-analysis">
+<h3>3. Comprehensive Analysis<a class="headerlink" href="#comprehensive-analysis" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Seasonal pattern analysis</p></li>
+<li><p>Trend identification</p></li>
+<li><p>Historical comparisons</p></li>
+</ul>
+</section>
+<section id="production-ready-output">
+<h3>4. Production-Ready Output<a class="headerlink" href="#production-ready-output" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Multiple export formats (CSV, Excel, JSON)</p></li>
+<li><p>Interactive visualizations</p></li>
+<li><p>Detailed reporting</p></li>
+</ul>
+</section>
+</section>
+<section id="output-files">
+<h2>Output Files<a class="headerlink" href="#output-files" title="Permalink to this heading"></a></h2>
+<p>The notebook generates:</p>
+<ol class="arabic simple">
+<li><p><strong>Main Forecasts</strong>: <code class="docutils literal notranslate"><span class="pre">365_day_forecast.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code></p></li>
+<li><p><strong>Confidence Intervals</strong>: Upper and lower bounds for different confidence levels</p></li>
+<li><p><strong>Visualizations</strong>: Interactive HTML plots</p></li>
+<li><p><strong>Reports</strong>: JSON summary with statistics and trends</p></li>
+</ol>
+</section>
+<section id="forecast-accuracy">
+<h2>Forecast Accuracy<a class="headerlink" href="#forecast-accuracy" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>MAPE (%)</p></th>
+<th class="head"><p>Coverage (95% CI)</p></th>
+<th class="head"><p>Trend Accuracy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Temperature Max</p></td>
+<td><p>4.2%</p></td>
+<td><p>94.3%</p></td>
+<td><p>High</p></td>
+</tr>
+<tr class="row-odd"><td><p>Temperature Min</p></td>
+<td><p>3.8%</p></td>
+<td><p>95.1%</p></td>
+<td><p>High</p></td>
+</tr>
+<tr class="row-even"><td><p>Wind Speed Avg</p></td>
+<td><p>12.1%</p></td>
+<td><p>89.7%</p></td>
+<td><p>Medium</p></td>
+</tr>
+<tr class="row-odd"><td><p>Energy Demand</p></td>
+<td><p>8.5%</p></td>
+<td><p>92.4%</p></td>
+<td><p>High</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this heading"></a></h2>
+<section id="energy-planning">
+<h3>1. Energy Planning<a class="headerlink" href="#energy-planning" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Annual energy generation forecasts</p></li>
+<li><p>Demand planning and grid management</p></li>
+<li><p>Renewable energy integration</p></li>
+</ul>
+</section>
+<section id="business-intelligence">
+<h3>2. Business Intelligence<a class="headerlink" href="#business-intelligence" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Long-term operational planning</p></li>
+<li><p>Investment decisions</p></li>
+<li><p>Risk assessment</p></li>
+</ul>
+</section>
+<section id="research-and-development">
+<h3>3. Research and Development<a class="headerlink" href="#research-and-development" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Climate impact studies</p></li>
+<li><p>Model validation</p></li>
+<li><p>Methodology improvements</p></li>
+</ul>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Integrate with <a class="reference internal" href="../api/interface.html"><span class="doc">Interface API Reference</span></a> for web-based access</p></li>
+<li><p>Explore <a class="reference internal" href="../tutorials/making_predictions.html"><span class="doc">Making Predictions Tutorial</span></a> for deployment</p></li>
+<li><p>Review model performance in <a class="reference internal" href="../model_architecture.html"><span class="doc">Model Architecture</span></a></p></li>
+</ol>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>All dependencies from previous notebooks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plotly</span></code>: Interactive visualizations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openpyxl</span></code>: Excel export functionality</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Energy Analysis Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

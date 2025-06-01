@@ -1,0 +1,27 @@
+# Documentation Requirements for ReadTheDocs
+# Sphinx and core documentation tools
+sphinx>=5.0.0,<7.0.0
+sphinx-rtd-theme>=1.2.0
+myst-parser>=0.18.0
+nbsphinx>=0.8.0
+
+# Extensions for enhanced documentation
+sphinx-autodoc-typehints>=1.19.0
+sphinx-copybutton>=0.5.0
+sphinxcontrib-bibtex>=2.5.0
+
+# Jupyter notebook support
+jupyter>=1.0.0
+ipython>=8.0.0
+notebook>=6.4.0
+
+# Required for building API docs from code
+# Include minimal versions of main dependencies
+pandas>=1.5.0
+numpy>=1.21.0
+scikit-learn>=1.1.0
+tensorflow>=2.10.0
+streamlit>=1.20.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.10.0
