@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dépannage et Résolution de Problèmes &mdash; AnalysingGreenEnergy 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Questions Fréquentes (FAQ)" href="faq.html" />
+    <link rel="prev" title="Interface utilisateur" href="interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AnalysingGreenEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide d'utilisation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_description.html">Description des données</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Analyse des données</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">Analyse des Données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Prétraitement des Données</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modélisation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lstm_models.html">Modèles LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperparameter_optimization.html">Optimisation des hyperparamètres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Évaluation des Modèles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface utilisateur</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Interface utilisateur</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dépannage et Résolution de Problèmes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#problemes-d-installation">Problèmes d’installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#erreurs-lors-de-l-installation-des-dependances">Erreurs lors de l’installation des dépendances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problemes-avec-cuda-gpu">Problèmes avec CUDA/GPU</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#problemes-de-donnees">Problèmes de données</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fichier-de-donnees-non-trouve">Fichier de données non trouvé</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#format-de-donnees-incorrect">Format de données incorrect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#valeurs-manquantes-excessives">Valeurs manquantes excessives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#problemes-de-modeles">Problèmes de modèles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modele-pre-entraine-non-trouve">Modèle pré-entraîné non trouvé</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erreurs-d-entrainement">Erreurs d’entraînement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#probleme-de-memoire-gpu">Problème de mémoire GPU</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#problemes-d-interface-streamlit">Problèmes d’interface Streamlit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#application-streamlit-ne-demarre-pas">Application Streamlit ne démarre pas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problemes-de-visualisation">Problèmes de visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erreurs-de-prediction">Erreurs de prédiction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#problemes-de-performance">Problèmes de performance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#entrainement-trop-lent">Entraînement trop lent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#predictions-lentes">Prédictions lentes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#problemes-de-deploiement">Problèmes de déploiement</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#problemes-avec-requirements-txt">Problèmes avec requirements.txt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problemes-avec-l-environnement-virtuel">Problèmes avec l’environnement virtuel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-avance">Debugging avancé</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#activation-du-debugging-tensorflow">Activation du debugging TensorFlow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#profiling-des-performances">Profiling des performances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification-de-l-integrite-des-donnees">Vérification de l’intégrité des données</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logs-et-monitoring">Logs et monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contact-et-support">Contact et support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checklist-de-depannage">Checklist de dépannage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Questions Fréquentes (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnalysingGreenEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Dépannage et Résolution de Problèmes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-username/AnalysingEnergy/blob/main/docs/troubleshooting.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="depannage-et-resolution-de-problemes">
+<h1>Dépannage et Résolution de Problèmes<a class="headerlink" href="#depannage-et-resolution-de-problemes" title="Link to this heading"></a></h1>
+<p>Cette section aide à résoudre les problèmes courants rencontrés lors de l’utilisation du projet AnalysingEnergy.</p>
+<section id="problemes-d-installation">
+<h2>Problèmes d’installation<a class="headerlink" href="#problemes-d-installation" title="Link to this heading"></a></h2>
+<section id="erreurs-lors-de-l-installation-des-dependances">
+<h3>Erreurs lors de l’installation des dépendances<a class="headerlink" href="#erreurs-lors-de-l-installation-des-dependances" title="Link to this heading"></a></h3>
+<p><strong>Problème</strong> : Erreurs lors de <cite>pip install -r requirements.txt</cite></p>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Mise à jour de pip</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</pre></div>
+</div>
+</li>
+<li><p><strong>Installation avec cache désactivé</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p><strong>Installation par étapes</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Installation des dépendances principales d&#39;abord</span>
+pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w"> </span>numpy<span class="w"> </span>matplotlib
+pip<span class="w"> </span>install<span class="w"> </span>tensorflow<span class="w"> </span>scikit-learn
+pip<span class="w"> </span>install<span class="w"> </span>streamlit<span class="w"> </span>plotly<span class="w"> </span>optuna
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Problème</strong> : Conflit de versions TensorFlow</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ERROR: tensorflow 2.x.x has requirement numpy&gt;=1.19.2, but you have numpy 1.18.0
+</pre></div>
+</div>
+<p><strong>Solution</strong> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>numpy
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">tensorflow</span><span class="o">==</span><span class="m">2</span>.13.0<span class="w">  </span><span class="c1"># Version stable recommandée</span>
+</pre></div>
+</div>
+</section>
+<section id="problemes-avec-cuda-gpu">
+<h3>Problèmes avec CUDA/GPU<a class="headerlink" href="#problemes-avec-cuda-gpu" title="Link to this heading"></a></h3>
+<p><strong>Problème</strong> : TensorFlow ne détecte pas le GPU</p>
+<p><strong>Vérification</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU disponible: </span><span class="si">{</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CUDA construit: </span><span class="si">{</span><span class="n">tf</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">is_built_with_cuda</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Installation TensorFlow-GPU</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>tensorflow
+pip<span class="w"> </span>install<span class="w"> </span>tensorflow-gpu<span class="o">==</span><span class="m">2</span>.13.0
+</pre></div>
+</div>
+</li>
+<li><p><strong>Vérification des versions CUDA/cuDNN</strong></p>
+<ul class="simple">
+<li><p>TensorFlow 2.13: CUDA 11.8, cuDNN 8.6</p></li>
+<li><p>Télécharger depuis le site NVIDIA</p></li>
+</ul>
+</li>
+<li><p><strong>Variables d’environnement</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">TF_FORCE_GPU_ALLOW_GROWTH</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="problemes-de-donnees">
+<h2>Problèmes de données<a class="headerlink" href="#problemes-de-donnees" title="Link to this heading"></a></h2>
+<section id="fichier-de-donnees-non-trouve">
+<h3>Fichier de données non trouvé<a class="headerlink" href="#fichier-de-donnees-non-trouve" title="Link to this heading"></a></h3>
+<p><strong>Erreur</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FileNotFoundError: [Errno 2] No such file or directory: &#39;Data/data.csv&#39;
+</pre></div>
+</div>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Vérification du chemin</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Répertoire courant: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fichiers disponibles: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Utilisation de chemins absolus</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Téléchargement du dataset</strong></p>
+<p>Si le fichier est manquant, assurez-vous d’avoir le dataset BanE-16 complet.</p>
+</li>
+</ol>
+</section>
+<section id="format-de-donnees-incorrect">
+<h3>Format de données incorrect<a class="headerlink" href="#format-de-donnees-incorrect" title="Link to this heading"></a></h3>
+<p><strong>Erreur</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ValueError: Les colonnes requises sont manquantes: [&#39;max_generation(mw)&#39;]
+</pre></div>
+</div>
+<p><strong>Solution</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vérification des colonnes</span>
+<span class="n">required_columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;min_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;max_temperature&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;min_windspeed&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_windspeed&#39;</span><span class="p">,</span> <span class="s1">&#39;max_windspeed&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_precipitation&#39;</span><span class="p">,</span> <span class="s1">&#39;surface_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_relative_humidity&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;max_generation(mw)&#39;</span>
+<span class="p">]</span>
+
+<span class="n">missing_columns</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">required_columns</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">missing_columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Colonnes manquantes: </span><span class="si">{</span><span class="n">missing_columns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Mapper les noms de colonnes si nécessaire</span>
+    <span class="n">column_mapping</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;generation_max&#39;</span><span class="p">:</span> <span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;temp_min&#39;</span><span class="p">:</span> <span class="s1">&#39;min_temperature&#39;</span><span class="p">,</span>
+        <span class="c1"># ... autres mappings</span>
+    <span class="p">}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_mapping</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="valeurs-manquantes-excessives">
+<h3>Valeurs manquantes excessives<a class="headerlink" href="#valeurs-manquantes-excessives" title="Link to this heading"></a></h3>
+<p><strong>Problème</strong> : Trop de valeurs manquantes dans le dataset</p>
+<p><strong>Diagnostic</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyse des valeurs manquantes</span>
+<span class="n">missing_stats</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">missing_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">missing_stats</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pourcentage de valeurs manquantes par colonne:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">pct</span> <span class="ow">in</span> <span class="n">missing_pct</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">pct</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pct</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Interpolation pour valeurs manquantes &lt; 10%</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interpolation linéaire</span>
+<span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Suppression pour valeurs manquantes &gt; 50%</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suppression des colonnes avec trop de valeurs manquantes</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Imputation avancée</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNNImputer</span>
+
+<span class="n">imputer</span> <span class="o">=</span> <span class="n">KNNImputer</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">numeric_columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">data</span><span class="p">[</span><span class="n">numeric_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">numeric_columns</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="problemes-de-modeles">
+<h2>Problèmes de modèles<a class="headerlink" href="#problemes-de-modeles" title="Link to this heading"></a></h2>
+<section id="modele-pre-entraine-non-trouve">
+<h3>Modèle pré-entraîné non trouvé<a class="headerlink" href="#modele-pre-entraine-non-trouve" title="Link to this heading"></a></h3>
+<p><strong>Erreur</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FileNotFoundError: No file found at &#39;Notebooks/models/final_model 291.19.h5&#39;
+</pre></div>
+</div>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Vérification des fichiers de modèles</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">models_dir</span> <span class="o">=</span> <span class="s1">&#39;Notebooks/models/&#39;</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">models_dir</span><span class="p">):</span>
+     <span class="n">model_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">models_dir</span><span class="p">)</span>
+     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modèles disponibles: </span><span class="si">{</span><span class="n">model_files</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+ <span class="k">else</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Répertoire de modèles non trouvé&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Entraînement d’un nouveau modèle</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si aucun modèle pré-entraîné n&#39;est disponible</span>
+<span class="n">predictor</span> <span class="o">=</span> <span class="n">EnergyPredictor</span><span class="p">()</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;Data/data.csv&#39;</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">train_models</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Téléchargement des modèles pré-entraînés</strong></p>
+<p>Assurez-vous d’avoir les modèles dans le répertoire Notebooks/models/</p>
+</li>
+</ol>
+</section>
+<section id="erreurs-d-entrainement">
+<h3>Erreurs d’entraînement<a class="headerlink" href="#erreurs-d-entrainement" title="Link to this heading"></a></h3>
+<p><strong>Problème</strong> : Le modèle ne converge pas</p>
+<p><strong>Symptômes</strong> :
+- Loss qui stagne
+- Oscillations importantes
+- NaN dans les prédictions</p>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Réduction du learning rate</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.optimizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Adam</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>  <span class="c1"># Au lieu de 0.001</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Normalisation des données</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clipping du gradient</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">clipnorm</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Réduction de la complexité du modèle</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modèle plus simple</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+     <span class="n">LSTM</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">),</span>  <span class="c1"># Au lieu de 74</span>
+     <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+ <span class="p">])</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="probleme-de-memoire-gpu">
+<h3>Problème de mémoire GPU<a class="headerlink" href="#probleme-de-memoire-gpu" title="Link to this heading"></a></h3>
+<p><strong>Erreur</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ResourceExhaustedError: OOM when allocating tensor
+</pre></div>
+</div>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Réduction de la taille des batches</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Réduire batch_size</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># Au lieu de 32</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Croissance mémoire GPU</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+
+<span class="n">gpus</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">gpus</span><span class="p">:</span>
+     <span class="k">try</span><span class="p">:</span>
+         <span class="k">for</span> <span class="n">gpu</span> <span class="ow">in</span> <span class="n">gpus</span><span class="p">:</span>
+             <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_memory_growth</span><span class="p">(</span><span class="n">gpu</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+     <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Limitation de mémoire GPU</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Limiter à 4GB par exemple</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_memory_growth</span><span class="p">(</span><span class="n">gpu</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_virtual_device_configuration</span><span class="p">(</span>
+     <span class="n">gpu</span><span class="p">,</span>
+     <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="mi">4096</span><span class="p">)]</span>
+ <span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="problemes-d-interface-streamlit">
+<h2>Problèmes d’interface Streamlit<a class="headerlink" href="#problemes-d-interface-streamlit" title="Link to this heading"></a></h2>
+<section id="application-streamlit-ne-demarre-pas">
+<h3>Application Streamlit ne démarre pas<a class="headerlink" href="#application-streamlit-ne-demarre-pas" title="Link to this heading"></a></h3>
+<p><strong>Erreur</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ModuleNotFoundError: No module named &#39;streamlit&#39;
+</pre></div>
+</div>
+<p><strong>Solution</strong> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>streamlit
+</pre></div>
+</div>
+<p><strong>Erreur de port</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>OSError: [Errno 48] Address already in use
+</pre></div>
+</div>
+<p><strong>Solution</strong> :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spécifier un port différent</span>
+streamlit<span class="w"> </span>run<span class="w"> </span>interface/app.py<span class="w"> </span>--server.port<span class="w"> </span><span class="m">8502</span>
+</pre></div>
+</div>
+</section>
+<section id="problemes-de-visualisation">
+<h3>Problèmes de visualisation<a class="headerlink" href="#problemes-de-visualisation" title="Link to this heading"></a></h3>
+<p><strong>Problème</strong> : Graphiques ne s’affichent pas</p>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Installation de Plotly</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>plotly
+</pre></div>
+</div>
+</li>
+<li><p><strong>Vérification des imports</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Fallback vers Matplotlib</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+     <span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
+     <span class="n">USE_PLOTLY</span> <span class="o">=</span> <span class="kc">True</span>
+ <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+     <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+     <span class="n">USE_PLOTLY</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="erreurs-de-prediction">
+<h3>Erreurs de prédiction<a class="headerlink" href="#erreurs-de-prediction" title="Link to this heading"></a></h3>
+<p><strong>Problème</strong> : Prédictions donnent des valeurs aberrantes</p>
+<p><strong>Diagnostic</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vérification de la normalisation</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Min prédiction: </span><span class="si">{</span><span class="n">predictions</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max prédiction: </span><span class="si">{</span><span class="n">predictions</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valeurs NaN: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Vérification de la dénormalisation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># S&#39;assurer que le scaler est correctement appliqué</span>
+<span class="n">predictions_denorm</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Clipping des valeurs</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Limiter les prédictions à des valeurs réalistes</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>  <span class="c1"># 0 à 5000 MW</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="problemes-de-performance">
+<h2>Problèmes de performance<a class="headerlink" href="#problemes-de-performance" title="Link to this heading"></a></h2>
+<section id="entrainement-trop-lent">
+<h3>Entraînement trop lent<a class="headerlink" href="#entrainement-trop-lent" title="Link to this heading"></a></h3>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Utilisation du GPU</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vérifier que le GPU est utilisé</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;/GPU:0&#39;</span><span class="p">):</span>
+     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Optimisation des données</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Utilisation de tf.data pour optimiser le pipeline</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Parallélisation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Utiliser tous les CPU disponibles</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="predictions-lentes">
+<h3>Prédictions lentes<a class="headerlink" href="#predictions-lentes" title="Link to this heading"></a></h3>
+<p><strong>Solutions</strong> :</p>
+<ol class="arabic">
+<li><p><strong>Batch predictions</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prédire par batches au lieu d&#39;une par une</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Optimisation du modèle</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quantification du modèle</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_keras_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">converter</span><span class="o">.</span><span class="n">optimizations</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">Optimize</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">]</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="problemes-de-deploiement">
+<h2>Problèmes de déploiement<a class="headerlink" href="#problemes-de-deploiement" title="Link to this heading"></a></h2>
+<section id="problemes-avec-requirements-txt">
+<h3>Problèmes avec requirements.txt<a class="headerlink" href="#problemes-avec-requirements-txt" title="Link to this heading"></a></h3>
+<p><strong>Solution</strong> : Créer un requirements.txt précis</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># requirements.txt
+pandas==1.5.3
+numpy==1.24.3
+matplotlib==3.7.1
+seaborn==0.12.2
+scikit-learn==1.3.0
+tensorflow==2.13.0
+streamlit==1.28.1
+plotly==5.17.0
+optuna==3.4.0
+</pre></div>
+</div>
+</section>
+<section id="problemes-avec-l-environnement-virtuel">
+<h3>Problèmes avec l’environnement virtuel<a class="headerlink" href="#problemes-avec-l-environnement-virtuel" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Créer un nouvel environnement</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>energy_env
+
+<span class="c1"># Windows</span>
+energy_env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+
+<span class="c1"># Installation propre</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+</section>
+<section id="debugging-avance">
+<h2>Debugging avancé<a class="headerlink" href="#debugging-avance" title="Link to this heading"></a></h2>
+<section id="activation-du-debugging-tensorflow">
+<h3>Activation du debugging TensorFlow<a class="headerlink" href="#activation-du-debugging-tensorflow" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+
+<span class="c1"># Activer le debugging</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">debugging</span><span class="o">.</span><span class="n">set_log_device_placement</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Logs détaillés</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="s1">&#39;INFO&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="profiling-des-performances">
+<h3>Profiling des performances<a class="headerlink" href="#profiling-des-performances" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cProfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pstats</span>
+
+<span class="c1"># Profiling de l&#39;entraînement</span>
+<span class="n">profiler</span> <span class="o">=</span> <span class="n">cProfile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
+<span class="n">profiler</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+
+<span class="c1"># Code à profiler</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">profiler</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">pstats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span><span class="n">profiler</span><span class="p">)</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">sort_stats</span><span class="p">(</span><span class="s1">&#39;cumulative&#39;</span><span class="p">)</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">print_stats</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="verification-de-l-integrite-des-donnees">
+<h3>Vérification de l’intégrité des données<a class="headerlink" href="#verification-de-l-integrite-des-donnees" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">validate_data_integrity</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vérification complète des données&quot;&quot;&quot;</span>
+
+    <span class="n">issues</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Vérification des types</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Colonne </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> contient des valeurs non-numériques&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Vérification des valeurs infinies</span>
+    <span class="n">inf_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">]))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">inf_values</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">inf_values</span><span class="si">}</span><span class="s2"> valeurs infinies détectées&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Vérification des doublons</span>
+    <span class="n">duplicates</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">duplicates</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2"> lignes dupliquées&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">issues</span>
+</pre></div>
+</div>
+</section>
+<section id="logs-et-monitoring">
+<h3>Logs et monitoring<a class="headerlink" href="#logs-et-monitoring" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="c1"># Configuration des logs</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">handlers</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s1">&#39;energy_prediction.log&#39;</span><span class="p">),</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Utilisation dans le code</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Démarrage de l&#39;entraînement&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Performance dégradée détectée&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Erreur lors de la prédiction&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="contact-et-support">
+<h2>Contact et support<a class="headerlink" href="#contact-et-support" title="Link to this heading"></a></h2>
+<p>Si les solutions ci-dessus ne résolvent pas votre problème :</p>
+<ol class="arabic simple">
+<li><p><strong>Vérifiez la FAQ</strong> : <a class="reference internal" href="faq.html"><span class="doc">Questions Fréquentes (FAQ)</span></a></p></li>
+<li><p><strong>Consultez la documentation API</strong> : <a class="reference internal" href="api_reference.html"><span class="doc">Référence API</span></a></p></li>
+<li><p><strong>Créez un issue</strong> sur GitHub avec :</p>
+<ul class="simple">
+<li><p>Description détaillée du problème</p></li>
+<li><p>Code minimal pour reproduire l’erreur</p></li>
+<li><p>Versions des librairies utilisées</p></li>
+<li><p>Messages d’erreur complets</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="checklist-de-depannage">
+<h2>Checklist de dépannage<a class="headerlink" href="#checklist-de-depannage" title="Link to this heading"></a></h2>
+<p>Avant de signaler un problème, vérifiez :</p>
+<ul class="simple">
+<li><p>[ ] Versions des dépendances à jour</p></li>
+<li><p>[ ] Chemins des fichiers corrects</p></li>
+<li><p>[ ] Données au bon format</p></li>
+<li><p>[ ] Modèles pré-entraînés disponibles</p></li>
+<li><p>[ ] Mémoire suffisante (RAM/GPU)</p></li>
+<li><p>[ ] Permissions de lecture/écriture</p></li>
+<li><p>[ ] Variables d’environnement configurées</p></li>
+<li><p>[ ] Logs d’erreur consultés</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La plupart des problèmes sont liés à des incompatibilités de versions ou des chemins incorrects. Une installation propre dans un environnement virtuel résout souvent les problèmes.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="interface.html" class="btn btn-neutral float-left" title="Interface utilisateur" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="faq.html" class="btn btn-neutral float-right" title="Questions Fréquentes (FAQ)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, AMLLAL Amine, HAJJI Mohamed.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,643 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prétraitement des Données &mdash; AnalysingGreenEnergy 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modèles LSTM" href="lstm_models.html" />
+    <link rel="prev" title="Analyse des Données" href="data_analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AnalysingGreenEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide d'utilisation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_description.html">Description des données</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Analyse des données</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">Analyse des Données</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prétraitement des Données</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vue-d-ensemble-du-pretraitement">Vue d’ensemble du prétraitement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-du-pipeline">Architecture du pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nettoyage-des-donnees">Nettoyage des données</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gestion-des-valeurs-manquantes">Gestion des valeurs manquantes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detection-et-traitement-des-outliers">Détection et traitement des outliers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-engineering">Feature Engineering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creation-de-variables-temporelles">Création de variables temporelles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables-derivees-meteorologiques">Variables dérivées météorologiques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#indices-composites">Indices composites</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#normalisation-et-standardisation">Normalisation et standardisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#strategies-de-normalisation">Stratégies de normalisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sauvegarde-des-scalers">Sauvegarde des scalers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creation-de-sequences-pour-lstm">Création de séquences pour LSTM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure-des-sequences">Structure des séquences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimisation-de-la-longueur-des-sequences">Optimisation de la longueur des séquences</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#division-des-donnees">Division des données</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#strategie-de-division-temporelle">Stratégie de division temporelle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-croisee-temporelle">Validation croisée temporelle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-complet">Pipeline complet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exemple-d-utilisation">Exemple d’utilisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metriques-de-qualite">Métriques de qualité</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bonnes-pratiques">Bonnes pratiques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#recommandations-generales">Recommandations générales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eviter-les-fuites-de-donnees">Éviter les fuites de données</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimisation-des-performances">Optimisation des performances</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prochaines-etapes">Prochaines étapes</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modélisation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lstm_models.html">Modèles LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperparameter_optimization.html">Optimisation des hyperparamètres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Évaluation des Modèles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface utilisateur</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Interface utilisateur</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Dépannage et Résolution de Problèmes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Questions Fréquentes (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnalysingGreenEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Prétraitement des Données</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-username/AnalysingEnergy/blob/main/docs/preprocessing.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pretraitement-des-donnees">
+<h1>Prétraitement des Données<a class="headerlink" href="#pretraitement-des-donnees" title="Link to this heading"></a></h1>
+<p>Cette section détaille les étapes de prétraitement appliquées au dataset BanE-16 pour optimiser les performances des modèles LSTM de prédiction énergétique.</p>
+<section id="vue-d-ensemble-du-pretraitement">
+<h2>Vue d’ensemble du prétraitement<a class="headerlink" href="#vue-d-ensemble-du-pretraitement" title="Link to this heading"></a></h2>
+<p>Le prétraitement des données est une étape critique qui transforme les données brutes en format optimal pour l’entraînement des modèles LSTM. Notre pipeline comprend :</p>
+<ul class="simple">
+<li><p><strong>Nettoyage des données</strong> et gestion des valeurs manquantes</p></li>
+<li><p><strong>Normalisation et standardisation</strong> des variables</p></li>
+<li><p><strong>Création de features</strong> temporelles et dérivées</p></li>
+<li><p><strong>Division temporelle</strong> des données (train/validation/test)</p></li>
+<li><p><strong>Création de séquences</strong> pour les modèles LSTM</p></li>
+</ul>
+</section>
+<section id="architecture-du-pipeline">
+<h2>Architecture du pipeline<a class="headerlink" href="#architecture-du-pipeline" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DataPreprocessor</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">target_variable</span><span class="o">=</span><span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">=</span> <span class="n">sequence_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_variable</span> <span class="o">=</span> <span class="n">target_variable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_columns</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pipeline complet de prétraitement&quot;&quot;&quot;</span>
+        <span class="c1"># 1. Nettoyage des données</span>
+        <span class="n">data_cleaned</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clean_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># 2. Feature engineering</span>
+        <span class="n">data_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_features</span><span class="p">(</span><span class="n">data_cleaned</span><span class="p">)</span>
+
+        <span class="c1"># 3. Normalisation</span>
+        <span class="n">data_scaled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_features</span><span class="p">(</span><span class="n">data_features</span><span class="p">)</span>
+
+        <span class="c1"># 4. Création des séquences</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_sequences</span><span class="p">(</span><span class="n">data_scaled</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+</pre></div>
+</div>
+</section>
+<section id="nettoyage-des-donnees">
+<h2>Nettoyage des données<a class="headerlink" href="#nettoyage-des-donnees" title="Link to this heading"></a></h2>
+<section id="gestion-des-valeurs-manquantes">
+<h3>Gestion des valeurs manquantes<a class="headerlink" href="#gestion-des-valeurs-manquantes" title="Link to this heading"></a></h3>
+<p>Les valeurs manquantes sont traitées selon plusieurs stratégies :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">clean_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Nettoyage complet du dataset&quot;&quot;&quot;</span>
+
+    <span class="c1"># 1. Détection des valeurs manquantes</span>
+    <span class="n">missing_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valeurs manquantes par colonne:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">missing_data</span><span class="p">[</span><span class="n">missing_data</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># 2. Imputation par interpolation linéaire</span>
+    <span class="n">numeric_columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_columns</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 3. Imputation par forward fill pour les valeurs en début/fin</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;bfill&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 4. Suppression des lignes avec trop de valeurs manquantes</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>  <span class="c1"># 50% de valeurs manquantes max</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</section>
+<section id="detection-et-traitement-des-outliers">
+<h3>Détection et traitement des outliers<a class="headerlink" href="#detection-et-traitement-des-outliers" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">detect_and_treat_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;iqr&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Détection et traitement des valeurs aberrantes&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;iqr&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">Q1</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+            <span class="n">Q3</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+            <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+
+            <span class="c1"># Définition des limites</span>
+            <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+            <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+
+            <span class="c1"># Écrêtage des valeurs aberrantes</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="feature-engineering">
+<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading"></a></h2>
+<section id="creation-de-variables-temporelles">
+<h3>Création de variables temporelles<a class="headerlink" href="#creation-de-variables-temporelles" title="Link to this heading"></a></h3>
+<p>Les variables temporelles capturent les patterns cycliques et saisonniers :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_temporal_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Création de features temporelles&quot;&quot;&quot;</span>
+
+    <span class="c1"># Conversion en datetime si nécessaire</span>
+    <span class="k">if</span> <span class="s1">&#39;date&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Features cycliques</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;day_of_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofyear</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;quarter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">quarter</span>
+
+    <span class="c1"># Encoding cyclique pour préserver la continuité</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;day_sin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;day_of_year&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mf">365.25</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;day_cos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;day_of_year&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mf">365.25</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;week_sin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;week_cos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-derivees-meteorologiques">
+<h3>Variables dérivées météorologiques<a class="headerlink" href="#variables-derivees-meteorologiques" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_weather_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Création de features météorologiques dérivées&quot;&quot;&quot;</span>
+
+    <span class="c1"># Différences de température</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp_range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;max_temperature&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;min_temperature&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;temp_variance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+    <span class="c1"># Features de vent</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;wind_range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;max_windspeed&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;min_windspeed&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;wind_gust_factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;max_windspeed&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_windspeed&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>
+
+    <span class="c1"># Moyennes mobiles</span>
+    <span class="n">windows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">window</span> <span class="ow">in</span> <span class="n">windows</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;temp_ma_</span><span class="si">{</span><span class="n">window</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;wind_ma_</span><span class="si">{</span><span class="n">window</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_windspeed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;generation_ma_</span><span class="si">{</span><span class="n">window</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1"># Features de lag</span>
+    <span class="n">lags</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">lag</span> <span class="ow">in</span> <span class="n">lags</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;generation_lag_</span><span class="si">{</span><span class="n">lag</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;wind_lag_</span><span class="si">{</span><span class="n">lag</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_windspeed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</section>
+<section id="indices-composites">
+<h3>Indices composites<a class="headerlink" href="#indices-composites" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_composite_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Création d&#39;indices composites&quot;&quot;&quot;</span>
+
+    <span class="c1"># Indice de conditions météorologiques favorables</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;weather_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="mf">0.6</span> <span class="o">*</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_windspeed&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_windspeed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">+</span>
+        <span class="mf">0.3</span> <span class="o">*</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_temperature&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">+</span>
+        <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;total_precipitation&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;total_precipitation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Indice de potentiel énergétique</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;energy_potential&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_windspeed&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">3</span>  <span class="c1"># Loi cubique pour l&#39;éolien</span>
+    <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mean_temperature&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="normalisation-et-standardisation">
+<h2>Normalisation et standardisation<a class="headerlink" href="#normalisation-et-standardisation" title="Link to this heading"></a></h2>
+<section id="strategies-de-normalisation">
+<h3>Stratégies de normalisation<a class="headerlink" href="#strategies-de-normalisation" title="Link to this heading"></a></h3>
+<p>Différentes méthodes de normalisation sont appliquées selon le type de variable :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">RobustScaler</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">scale_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalisation des features&quot;&quot;&quot;</span>
+
+    <span class="c1"># Séparation des types de variables</span>
+    <span class="n">weather_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;min_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;max_temperature&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;min_windspeed&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_windspeed&#39;</span><span class="p">,</span> <span class="s1">&#39;max_windspeed&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;total_precipitation&#39;</span><span class="p">,</span> <span class="s1">&#39;surface_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_relative_humidity&#39;</span><span class="p">]</span>
+
+    <span class="n">derived_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="ow">in</span> <span class="n">col</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;_ma_&#39;</span><span class="p">,</span> <span class="s1">&#39;_lag_&#39;</span><span class="p">,</span> <span class="s1">&#39;range&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">])]</span>
+
+    <span class="n">target_var</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">]</span>
+
+    <span class="c1"># StandardScaler pour les variables météorologiques</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="s1">&#39;weather&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">weather_vars</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="s1">&#39;weather&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">weather_vars</span><span class="p">])</span>
+
+    <span class="c1"># RobustScaler pour les variables dérivées (plus résistant aux outliers)</span>
+    <span class="k">if</span> <span class="n">derived_vars</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="s1">&#39;derived&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">RobustScaler</span><span class="p">()</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">derived_vars</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="s1">&#39;derived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">derived_vars</span><span class="p">])</span>
+
+    <span class="c1"># MinMaxScaler pour la variable cible (meilleure pour LSTM)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">target_var</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">target_var</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</section>
+<section id="sauvegarde-des-scalers">
+<h3>Sauvegarde des scalers<a class="headerlink" href="#sauvegarde-des-scalers" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">save_scalers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="s1">&#39;scalers/&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sauvegarde des scalers pour utilisation future&quot;&quot;&quot;</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">scaler_name</span><span class="p">,</span> <span class="n">scaler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">scaler_name</span><span class="si">}</span><span class="s1">_scaler.pkl&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">scaler</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scalers sauvegardés dans </span><span class="si">{</span><span class="n">save_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="creation-de-sequences-pour-lstm">
+<h2>Création de séquences pour LSTM<a class="headerlink" href="#creation-de-sequences-pour-lstm" title="Link to this heading"></a></h2>
+<section id="structure-des-sequences">
+<h3>Structure des séquences<a class="headerlink" href="#structure-des-sequences" title="Link to this heading"></a></h3>
+<p>Les modèles LSTM nécessitent des séquences temporelles en entrée :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Création des séquences pour LSTM&quot;&quot;&quot;</span>
+
+    <span class="c1"># Préparation des données</span>
+    <span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_variable</span><span class="p">]</span>
+
+    <span class="n">X_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">target_variable</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="n">X_sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y_sequences</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Création des séquences glissantes</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sequence_length</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="c1"># Séquence d&#39;entrée (60 jours précédents)</span>
+        <span class="n">X_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X_data</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">sequence_length</span><span class="p">:</span><span class="n">i</span><span class="p">])</span>
+        <span class="c1"># Valeur cible (jour suivant)</span>
+        <span class="n">y_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_sequences</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_sequences</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="optimisation-de-la-longueur-des-sequences">
+<h3>Optimisation de la longueur des séquences<a class="headerlink" href="#optimisation-de-la-longueur-des-sequences" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">optimize_sequence_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">lengths_to_test</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Optimisation de la longueur des séquences&quot;&quot;&quot;</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequential</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">lengths_to_test</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test avec longueur de séquence: </span><span class="si">{</span><span class="n">length</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Création des séquences</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_sequences</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="n">length</span><span class="p">)</span>
+
+        <span class="c1"># Division train/validation</span>
+        <span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">val_idx</span> <span class="ow">in</span> <span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">val_idx</span><span class="p">]</span>
+            <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">val_idx</span><span class="p">]</span>
+
+            <span class="c1"># Modèle simple pour test</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
+                <span class="n">LSTM</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])),</span>
+                <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">])</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Entraînement</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+            <span class="c1"># Évaluation</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="n">length</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+    <span class="c1"># Meilleure longueur</span>
+    <span class="n">best_length</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longueur optimale: </span><span class="si">{</span><span class="n">best_length</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">best_length</span><span class="p">,</span> <span class="n">results</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="division-des-donnees">
+<h2>Division des données<a class="headerlink" href="#division-des-donnees" title="Link to this heading"></a></h2>
+<section id="strategie-de-division-temporelle">
+<h3>Stratégie de division temporelle<a class="headerlink" href="#strategie-de-division-temporelle" title="Link to this heading"></a></h3>
+<p>Pour les séries temporelles, la division doit respecter l’ordre chronologique :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">split_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_ratio</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">val_ratio</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Division chronologique des données&quot;&quot;&quot;</span>
+
+    <span class="n">total_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">train_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_samples</span> <span class="o">*</span> <span class="n">train_ratio</span><span class="p">)</span>
+    <span class="n">val_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_samples</span> <span class="o">*</span> <span class="n">val_ratio</span><span class="p">)</span>
+
+    <span class="c1"># Division séquentielle</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">train_size</span><span class="p">]</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">train_size</span><span class="p">]</span>
+
+    <span class="n">X_val</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_size</span><span class="p">:</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span><span class="p">]</span>
+    <span class="n">y_val</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_size</span><span class="p">:</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span><span class="p">]</span>
+
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span><span class="p">:]</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_size</span> <span class="o">+</span> <span class="n">val_size</span><span class="p">:]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Données d&#39;entraînement: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="si">}</span><span class="s2"> échantillons&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Données de validation: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span><span class="si">}</span><span class="s2"> échantillons&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Données de test: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="si">}</span><span class="s2"> échantillons&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">),</span> <span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="validation-croisee-temporelle">
+<h3>Validation croisée temporelle<a class="headerlink" href="#validation-croisee-temporelle" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">time_series_cross_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validation croisée adaptée aux séries temporelles&quot;&quot;&quot;</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+
+    <span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">)</span>
+    <span class="n">cv_scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">val_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fold </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_splits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">X_train_cv</span><span class="p">,</span> <span class="n">X_val_cv</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">val_idx</span><span class="p">]</span>
+        <span class="n">y_train_cv</span><span class="p">,</span> <span class="n">y_val_cv</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">val_idx</span><span class="p">]</span>
+
+        <span class="c1"># Ici vous pouvez insérer votre modèle</span>
+        <span class="c1"># score = train_and_evaluate_model(X_train_cv, y_train_cv, X_val_cv, y_val_cv)</span>
+        <span class="c1"># cv_scores.append(score)</span>
+
+    <span class="k">return</span> <span class="n">cv_scores</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pipeline-complet">
+<h2>Pipeline complet<a class="headerlink" href="#pipeline-complet" title="Link to this heading"></a></h2>
+<section id="exemple-d-utilisation">
+<h3>Exemple d’utilisation<a class="headerlink" href="#exemple-d-utilisation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exemple d&#39;utilisation complète du preprocessor</span>
+
+<span class="c1"># 1. Chargement des données</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Data/data.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Initialisation du preprocessor</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">DataPreprocessor</span><span class="p">(</span><span class="n">sequence_length</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">target_variable</span><span class="o">=</span><span class="s1">&#39;max_generation(mw)&#39;</span><span class="p">)</span>
+
+<span class="c1"># 3. Prétraitement complet</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># 4. Division des données</span>
+<span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">),</span> <span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">split_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># 5. Sauvegarde des scalers</span>
+<span class="n">preprocessor</span><span class="o">.</span><span class="n">save_scalers</span><span class="p">(</span><span class="s1">&#39;Notebooks/scalers/&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Données préparées:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Shape X_train: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Shape y_train: </span><span class="si">{</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Features utilisées: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">feature_columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="metriques-de-qualite">
+<h3>Métriques de qualité<a class="headerlink" href="#metriques-de-qualite" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_preprocessing_quality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_data</span><span class="p">,</span> <span class="n">preprocessed_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Évaluation de la qualité du prétraitement&quot;&quot;&quot;</span>
+
+    <span class="n">quality_metrics</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># 1. Taux de valeurs manquantes</span>
+    <span class="n">missing_before</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">missing_after</span> <span class="o">=</span> <span class="n">preprocessed_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">quality_metrics</span><span class="p">[</span><span class="s1">&#39;missing_reduction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">missing_after</span> <span class="o">/</span> <span class="n">missing_before</span><span class="p">)</span>
+
+    <span class="c1"># 2. Conservation de l&#39;information</span>
+    <span class="n">correlations_before</span> <span class="o">=</span> <span class="n">original_data</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">correlations_after</span> <span class="o">=</span> <span class="n">preprocessed_data</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">quality_metrics</span><span class="p">[</span><span class="s1">&#39;correlation_preservation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">correlations_after</span> <span class="o">/</span> <span class="n">correlations_before</span>
+
+    <span class="c1"># 3. Stabilité des distributions</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">ks_2samp</span>
+    <span class="n">ks_stats</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">common_columns</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">original_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">preprocessed_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">common_columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">original_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">]:</span>
+            <span class="n">ks_stat</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ks_2samp</span><span class="p">(</span><span class="n">original_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+                                <span class="n">preprocessed_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+            <span class="n">ks_stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ks_stat</span><span class="p">)</span>
+
+    <span class="n">quality_metrics</span><span class="p">[</span><span class="s1">&#39;distribution_stability&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ks_stats</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">quality_metrics</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="bonnes-pratiques">
+<h2>Bonnes pratiques<a class="headerlink" href="#bonnes-pratiques" title="Link to this heading"></a></h2>
+<section id="recommandations-generales">
+<h3>Recommandations générales<a class="headerlink" href="#recommandations-generales" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Ordre des opérations</strong> : Respecter l’ordre logique (nettoyage → feature engineering → normalisation)</p></li>
+<li><p><strong>Validation</strong> : Toujours valider les transformations sur un échantillon</p></li>
+<li><p><strong>Reproductibilité</strong> : Fixer les seeds aléatoires et sauvegarder les paramètres</p></li>
+<li><p><strong>Documentation</strong> : Documenter chaque transformation appliquée</p></li>
+</ol>
+</section>
+<section id="eviter-les-fuites-de-donnees">
+<h3>Éviter les fuites de données<a class="headerlink" href="#eviter-les-fuites-de-donnees" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ❌ Mauvais : normalisation avant division</span>
+<span class="n">data_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data_scaled</span><span class="p">)</span>
+
+<span class="c1"># ✅ Bon : normalisation après division</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>  <span class="c1"># Pas de fit !</span>
+</pre></div>
+</div>
+</section>
+<section id="optimisation-des-performances">
+<h3>Optimisation des performances<a class="headerlink" href="#optimisation-des-performances" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Vectorisation</strong> : Utiliser NumPy et Pandas pour les opérations</p></li>
+<li><p><strong>Parallélisation</strong> : Traitement en parallèle pour les gros datasets</p></li>
+<li><p><strong>Chunking</strong> : Traitement par chunks pour les datasets trop volumineux</p></li>
+<li><p><strong>Caching</strong> : Mise en cache des transformations coûteuses</p></li>
+</ol>
+</section>
+</section>
+<section id="prochaines-etapes">
+<h2>Prochaines étapes<a class="headerlink" href="#prochaines-etapes" title="Link to this heading"></a></h2>
+<p>Après le prétraitement, les données sont prêtes pour :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="lstm_models.html"><span class="doc">Modèles LSTM</span></a> - Entraînement des modèles LSTM</p></li>
+<li><p><a class="reference internal" href="hyperparameter_optimization.html"><span class="doc">Optimisation des hyperparamètres</span></a> - Optimisation des hyperparamètres</p></li>
+<li><p><a class="reference internal" href="model_evaluation.html"><span class="doc">Évaluation des Modèles</span></a> - Évaluation des performances</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_analysis.html" class="btn btn-neutral float-left" title="Analyse des Données" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lstm_models.html" class="btn btn-neutral float-right" title="Modèles LSTM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, AMLLAL Amine, HAJJI Mohamed.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

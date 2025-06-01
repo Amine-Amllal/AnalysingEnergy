@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; AnalysingGreenEnergy 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Démarrage rapide" href="quickstart.html" />
+    <link rel="prev" title="Analysing Green Energy - Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AnalysingGreenEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide d'utilisation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequis">Prérequis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-rapide">Installation rapide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependances-principales">Dépendances principales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-des-dependances-specifiques">Installation des dépendances spécifiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verification-de-l-installation">Vérification de l’installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#structure-du-projet">Structure du projet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-ide">Configuration IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resolution-des-problemes">Résolution des problèmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#etapes-suivantes">Étapes suivantes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_description.html">Description des données</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Analyse des données</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">Analyse des Données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Prétraitement des Données</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modélisation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lstm_models.html">Modèles LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperparameter_optimization.html">Optimisation des hyperparamètres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Évaluation des Modèles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface utilisateur</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Interface utilisateur</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Dépannage et Résolution de Problèmes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Questions Fréquentes (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnalysingGreenEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-username/AnalysingEnergy/blob/main/docs/installation.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<p>Ce guide vous aidera à installer et configurer l’environnement pour le projet Analysing Green Energy.</p>
+<section id="prerequis">
+<h2>Prérequis<a class="headerlink" href="#prerequis" title="Link to this heading"></a></h2>
+<p>Avant de commencer, assurez-vous d’avoir installé :</p>
+<ul class="simple">
+<li><p><strong>Python 3.8+</strong> (recommandé : Python 3.9 ou 3.10)</p></li>
+<li><p><strong>pip</strong> (gestionnaire de paquets Python)</p></li>
+<li><p><strong>Git</strong> (pour cloner le repository)</p></li>
+</ul>
+</section>
+<section id="installation-rapide">
+<h2>Installation rapide<a class="headerlink" href="#installation-rapide" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Cloner le repository</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/votre-username/AnalysingEnergy.git
+<span class="nb">cd</span><span class="w"> </span>AnalysingEnergy
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Créer un environnement virtuel</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Avec venv</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env
+
+<span class="c1"># Activer l&#39;environnement</span>
+<span class="c1"># Windows</span>
+env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+<span class="c1"># Linux/Mac</span>
+<span class="nb">source</span><span class="w"> </span>env/bin/activate
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Installer les dépendances</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="dependances-principales">
+<h2>Dépendances principales<a class="headerlink" href="#dependances-principales" title="Link to this heading"></a></h2>
+<p>Le projet utilise les bibliothèques suivantes :</p>
+<p><strong>Machine Learning &amp; Data Science</strong>
+- <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> - Pour les modèles LSTM
+- <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> - Pour le preprocessing et l’évaluation
+- <code class="docutils literal notranslate"><span class="pre">pandas</span></code> - Manipulation des données
+- <code class="docutils literal notranslate"><span class="pre">numpy</span></code> - Calculs numériques</p>
+<p><strong>Visualisation</strong>
+- <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> - Graphiques de base
+- <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> - Visualisations statistiques
+- <code class="docutils literal notranslate"><span class="pre">plotly</span></code> - Graphiques interactifs</p>
+<p><strong>Interface utilisateur</strong>
+- <code class="docutils literal notranslate"><span class="pre">streamlit</span></code> - Application web interactive</p>
+<p><strong>Optimisation</strong>
+- <code class="docutils literal notranslate"><span class="pre">optuna</span></code> - Optimisation des hyperparamètres</p>
+<p><strong>Autres</strong>
+- <code class="docutils literal notranslate"><span class="pre">joblib</span></code> - Sauvegarde/chargement des modèles
+- <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> - Analyse des séries temporelles</p>
+</section>
+<section id="installation-des-dependances-specifiques">
+<h2>Installation des dépendances spécifiques<a class="headerlink" href="#installation-des-dependances-specifiques" title="Link to this heading"></a></h2>
+<p>Si vous rencontrez des problèmes avec TensorFlow :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pour CPU seulement</span>
+pip<span class="w"> </span>install<span class="w"> </span>tensorflow-cpu
+
+<span class="c1"># Pour GPU (nécessite CUDA)</span>
+pip<span class="w"> </span>install<span class="w"> </span>tensorflow-gpu
+</pre></div>
+</div>
+<p>Pour Jupyter Notebooks :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>notebook<span class="w"> </span>ipykernel
+python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="o">=</span>env
+</pre></div>
+</div>
+</section>
+<section id="verification-de-l-installation">
+<h2>Vérification de l’installation<a class="headerlink" href="#verification-de-l-installation" title="Link to this heading"></a></h2>
+<p>Pour vérifier que tout est correctement installé :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TensorFlow version:&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pandas version:&quot;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NumPy version:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+
+<span class="c1"># Vérifier la disponibilité du GPU</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GPU disponible:&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="structure-du-projet">
+<h2>Structure du projet<a class="headerlink" href="#structure-du-projet" title="Link to this heading"></a></h2>
+<p>Après l’installation, votre dossier devrait avoir cette structure :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>AnalysingEnergy/
+├── Data/
+│   ├── data.csv
+│   ├── train_data.csv
+│   └── test_data.csv
+├── Notebooks/
+│   ├── Data preprocessing.ipynb
+│   ├── LSTM Generation.ipynb
+│   ├── LSTM complet.ipynb
+│   ├── Predicting_next_365days.ipynb
+│   ├── models/
+│   └── scalers/
+├── interface/
+│   └── app.py
+├── docs/
+│   └── (fichiers de documentation)
+├── requirements.txt
+└── README.md
+</pre></div>
+</div>
+</section>
+<section id="configuration-ide">
+<h2>Configuration IDE<a class="headerlink" href="#configuration-ide" title="Link to this heading"></a></h2>
+<p><strong>VS Code</strong></p>
+<p>Extensions recommandées :
+- Python
+- Jupyter
+- Python Docstring Generator</p>
+<p><strong>PyCharm</strong></p>
+<p>Configurer l’interpréteur Python pour pointer vers votre environnement virtuel.</p>
+</section>
+<section id="resolution-des-problemes">
+<h2>Résolution des problèmes<a class="headerlink" href="#resolution-des-problemes" title="Link to this heading"></a></h2>
+<p><strong>Erreur de mémoire avec TensorFlow</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ajouter au début de vos scripts</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+
+<span class="n">gpus</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">gpus</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">gpu</span> <span class="ow">in</span> <span class="n">gpus</span><span class="p">:</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_memory_growth</span><span class="p">(</span><span class="n">gpu</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Problèmes avec les notebooks</strong></p>
+<p>Si les notebooks ne s’ouvrent pas correctement :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook<span class="w"> </span>--generate-config
+jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+<p><strong>Erreurs de versions</strong></p>
+<p>Créez un fichier <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> avec des versions spécifiques :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensorflow</span><span class="o">==</span><span class="mf">2.13.0</span>
+<span class="n">pandas</span><span class="o">==</span><span class="mf">2.0.3</span>
+<span class="n">numpy</span><span class="o">==</span><span class="mf">1.24.3</span>
+<span class="n">scikit</span><span class="o">-</span><span class="n">learn</span><span class="o">==</span><span class="mf">1.3.0</span>
+<span class="n">matplotlib</span><span class="o">==</span><span class="mf">3.7.2</span>
+<span class="n">streamlit</span><span class="o">==</span><span class="mf">1.25.0</span>
+<span class="n">optuna</span><span class="o">==</span><span class="mf">3.2.0</span>
+</pre></div>
+</div>
+</section>
+<section id="etapes-suivantes">
+<h2>Étapes suivantes<a class="headerlink" href="#etapes-suivantes" title="Link to this heading"></a></h2>
+<p>Une fois l’installation terminée :</p>
+<ol class="arabic simple">
+<li><p>Consultez le <a class="reference internal" href="quickstart.html"><span class="doc">Démarrage rapide</span></a> pour un aperçu rapide</p></li>
+<li><p>Explorez les données avec <a class="reference internal" href="data_description.html"><span class="doc">Description des données</span></a></p></li>
+<li><p>Lancez votre premier modèle avec <a class="reference internal" href="lstm_models.html"><span class="doc">Modèles LSTM</span></a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Analysing Green Energy - Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Démarrage rapide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, AMLLAL Amine, HAJJI Mohamed.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

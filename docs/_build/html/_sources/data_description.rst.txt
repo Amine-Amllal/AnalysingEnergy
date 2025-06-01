@@ -172,7 +172,7 @@ Valeurs aberrantes
 
 Detection automatique des outliers :
 - **Méthode IQR** : 1.5% des observations flaggées
-- **Z-score** : 2.1% des observations avec z-score > 3
+- **Z-score** : 2.1% des observations avec |z| > 3
 - Principalement sur les variables météorologiques extrêmes
 
 Préparation des données
@@ -269,7 +269,7 @@ Limitations
 - **Période récente** : Données relativement récentes (2018-2023)
 
 Export et formats
-=================
+----------------
 
 Le dataset est disponible dans plusieurs formats :
 
@@ -290,7 +290,7 @@ Structure du fichier CSV :
     ...
 
 Prochaines étapes
-=================
+----------------
 
 Maintenant que vous comprenez les données :
 

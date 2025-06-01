@@ -1,0 +1,1007 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Référence API &mdash; AnalysingGreenEnergy 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AnalysingGreenEnergy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Guide d'utilisation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_description.html">Description des données</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Analyse des données</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_analysis.html">Analyse des Données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Prétraitement des Données</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modélisation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lstm_models.html">Modèles LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperparameter_optimization.html">Optimisation des hyperparamètres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">Évaluation des Modèles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface utilisateur</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Interface utilisateur</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Dépannage et Résolution de Problèmes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Questions Fréquentes (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AnalysingGreenEnergy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Référence API</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-username/AnalysingEnergy/blob/main/docs/api_reference.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reference-api">
+<h1>Référence API<a class="headerlink" href="#reference-api" title="Link to this heading"></a></h1>
+<p>Cette section fournit la documentation complète de l’API du projet AnalysingEnergy, incluant toutes les classes, fonctions et méthodes principales.</p>
+<section id="vue-d-ensemble-de-l-api">
+<h2>Vue d’ensemble de l’API<a class="headerlink" href="#vue-d-ensemble-de-l-api" title="Link to this heading"></a></h2>
+<p>L’API du projet est organisée en plusieurs modules principaux :</p>
+<ul class="simple">
+<li><p><strong>EnergyPredictor</strong> - Classe principale pour les prédictions énergétiques</p></li>
+<li><p><strong>DataPreprocessor</strong> - Utilitaires de prétraitement des données</p></li>
+<li><p><strong>ModelOptimizer</strong> - Optimisation des hyperparamètres</p></li>
+<li><p><strong>Visualizer</strong> - Fonctions de visualisation</p></li>
+<li><p><strong>Utils</strong> - Fonctions utilitaires</p></li>
+</ul>
+</section>
+<section id="module-principal-energypredictor">
+<h2>Module principal : EnergyPredictor<a class="headerlink" href="#module-principal-energypredictor" title="Link to this heading"></a></h2>
+<section id="classe-energypredictor">
+<h3>Classe EnergyPredictor<a class="headerlink" href="#classe-energypredictor" title="Link to this heading"></a></h3>
+<p>La classe principale pour l’interface de prédiction énergétique.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">EnergyPredictor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe principale pour la prédiction de génération d&#39;énergie verte.</span>
+
+<span class="sd">    Cette classe encapsule toute la logique de prédiction, du chargement</span>
+<span class="sd">    des données jusqu&#39;à la génération des prédictions finales.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        data (pd.DataFrame): Données chargées</span>
+<span class="sd">        models (dict): Dictionnaire des modèles entraînés</span>
+<span class="sd">        scalers (dict): Scalers pour la normalisation</span>
+<span class="sd">        predictions (dict): Prédictions stockées</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<section id="constructeur">
+<h4>Constructeur<a class="headerlink" href="#constructeur" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#init__" title="Link to this definition"></a></dt>
+<dd><p>Initialise une nouvelle instance de EnergyPredictor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictor</span> <span class="o">=</span> <span class="n">EnergyPredictor</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="methodes-de-chargement-des-donnees">
+<h4>Méthodes de chargement des données<a class="headerlink" href="#methodes-de-chargement-des-donnees" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data">
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#load_data" title="Link to this definition"></a></dt>
+<dd><p>Charge les données depuis un fichier CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Chemin vers le fichier de données</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – Si le fichier n’existe pas</p></li>
+<li><p><strong>ValueError</strong> – Si le format des données est invalide</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si le chargement réussit</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">success</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;Data/data.csv&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Données chargées avec succès&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_data_from_dataframe">
+<span class="sig-name descname"><span class="pre">load_data_from_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#load_data_from_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Charge les données depuis un DataFrame pandas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – DataFrame contenant les données</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Si les colonnes requises sont manquantes</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">load_data_from_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="methodes-de-pretraitement">
+<h4>Méthodes de prétraitement<a class="headerlink" href="#methodes-de-pretraitement" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="preprocess_data">
+<span class="sig-name descname"><span class="pre">preprocess_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_variable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'max_generation(mw)'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#preprocess_data" title="Link to this definition"></a></dt>
+<dd><p>Prétraite les données pour l’entraînement des modèles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target_variable</strong> (<em>str</em>) – Nom de la variable cible</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(X_processed, y_processed) données prétraitées</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">preprocess_data</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape des données: X=</span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, y=</span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="create_sequences">
+<span class="sig-name descname"><span class="pre">create_sequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#create_sequences" title="Link to this definition"></a></dt>
+<dd><p>Crée des séquences temporelles pour l’entraînement LSTM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>np.array</em>) – Données d’entrée</p></li>
+<li><p><strong>sequence_length</strong> (<em>int</em>) – Longueur des séquences</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(X_sequences, y_sequences)</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_seq</span><span class="p">,</span> <span class="n">y_seq</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">create_sequences</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="methodes-d-entrainement">
+<h4>Méthodes d’entraînement<a class="headerlink" href="#methodes-d-entrainement" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="train_models">
+<span class="sig-name descname"><span class="pre">train_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#train_models" title="Link to this definition"></a></dt>
+<dd><p>Entraîne les modèles LSTM sur les données préparées.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epochs</strong> (<em>int</em>) – Nombre d’époques d’entraînement</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Taille des batches</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Historique d’entraînement</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">train_models</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loss finale: </span><span class="si">{</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="load_trained_models">
+<span class="sig-name descname"><span class="pre">load_trained_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Notebooks/models/'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#load_trained_models" title="Link to this definition"></a></dt>
+<dd><p>Charge des modèles pré-entraînés depuis le disque.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>models_dir</strong> (<em>str</em>) – Répertoire contenant les modèles</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True si le chargement réussit</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">predictor</span><span class="o">.</span><span class="n">load_trained_models</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modèles chargés avec succès&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="methodes-de-prediction">
+<h4>Méthodes de prédiction<a class="headerlink" href="#methodes-de-prediction" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="predict_single_day">
+<span class="sig-name descname"><span class="pre">predict_single_day</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precipitation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pressure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">humidity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#predict_single_day" title="Link to this definition"></a></dt>
+<dd><p>Effectue une prédiction pour une journée avec des paramètres météorologiques.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_temp</strong> (<em>float</em>) – Température minimale (°C)</p></li>
+<li><p><strong>mean_temp</strong> (<em>float</em>) – Température moyenne (°C)</p></li>
+<li><p><strong>max_temp</strong> (<em>float</em>) – Température maximale (°C)</p></li>
+<li><p><strong>wind_speed</strong> (<em>float</em>) – Vitesse du vent (m/s)</p></li>
+<li><p><strong>precipitation</strong> (<em>float</em>) – Précipitations (mm)</p></li>
+<li><p><strong>pressure</strong> (<em>float</em>) – Pression atmosphérique (Pa)</p></li>
+<li><p><strong>humidity</strong> (<em>float</em>) – Humidité relative (%)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Prédiction de génération (MW)</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict_single_day</span><span class="p">(</span>
+    <span class="n">min_temp</span><span class="o">=</span><span class="mf">15.2</span><span class="p">,</span> <span class="n">mean_temp</span><span class="o">=</span><span class="mf">22.1</span><span class="p">,</span> <span class="n">max_temp</span><span class="o">=</span><span class="mf">28.9</span><span class="p">,</span>
+    <span class="n">wind_speed</span><span class="o">=</span><span class="mf">12.5</span><span class="p">,</span> <span class="n">precipitation</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="mf">1013.25</span><span class="p">,</span> <span class="n">humidity</span><span class="o">=</span><span class="mf">65.0</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Génération prédite: </span><span class="si">{</span><span class="n">prediction</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="predict_future">
+<span class="sig-name descname"><span class="pre">predict_future</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#predict_future" title="Link to this definition"></a></dt>
+<dd><p>Génère des prédictions pour les prochains jours.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>days</strong> (<em>int</em>) – Nombre de jours à prédire</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.array</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Array des prédictions</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict_future</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prédictions pour 7 jours: </span><span class="si">{</span><span class="n">predictions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="methodes-d-evaluation">
+<h4>Méthodes d’évaluation<a class="headerlink" href="#methodes-d-evaluation" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="evaluate_models">
+<span class="sig-name descname"><span class="pre">evaluate_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evaluate_models" title="Link to this definition"></a></dt>
+<dd><p>Évalue les performances des modèles entraînés.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_data</strong> (<em>pd.DataFrame</em>) – Données de test (optionnel)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Métriques d’évaluation</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">evaluate_models</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSE: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MAE: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;MAE&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="calculate_metrics">
+<span class="sig-name descname"><span class="pre">calculate_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#calculate_metrics" title="Link to this definition"></a></dt>
+<dd><p>Calcule les métriques de performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> (<em>np.array</em>) – Valeurs réelles</p></li>
+<li><p><strong>y_pred</strong> (<em>np.array</em>) – Valeurs prédites</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionnaire des métriques</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;R2&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="methodes-de-visualisation">
+<h4>Méthodes de visualisation<a class="headerlink" href="#methodes-de-visualisation" title="Link to this heading"></a></h4>
+<dl class="py method">
+<dt class="sig sig-object py" id="plot_predictions">
+<span class="sig-name descname"><span class="pre">plot_predictions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plot_predictions" title="Link to this definition"></a></dt>
+<dd><p>Génère des graphiques de prédictions vs valeurs réelles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>save_path</strong> (<em>str</em>) – Chemin de sauvegarde (optionnel)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictor</span><span class="o">.</span><span class="n">plot_predictions</span><span class="p">(</span><span class="n">save_path</span><span class="o">=</span><span class="s1">&#39;predictions.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plot_training_history">
+<span class="sig-name descname"><span class="pre">plot_training_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plot_training_history" title="Link to this definition"></a></dt>
+<dd><p>Visualise l’historique d’entraînement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>history</strong> (<em>dict</em>) – Historique d’entraînement</p></li>
+<li><p><strong>save_path</strong> (<em>str</em>) – Chemin de sauvegarde (optionnel)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+<section id="classes-utilitaires">
+<h2>Classes utilitaires<a class="headerlink" href="#classes-utilitaires" title="Link to this heading"></a></h2>
+<section id="datapreprocessor">
+<h3>DataPreprocessor<a class="headerlink" href="#datapreprocessor" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="DataPreprocessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DataPreprocessor</span></span><a class="headerlink" href="#DataPreprocessor" title="Link to this definition"></a></dt>
+<dd><p>Classe pour le prétraitement des données.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_variable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'max_generation(mw)'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequence_length</strong> (<em>int</em>) – Longueur des séquences</p></li>
+<li><p><strong>target_variable</strong> (<em>str</em>) – Variable cible</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fit_transform" title="Link to this definition"></a></dt>
+<dd><p>Pipeline complet de prétraitement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données brutes</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(X, y) données prétraitées</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clean_data">
+<span class="sig-name descname"><span class="pre">clean_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#clean_data" title="Link to this definition"></a></dt>
+<dd><p>Nettoyage des données.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données à nettoyer</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="create_features">
+<span class="sig-name descname"><span class="pre">create_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#create_features" title="Link to this definition"></a></dt>
+<dd><p>Création de features temporelles et dérivées.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données d’entrée</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scale_features">
+<span class="sig-name descname"><span class="pre">scale_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scale_features" title="Link to this definition"></a></dt>
+<dd><p>Normalisation des features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données à normaliser</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="modeloptimizer">
+<h3>ModelOptimizer<a class="headerlink" href="#modeloptimizer" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ModelOptimizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ModelOptimizer</span></span><a class="headerlink" href="#ModelOptimizer" title="Link to this definition"></a></dt>
+<dd><p>Classe pour l’optimisation des hyperparamètres avec Optuna.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>np.array</em>) – Données d’entraînement</p></li>
+<li><p><strong>y_train</strong> (<em>np.array</em>) – Labels d’entraînement</p></li>
+<li><p><strong>X_val</strong> (<em>np.array</em>) – Données de validation</p></li>
+<li><p><strong>y_val</strong> (<em>np.array</em>) – Labels de validation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="objective">
+<span class="sig-name descname"><span class="pre">objective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#objective" title="Link to this definition"></a></dt>
+<dd><p>Fonction objectif pour l’optimisation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>trial</strong> (<em>optuna.Trial</em>) – Trial Optuna</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Métrique à optimiser</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_trials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#optimize" title="Link to this definition"></a></dt>
+<dd><p>Lance l’optimisation des hyperparamètres.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n_trials</strong> (<em>int</em>) – Nombre d’essais</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Meilleurs hyperparamètres</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="visualizer">
+<h3>Visualizer<a class="headerlink" href="#visualizer" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="Visualizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Visualizer</span></span><a class="headerlink" href="#Visualizer" title="Link to this definition"></a></dt>
+<dd><p>Classe pour les visualisations avancées.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plot_time_series">
+<span class="sig-name descname"><span class="pre">plot_time_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Série</span> <span class="pre">temporelle'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plot_time_series" title="Link to this definition"></a></dt>
+<dd><p>Graphique de séries temporelles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données</p></li>
+<li><p><strong>columns</strong> (<em>list</em>) – Colonnes à afficher</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – Titre du graphique</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plot_correlation_matrix">
+<span class="sig-name descname"><span class="pre">plot_correlation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plot_correlation_matrix" title="Link to this definition"></a></dt>
+<dd><p>Matrice de corrélation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données</p></li>
+<li><p><strong>save_path</strong> (<em>str</em>) – Chemin de sauvegarde</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plot_residual_analysis">
+<span class="sig-name descname"><span class="pre">plot_residual_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plot_residual_analysis" title="Link to this definition"></a></dt>
+<dd><p>Analyse des résidus.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> (<em>np.array</em>) – Valeurs réelles</p></li>
+<li><p><strong>y_pred</strong> (<em>np.array</em>) – Valeurs prédites</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="fonctions-utilitaires">
+<h2>Fonctions utilitaires<a class="headerlink" href="#fonctions-utilitaires" title="Link to this heading"></a></h2>
+<section id="gestion-des-donnees">
+<h3>Gestion des données<a class="headerlink" href="#gestion-des-donnees" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="load_dataset">
+<span class="sig-name descname"><span class="pre">load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#load_dataset" title="Link to this definition"></a></dt>
+<dd><p>Charge un dataset avec validation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> (<em>str</em>) – Chemin du fichier</p></li>
+<li><p><strong>validate</strong> (<em>bool</em>) – Activer la validation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>FileNotFoundError</strong> – Si le fichier n’existe pas</p>
+</dd>
+</dl>
+<p><strong>Exemple:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;Data/data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validate_data_format">
+<span class="sig-name descname"><span class="pre">validate_data_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validate_data_format" title="Link to this definition"></a></dt>
+<dd><p>Valide le format des données d’entrée.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données à valider</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Si le format est incorrect</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="split_train_test">
+<span class="sig-name descname"><span class="pre">split_train_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_based</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#split_train_test" title="Link to this definition"></a></dt>
+<dd><p>Division des données en train/test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données</p></li>
+<li><p><strong>test_size</strong> (<em>float</em>) – Proportion de test</p></li>
+<li><p><strong>time_based</strong> (<em>bool</em>) – Division temporelle</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="utilitaires-de-modelisation">
+<h3>Utilitaires de modélisation<a class="headerlink" href="#utilitaires-de-modelisation" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="create_lstm_model">
+<span class="sig-name descname"><span class="pre">create_lstm_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#create_lstm_model" title="Link to this definition"></a></dt>
+<dd><p>Crée un modèle LSTM avec les paramètres spécifiés.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_shape</strong> (<em>tuple</em>) – Forme d’entrée</p></li>
+<li><p><strong>kwargs</strong> – Hyperparamètres du modèle</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tf.keras.Model</p>
+</dd>
+</dl>
+<p><strong>Paramètres disponibles:</strong></p>
+<ul class="simple">
+<li><p>units_1 (int): Unités première couche LSTM</p></li>
+<li><p>units_2 (int): Unités deuxième couche LSTM</p></li>
+<li><p>dropout_rate (float): Taux de dropout</p></li>
+<li><p>activation (str): Fonction d’activation</p></li>
+<li><p>learning_rate (float): Taux d’apprentissage</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="save_model_with_metadata">
+<span class="sig-name descname"><span class="pre">save_model_with_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#save_model_with_metadata" title="Link to this definition"></a></dt>
+<dd><p>Sauvegarde un modèle avec ses métadonnées.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>tf.keras.Model</em>) – Modèle à sauvegarder</p></li>
+<li><p><strong>filepath</strong> (<em>str</em>) – Chemin de sauvegarde</p></li>
+<li><p><strong>metadata</strong> (<em>dict</em>) – Métadonnées additionnelles</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="load_model_with_metadata">
+<span class="sig-name descname"><span class="pre">load_model_with_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#load_model_with_metadata" title="Link to this definition"></a></dt>
+<dd><p>Charge un modèle avec ses métadonnées.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – Chemin du modèle</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(model, metadata)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="utilitaires-de-visualisation">
+<h3>Utilitaires de visualisation<a class="headerlink" href="#utilitaires-de-visualisation" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="create_plotly_chart">
+<span class="sig-name descname"><span class="pre">create_plotly_chart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chart_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'line'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#create_plotly_chart" title="Link to this definition"></a></dt>
+<dd><p>Crée un graphique Plotly interactif.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – Données</p></li>
+<li><p><strong>chart_type</strong> (<em>str</em>) – Type de graphique</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objects.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="save_figure">
+<span class="sig-name descname"><span class="pre">save_figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'png'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#save_figure" title="Link to this definition"></a></dt>
+<dd><p>Sauvegarde une figure avec les paramètres spécifiés.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em>) – Figure à sauvegarder</p></li>
+<li><p><strong>filepath</strong> (<em>str</em>) – Chemin de sauvegarde</p></li>
+<li><p><strong>format</strong> (<em>str</em>) – Format de fichier</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – Résolution</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="gestion-des-erreurs">
+<h2>Gestion des erreurs<a class="headerlink" href="#gestion-des-erreurs" title="Link to this heading"></a></h2>
+<section id="exceptions-personnalisees">
+<h3>Exceptions personnalisées<a class="headerlink" href="#exceptions-personnalisees" title="Link to this heading"></a></h3>
+<dl class="py exception">
+<dt class="sig sig-object py" id="DataValidationError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DataValidationError</span></span><a class="headerlink" href="#DataValidationError" title="Link to this definition"></a></dt>
+<dd><p>Erreur de validation des données.</p>
+<p>Levée quand les données d’entrée ne respectent pas le format attendu.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="ModelNotTrainedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ModelNotTrainedError</span></span><a class="headerlink" href="#ModelNotTrainedError" title="Link to this definition"></a></dt>
+<dd><p>Erreur de modèle non entraîné.</p>
+<p>Levée quand on tente d’utiliser un modèle non entraîné.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="PredictionError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PredictionError</span></span><a class="headerlink" href="#PredictionError" title="Link to this definition"></a></dt>
+<dd><p>Erreur de prédiction.</p>
+<p>Levée lors d’une erreur pendant la génération de prédictions.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="exemples-d-utilisation">
+<h2>Exemples d’utilisation<a class="headerlink" href="#exemples-d-utilisation" title="Link to this heading"></a></h2>
+<section id="utilisation-basique">
+<h3>Utilisation basique<a class="headerlink" href="#utilisation-basique" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import de la classe principale</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">interface.app</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyPredictor</span>
+
+<span class="c1"># Initialisation</span>
+<span class="n">predictor</span> <span class="o">=</span> <span class="n">EnergyPredictor</span><span class="p">()</span>
+
+<span class="c1"># Chargement des données</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;Data/data.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Chargement des modèles pré-entraînés</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">load_trained_models</span><span class="p">()</span>
+
+<span class="c1"># Prédiction simple</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict_single_day</span><span class="p">(</span>
+    <span class="n">min_temp</span><span class="o">=</span><span class="mf">18.0</span><span class="p">,</span> <span class="n">mean_temp</span><span class="o">=</span><span class="mf">25.0</span><span class="p">,</span> <span class="n">max_temp</span><span class="o">=</span><span class="mf">32.0</span><span class="p">,</span>
+    <span class="n">wind_speed</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">precipitation</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="mf">1013.0</span><span class="p">,</span> <span class="n">humidity</span><span class="o">=</span><span class="mf">60.0</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Génération prédite: </span><span class="si">{</span><span class="n">prediction</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="entrainement-complet">
+<h3>Entraînement complet<a class="headerlink" href="#entrainement-complet" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pipeline complet d&#39;entraînement</span>
+<span class="n">predictor</span> <span class="o">=</span> <span class="n">EnergyPredictor</span><span class="p">()</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;Data/data.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Prétraitement</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">preprocess_data</span><span class="p">()</span>
+
+<span class="c1"># Entraînement</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">train_models</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># Évaluation</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">evaluate_models</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Performance: RMSE=</span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, R²=</span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;R2&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualisation</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">plot_predictions</span><span class="p">()</span>
+<span class="n">predictor</span><span class="o">.</span><span class="n">plot_training_history</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="optimisation-des-hyperparametres">
+<h3>Optimisation des hyperparamètres<a class="headerlink" href="#optimisation-des-hyperparametres" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">your_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelOptimizer</span>
+
+<span class="c1"># Préparation des données</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># Optimisation</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ModelOptimizer</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+<span class="n">best_params</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">n_trials</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Meilleurs paramètres: </span><span class="si">{</span><span class="n">best_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-et-constantes">
+<h2>Configuration et constantes<a class="headerlink" href="#configuration-et-constantes" title="Link to this heading"></a></h2>
+<section id="constantes-du-modele">
+<h3>Constantes du modèle<a class="headerlink" href="#constantes-du-modele" title="Link to this heading"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="DEFAULT_SEQUENCE_LENGTH">
+<span class="sig-name descname"><span class="pre">DEFAULT_SEQUENCE_LENGTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60</span></em><a class="headerlink" href="#DEFAULT_SEQUENCE_LENGTH" title="Link to this definition"></a></dt>
+<dd><p>Longueur par défaut des séquences LSTM.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="WEATHER_VARIABLES">
+<span class="sig-name descname"><span class="pre">WEATHER_VARIABLES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#WEATHER_VARIABLES" title="Link to this definition"></a></dt>
+<dd><p>Liste des variables météorologiques d’entrée.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">WEATHER_VARIABLES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;min_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;max_temperature&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;min_windspeed&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_windspeed&#39;</span><span class="p">,</span> <span class="s1">&#39;max_windspeed&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;total_precipitation&#39;</span><span class="p">,</span> <span class="s1">&#39;surface_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_relative_humidity&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="TARGET_VARIABLE">
+<span class="sig-name descname"><span class="pre">TARGET_VARIABLE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'max_generation(mw)'</span></em><a class="headerlink" href="#TARGET_VARIABLE" title="Link to this definition"></a></dt>
+<dd><p>Variable cible par défaut.</p>
+</dd></dl>
+
+</section>
+<section id="parametres-du-modele-optimise">
+<h3>Paramètres du modèle optimisé<a class="headerlink" href="#parametres-du-modele-optimise" title="Link to this heading"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="OPTIMAL_HYPERPARAMETERS">
+<span class="sig-name descname"><span class="pre">OPTIMAL_HYPERPARAMETERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#OPTIMAL_HYPERPARAMETERS" title="Link to this definition"></a></dt>
+<dd><p>Hyperparamètres optimaux trouvés par Optuna.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">OPTIMAL_HYPERPARAMETERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;units_1&#39;</span><span class="p">:</span> <span class="mi">74</span><span class="p">,</span>
+    <span class="s1">&#39;units_2&#39;</span><span class="p">:</span> <span class="mi">69</span><span class="p">,</span>
+    <span class="s1">&#39;dropout_rate&#39;</span><span class="p">:</span> <span class="mf">0.1938</span><span class="p">,</span>
+    <span class="s1">&#39;activation&#39;</span><span class="p">:</span> <span class="s1">&#39;relu&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+    <span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="mi">32</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="notes-de-version">
+<h2>Notes de version<a class="headerlink" href="#notes-de-version" title="Link to this heading"></a></h2>
+<section id="version-1-0-0">
+<h3>Version 1.0.0<a class="headerlink" href="#version-1-0-0" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Implémentation initiale de l’API</p></li>
+<li><p>Support des modèles LSTM basiques</p></li>
+<li><p>Interface Streamlit fonctionnelle</p></li>
+</ul>
+</section>
+<section id="version-1-1-0">
+<h3>Version 1.1.0<a class="headerlink" href="#version-1-1-0" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Ajout de l’optimisation Optuna</p></li>
+<li><p>Amélioration des visualisations</p></li>
+<li><p>Support des prédictions long terme</p></li>
+</ul>
+</section>
+<section id="version-actuelle">
+<h3>Version actuelle<a class="headerlink" href="#version-actuelle" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>API complète et documentée</p></li>
+<li><p>Modèles optimisés (RMSE: 291.19 MW)</p></li>
+<li><p>Interface utilisateur avancée</p></li>
+<li><p>Documentation complète</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, AMLLAL Amine, HAJJI Mohamed.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
