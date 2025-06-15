@@ -3,6 +3,12 @@ AnalysingEnergy Documentation
 
 Welcome to the **AnalysingEnergy** project documentation! This project provides advanced energy prediction and analysis using LSTM neural networks and machine learning techniques.
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   homepage
+
 Overview
 --------
 
@@ -65,6 +71,12 @@ Installation
 
 Table of Contents
 -----------------
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Project Overview
+
+   homepage
 
 .. toctree::
    :maxdepth: 2
