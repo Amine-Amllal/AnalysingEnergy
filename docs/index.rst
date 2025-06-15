@@ -36,10 +36,8 @@ Team
 
    <div style="margin: 30px 0;">
      <h3 style="color: #2E8B57; text-align: center; margin-bottom: 30px;">Project Team</h3>
-     
-     <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+       <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
        
-       <!-- Team Members -->
        <div style="text-align: center; margin: 15px; padding: 20px; background-color: #f8f9fa; border-radius: 10px; min-width: 200px;">
          <h4 style="color: #333; margin-bottom: 10px;">Réalisé par:</h4>
          
@@ -55,10 +53,8 @@ Team
            <a href="https://www.linkedin.com/in/mohamed-hajji-697473364/" target="_blank" style="color: #0077B5; text-decoration: none;">
              <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn" style="margin-top: 5px;">
            </a>
-         </div>
-       </div>
+         </div>       </div>
        
-       <!-- Supervisor -->
        <div style="text-align: center; margin: 15px; padding: 20px; background-color: #f0f8f0; border-radius: 10px; min-width: 200px;">
          <h4 style="color: #333; margin-bottom: 10px;">Encadré par:</h4>
            <div style="margin: 15px 0;">
