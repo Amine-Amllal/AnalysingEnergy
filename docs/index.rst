@@ -61,9 +61,8 @@ Team
        <!-- Supervisor -->
        <div style="text-align: center; margin: 15px; padding: 20px; background-color: #f0f8f0; border-radius: 10px; min-width: 200px;">
          <h4 style="color: #333; margin-bottom: 10px;">Encadré par:</h4>
-         
-         <div style="margin: 15px 0;">
-           <p style="font-weight: bold; margin: 5px 0; color: #2E8B57;">M. MASROR Taoufik</p>
+           <div style="margin: 15px 0;">
+           <p style="font-weight: bold; margin: 5px 0; color: #2E8B57;">M. MASROUR Tawfik</p>
            <a href="https://www.linkedin.com/in/tawfik-masrour-43163b85/" target="_blank" style="color: #0077B5; text-decoration: none;">
              <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn" style="margin-top: 5px;">
            </a>
