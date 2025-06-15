@@ -69,9 +69,9 @@ Team
 .. raw:: html
 
    <div style="text-align: center; margin: 30px 0; padding: 20px; background-color: #f0f8f0; border-radius: 10px; border-left: 4px solid #2E8B57;">
-     <h4 style="color: #2E8B57; margin: 0;">📅 Année Universitaire 2024-2025</h4>
+     <h4 style="color: #2E8B57; margin: 0;">📅 Academic Year 2024-2025</h4>
      <p style="color: #555; margin: 10px 0; font-style: italic;">
-       Ce travail a été réalisé dans le cadre de l'année universitaire 2024-2025
+       This work was completed during the 2024-2025 academic year
      </p>
    </div>
 
