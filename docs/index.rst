@@ -159,6 +159,7 @@ Documentation Contents
    getting_started
    data_overview
    model_architecture
+   chatbot_guide
 
 .. toctree::
    :maxdepth: 2
