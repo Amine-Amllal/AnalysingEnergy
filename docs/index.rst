@@ -1,13 +1,61 @@
-AnalysingEnergy Documentation
-==============================
+AnalysingEnergy - Time Series Energy Forecasting System
+========================================================
 
-Welcome to the **AnalysingEnergy** project documentation! This project provides advanced energy prediction and analysis using LSTM neural networks and machine learning techniques.
+.. raw:: html
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
+   <div style="text-align: center; margin: 30px 0;">
+       <h2 style="color: #2E8B57; font-size: 2.5em; margin-bottom: 20px;">
+           ⚡ AnalysingEnergy ⚡
+       </h2>
+       <p style="font-size: 1.3em; color: #555; margin-bottom: 30px;">
+           Time-Series-Based Energy Forecasting System for Renewable Energy Stations
+       </p>
+   </div>
 
-   homepage
+**Project Team**
+----------------
+
+.. raw:: html
+
+   <div style="margin: 20px 0;">
+       <p><strong>Realized by:</strong></p>
+       <ul style="list-style-type: none; padding-left: 0;">
+           <li style="margin: 10px 0;">
+               🎓 <strong>AMLLAL Amine</strong> - 
+               <a href="https://www.linkedin.com/in/amine-amllal/" target="_blank" style="color: #0077B5; text-decoration: none;">
+                   <i class="fab fa-linkedin"></i> LinkedIn Profile
+               </a>
+           </li>
+           <li style="margin: 10px 0;">
+               🎓 <strong>HAJJI Mohamed</strong> - 
+               <a href="https://www.linkedin.com/in/mohamed-hajji-697473364/" target="_blank" style="color: #0077B5; text-decoration: none;">
+                   <i class="fab fa-linkedin"></i> LinkedIn Profile
+               </a>
+           </li>
+       </ul>
+       <p style="margin-top: 20px;"><strong>Supervised by:</strong></p>
+       <ul style="list-style-type: none; padding-left: 0;">
+           <li style="margin: 10px 0;">
+               👨‍🏫 <strong>M. MASROR Taoufik</strong> - 
+               <a href="https://www.linkedin.com/in/tawfik-masrour-43163b85/" target="_blank" style="color: #0077B5; text-decoration: none;">
+                   <i class="fab fa-linkedin"></i> LinkedIn Profile
+               </a>
+           </li>
+       </ul>
+   </div>
+
+**Project Mission**
+-------------------
+
+Our project consists of a time-series-based energy forecasting system applied to renewable energy stations. Its objective is to predict days when consumption will exceed production, in order to recommend actions such as overclocking machines or adjusting work schedules. This system will ensure optimal energy balance and avoid service interruptions.
+
+**Key Objectives:**
+~~~~~~~~~~~~~~~~~~~
+
+- 🔮 **Predictive Analytics**: Forecast energy consumption vs. production imbalances
+- ⚖️ **Energy Balance Optimization**: Maintain optimal energy equilibrium
+- 🚀 **Proactive Recommendations**: Suggest operational adjustments before shortages occur
+- 🔄 **Continuous Operation**: Prevent service interruptions through intelligent planning
 
 Overview
 --------
@@ -74,12 +122,6 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Project Overview
-
-   homepage
-
-.. toctree::
-   :maxdepth: 2
    :caption: User Guide
 
    getting_started
@@ -124,4 +166,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-* {ref}`search`
