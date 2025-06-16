@@ -1106,21 +1106,94 @@ def display_prediction_plots(results_df):
         fig_scatter = px.scatter(
             results_df,
             x='generation_predite',
-            y='consommation_predite',
-            title='Corrélation Génération vs Consommation',
+            y='consommation_predite',            title='Corrélation Génération vs Consommation',
             trendline="ols",
             labels={'generation_predite': 'Génération (MW)', 'consommation_predite': 'Consommation (MW)'}
         )
         fig_scatter.update_layout(height=400, template='plotly_white')
         st.plotly_chart(fig_scatter, use_container_width=True)
 
-# Chemin du notebook à exécuter
-notebook_path = r"c:\Users\Idea\Documents\Programming languages\Python\Notebooks\Time Series\Project_1\Notebooks\LSTM complet interface.ipynb"
-results_path = r"c:\Users\Idea\Documents\Programming languages\Python\Notebooks\Time Series\Project_1\Notebooks\results.csv"
-uploaded_dataset_path = r"c:\Users\Idea\Documents\Programming languages\Python\Notebooks\Time Series\Project_1\Data\uploaded_test_data.csv"
+# Configuration des chemins des notebooks
+notebook_pretrained_path = r"c:\Users\Idea\Documents\GitHub\AnalysingEnergy\Notebooks\LSTM complet interface.ipynb"
+notebook_training_path = r"c:\Users\Idea\Documents\GitHub\AnalysingEnergy\Notebooks\LSTM complet interface entrainement.ipynb"
+results_path = r"c:\Users\Idea\Documents\GitHub\AnalysingEnergy\Notebooks\results.csv"
+uploaded_dataset_path = r"c:\Users\Idea\Documents\GitHub\AnalysingEnergy\Data\uploaded_test_data.csv"
 
-# Étape 1 : Téléversement du fichier
+# Étape 1 : Choix du mode d'utilisation
+st.subheader("🔧 Mode d'Utilisation")
+
+# Interface de sélection du mode
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("### 🎯 Modèles Pré-entraînés")
+    st.info("""
+    **Avantages :**
+    - ⚡ Exécution rapide (2-3 minutes)
+    - 📊 Modèles optimisés pour la région Benten
+    - ✅ Prêt à l'emploi
+    
+    **Recommandé pour :**
+    - Tests rapides
+    - Données similaires à la région Benten
+    - Démonstrations
+    """)
+
+with col2:
+    st.markdown("### 🔄 Entraînement Personnalisé")
+    st.warning("""
+    **Avantages :**
+    - 🎯 Modèles adaptés à vos données
+    - 📈 Meilleure précision pour votre région
+    - 🔧 Personnalisation complète
+    
+    **Attention :**
+    - ⏰ Durée : 15-30 minutes
+    - 💻 Utilisation intensive du processeur
+    - 📊 Nécessite des données de qualité
+    """)
+
+# Sélection du mode
+mode_choice = st.radio(
+    "Choisissez votre mode d'utilisation :",
+    ["🎯 Utiliser les modèles pré-entraînés (Région Benten)", 
+     "🔄 Entraîner de nouveaux modèles personnalisés"],
+    index=0,
+    help="Sélectionnez le mode selon vos besoins et contraintes de temps"
+)
+
+# Sélection du notebook en fonction du mode
+if "pré-entraînés" in mode_choice:
+    selected_notebook = notebook_pretrained_path
+    mode_type = "pretrained"
+    st.success("✅ Mode sélectionné : **Modèles Pré-entraînés**")
+    st.info("💡 Ce mode utilisera les modèles LSTM déjà entraînés sur les données de la région Benten.")
+else:
+    selected_notebook = notebook_training_path
+    mode_type = "training"
+    st.success("✅ Mode sélectionné : **Entraînement Personnalisé**")
+    st.warning("⚠️ Ce mode va entraîner de nouveaux modèles. Cela peut prendre du temps.")
+
+# Étape 2 : Téléversement du fichier
 st.subheader("📂 Téléversez votre dataset")
+
+# Affichage des exigences selon le mode
+if mode_type == "training":
+    st.markdown("""
+    ### 📋 Exigences pour l'Entraînement Personnalisé :
+    - 📅 **Minimum 100 lignes** de données historiques
+    - 📊 **Colonnes requises** : toutes les variables énergétiques et météorologiques
+    - 🔢 **Données complètes** : peu ou pas de valeurs manquantes
+    - 📈 **Qualité des données** : valeurs cohérentes et réalistes
+    """)
+else:
+    st.markdown("""
+    ### 📋 Exigences pour les Modèles Pré-entraînés :
+    - 📅 **Minimum 30 lignes** de données pour les prédictions
+    - 📊 **Colonnes principales** : génération et consommation requises
+    - 🌍 **Variables météo** : optionnelles mais recommandées
+    """)
+
 uploaded_file = st.file_uploader("Choisissez un fichier CSV", type=["csv"])
 
 if uploaded_file is not None:
@@ -1129,14 +1202,111 @@ if uploaded_file is not None:
         f.write(uploaded_file.getbuffer())
     st.success(f"✅ Fichier téléversé et sauvegardé à : {uploaded_dataset_path}")
     
-    # Étape 2 : Exécuter le notebook
-    st.info("⏳ Exécution du notebook en cours...")
+    # Afficher un aperçu du dataset
+    preview_df = pd.read_csv(uploaded_dataset_path)
+    st.markdown("### 👀 Aperçu du Dataset")
+    st.dataframe(preview_df.head())
+    st.write(f"📊 **Shape du dataset :** {preview_df.shape[0]} lignes, {preview_df.shape[1]} colonnes")
+    
+    # Validation des données selon le mode
+    if mode_type == "training":
+        if len(preview_df) < 100:
+            st.error("❌ Données insuffisantes pour l'entraînement. Minimum 100 lignes requis.")
+            st.stop()
+        else:
+            st.success(f"✅ Dataset valide pour l'entraînement ({len(preview_df)} lignes)")
+    else:
+        if len(preview_df) < 30:
+            st.error("❌ Données insuffisantes. Minimum 30 lignes requis.")
+            st.stop()
+        else:
+            st.success(f"✅ Dataset valide pour les prédictions ({len(preview_df)} lignes)")
+      # Étape 3 : Exécuter le notebook
+    st.subheader(f"🚀 Exécution - Mode {mode_type.title()}")
+    
+    if mode_type == "training":
+        st.warning("⚠️ **Attention :** L'entraînement peut prendre 15-30 minutes selon votre matériel.")
+        
+        # Barre de progression estimée pour l'entraînement
+        if st.button("🔄 Commencer l'Entraînement Personnalisé", type="primary"):
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            status_text.text("🔧 Préparation de l'environnement d'entraînement...")
+            progress_bar.progress(10)
+            
+            try:
+                # Configuration des variables d'environnement pour le notebook
+                os.environ['LSTM_MODE'] = 'retrain'
+                os.environ['DATA_FILE'] = 'uploaded_test_data.csv'
+                os.environ['STREAMLIT_MODE'] = 'true'
+                
+                with open(selected_notebook, "r", encoding="utf-8") as f:
+                    notebook = nbformat.read(f, as_version=4)
+                
+                status_text.text("📊 Chargement et préparation des données...")
+                progress_bar.progress(20)
+                
+                # Configuration pour l'entraînement
+                ep = ExecutePreprocessor(timeout=1800, kernel_name="python3")  # 30 minutes timeout
+                
+                status_text.text("🤖 Entraînement des modèles LSTM en cours...")
+                progress_bar.progress(30)
+                
+                ep.preprocess(notebook, {"metadata": {"path": os.path.dirname(selected_notebook)}})
+                
+                progress_bar.progress(100)
+                status_text.text("✅ Entraînement terminé avec succès!")
+                st.success("🎉 **Entraînement Personnalisé Terminé !** Vos modèles ont été entraînés et sauvegardés.")
+                
+            except Exception as e:
+                st.error(f"❌ Erreur lors de l'entraînement : {str(e)}")
+                st.info("💡 Vérifiez que vos données respectent le format requis et réessayez.")
+            finally:
+                # Nettoyer les variables d'environnement
+                for key in ['LSTM_MODE', 'DATA_FILE', 'STREAMLIT_MODE']:
+                    os.environ.pop(key, None)
+    
+    else:
+        # Mode pré-entraîné (plus rapide)
+        if st.button("🎯 Générer les Prédictions", type="primary"):
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            status_text.text("📊 Chargement des modèles pré-entraînés...")
+            progress_bar.progress(25)
+            
+            try:
+                # Configuration des variables d'environnement pour le notebook
+                os.environ['LSTM_MODE'] = 'pretrained'
+                os.environ['DATA_FILE'] = 'uploaded_test_data.csv'
+                os.environ['STREAMLIT_MODE'] = 'true'
+                
+                with open(selected_notebook, "r", encoding="utf-8") as f:
+                    notebook = nbformat.read(f, as_version=4)
+                
+                status_text.text("🔮 Génération des prédictions...")
+                progress_bar.progress(50)
+                
+                ep = ExecutePreprocessor(timeout=600, kernel_name="python3")  # 10 minutes timeout
+                ep.preprocess(notebook, {"metadata": {"path": os.path.dirname(selected_notebook)}})                
+                progress_bar.progress(100)
+                status_text.text("✅ Prédictions générées avec succès!")
+                st.success("🎉 **Prédictions Terminées !** Les résultats sont prêts à être analysés.")
+                
+            except Exception as e:
+                st.error(f"❌ Erreur lors de l'exécution : {str(e)}")
+                st.info("💡 Vérifiez que vos données respectent le format requis et réessayez.")
+            finally:
+                # Nettoyer les variables d'environnement
+                for key in ['LSTM_MODE', 'DATA_FILE', 'STREAMLIT_MODE']:
+                    os.environ.pop(key, None)
+
+# Gestion des erreurs communes
+if uploaded_file is not None:
     try:
-        with open(notebook_path, "r", encoding="utf-8") as f:
-            notebook = nbformat.read(f, as_version=4)
-        ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
-        ep.preprocess(notebook, {"metadata": {"path": os.path.dirname(notebook_path)}})
-        st.success("✅ Notebook exécuté avec succès !")
+        # Le reste du code de gestion des résultats reste ici
+        pass
     except Exception as e:
         st.error(f"❌ Erreur lors de l'exécution du notebook : {e}")
         
